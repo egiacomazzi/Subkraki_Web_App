@@ -23,4 +23,3 @@ function App() {
 }
 
 export default App;
-SHA256:nThbg6kXUpJWGl7E1IGOCspRomTxdCARLviKw6E5SY8

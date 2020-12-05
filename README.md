@@ -8,6 +8,11 @@ In the project directory, you can run:
 
 ### `npm start`
 
+**if** you installed the npm package create-react-app
+To start the app first install `node`and `npm` then install the above mentioned package by
+
+### `npm i create-react-app'
+
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
