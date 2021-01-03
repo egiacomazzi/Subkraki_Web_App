@@ -1,23 +1,13 @@
-import logo from './data/logo.svg';
+import React from 'react';
 import './CSS/App.css';
+import Speechbubble from './Speechbubble';
+import Subkraki from './Subkraki.js';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hallo Franzi! Hallo Leon!
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          LOOOOOOOS Learn React
-        </a>
-      </header>
+      <Subkraki size="big" />
+      <Speechbubble />
     </div>
   );
 }
