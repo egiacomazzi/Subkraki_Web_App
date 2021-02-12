@@ -1,23 +1,20 @@
 import React from 'react';
 import './CSS/Speechbubble.css';
+import PropTypes from 'prop-types';
 
 class Speechbubble extends React.Component {
-  // constructor(props) {
-  //     super(props);
-  //     this.state = {  };
-  //     this.props.height =
-  // }
   render() {
     return (
       <div className="Speech">
-        <p>
-          {' '}
-          Hallo, Ich bin Subkraki und möchte mit dir das Subtrahieren
-          üben.
-        </p>
+        <div className="testimonial">
+          <div className="bubble">{this.props.text}</div>
+        </div>
       </div>
     );
   }
 }
 
 export default Speechbubble;
+Speechbubble.propTypes = {
+  text: PropTypes.string,
+};
