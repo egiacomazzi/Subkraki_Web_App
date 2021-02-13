@@ -1,0 +1,16 @@
+/* .Speech {
+  grid-area: speech;
+}
+.rightway {
+  grid-area: rightway;
+}
+
+.leftway {
+  grid-area: leftway;
+}
+.SpeechbubbleControls {
+  width: 100%;
+  height: 250px;
+  display: grid;
+  grid-template-areas: 'speech speech speech', 'leftway . rightway';
+} */

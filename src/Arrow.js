@@ -8,15 +8,17 @@ class Arrow extends React.Component {
     if (this.props.class === 'leftway') {
       left = true;
     }
-    const arrowDirection = left ? { transform: 'scaleX(-1)' } : {};
+    const arrowDirection = left
+      ? { transform: 'scaleX(-1)', left: '15%' }
+      : { left: '75%' };
+
     return (
       <button
-        className={this.props.class}
+        className={['icon', this.props.class].join(' ')}
         onClick={this.props.onClick}
+        style={arrowDirection}
       >
-        <div className="icon" style={arrowDirection}>
-          <div className="arrow"></div>
-        </div>
+        <div className="arrow"></div>
       </button>
     );
   }
