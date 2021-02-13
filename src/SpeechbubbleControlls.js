@@ -15,7 +15,8 @@ class SpeechbubbleControlls extends React.Component {
     return (
       <div className="SpeechbubbleControls">
         <Speechbubble text={this.props.text} />
-        <Arrow class="rightway" />
+        <Arrow class="rightway" onClick={this.props.nextText} />
+        <Arrow class="leftway" onClick={this.props.lastText} />
       </div>
     );
   }
@@ -24,4 +25,6 @@ class SpeechbubbleControlls extends React.Component {
 export default SpeechbubbleControlls;
 SpeechbubbleControlls.propTypes = {
   text: PropTypes.string,
+  nextText: PropTypes.func,
+  lastText: PropTypes.func,
 };

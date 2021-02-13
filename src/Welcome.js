@@ -4,9 +4,24 @@ import Subkraki from './Subkraki.js';
 import SpeechbubbleControlls from './SpeechbubbleControlls.js';
 
 class Welcome extends React.Component {
-  giveText() {
-    return <div></div>;
+  constructor(props) {
+    super(props);
+    this.state = {
+      introTextIndex: 0,
+    };
   }
+  nextText() {
+    this.setState({
+      introTextIndex: this.state.introTextIndex + 1,
+    });
+  }
+
+  lastText() {
+    this.setState({
+      introTextIndex: this.state.introTextIndex - 1,
+    });
+  }
+
   render() {
     const text = {
       intro: [
@@ -22,7 +37,11 @@ class Welcome extends React.Component {
     };
     return (
       <div className="welcome">
-        <SpeechbubbleControlls text={text.intro[0]} />
+        <SpeechbubbleControlls
+          text={text.intro[this.state.introTextIndex]}
+          nextText={() => this.nextText()}
+          lastText={() => this.lastText()}
+        />
 
         <Subkraki size="big" />
       </div>
