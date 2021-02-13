@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 
 
 class Arrow extends React.Component  {
-    state = { text: "texti"};
-    const testa = 
+    
 
     render(){
+        var text = "Hallo";
         return (
             <div>
                 <svg width="984" height="400" viewBox="0 0 984 351" fill="none" xmlns="http://www.w3.org/2000/svg">

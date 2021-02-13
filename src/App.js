@@ -2,16 +2,14 @@ import React from 'react';
 import './CSS/App.css';
 import Speechbubble from './Speechbubble';
 import Subkraki from './Subkraki.js';
-import Arrow from './Arrow.js';
-import Number from './Number.js'
+import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js'
 
 function App() {
   return (
     <div className="App">
       <Subkraki size="big" />
       <Speechbubble />
-      <Arrow />
-      <Number number="1"/>
+      <SubtractionPanel subtrahend="777" minuend="456" digits="3"/>
     </div>
   );
 }

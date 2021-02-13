@@ -1,0 +1,86 @@
+.panel {
+  padding: 3vw;
+  width: 50vw;
+  height: 35vw;
+  border-radius: 5%;
+  background-color: rgba(255, 255, 255, 0.7);
+  align-content: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: auto auto 0fr auto;
+  grid-column-gap: 0.5vw;
+  grid-row-gap: 1.5vw;
+  grid-template-areas:
+    '. correction1 correction2 correction3 . . .'
+    '. subtrahendA subtrahendB subtrahendC . . .'
+    'minus minuendA minuendB minuendC . . .'
+    'line line line line line . .'
+    '. resultA resultB resultC . check refresh';
+}
+
+.line {
+  border-top: 0.5vw solid var(--primary-lila);
+  grid-area: line;
+}
+
+.minus {
+  font-size: 5vw;
+  text-align: center;
+  grid-area: minus;
+}
+
+button {
+  background-color: var(--primary-lila);
+  border: none;
+  border-radius: 10%;
+}
+
+.correction0 {
+  grid-area: correction0;
+}
+
+.correction1 {
+  grid-area: correction1;
+}
+
+.correction2 {
+  grid-area: correction2;
+}
+
+.subtrahend0 {
+  grid-area: subtrahendA;
+}
+
+.subtrahend1 {
+  grid-area: subtrahendB;
+}
+.subtrahend2 {
+  grid-area: subtrahendC;
+}
+.minuend0 {
+  grid-area: minuendA;
+}
+.minuend1 {
+  grid-area: minuendB;
+}
+.minuend2 {
+  grid-area: minuendC;
+}
+.result0 {
+  grid-area: resultA;
+}
+.result1 {
+  grid-area: resultB;
+}
+.result2 {
+  grid-area: resultC;
+}
+.check {
+  grid-area: check;
+}
+.refresh {
+  grid-area: refresh;
+}
