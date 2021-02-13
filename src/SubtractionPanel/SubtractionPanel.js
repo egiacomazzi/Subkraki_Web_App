@@ -22,36 +22,41 @@ class SubtractionPanel extends React.Component  {
         this.state = {
             corrections_crossedOut: emptyArray.slice().fill(false),
             corrections_row : emptyArray.slice().fill(null),
-            result_row: emptyArray.slice().fill(null),
+            result_row: emptyArray.slice().fill(0),
         }
     }
 
-    submitCalculation(){
+    submitCalculation(event){
         //FIXME: Should this function stop from refreshing page??? -> Event.preventDefault
-        console.log("hi");
+        event.preventDefault();
         const result = this.getResult();
-        const subtrahend = this.getSubtrahend();
-        const calculation = {subtrahend, result};
-        return calculation;
+        const corrections = this.getCorrections();
+        console.log({result: result, corrections: corrections});
+        return {result: result, corrections: corrections};        
     }
 
     getResult(){
-        var result = 0;
-        for(var i = 0; i < this.props.digits; i++){
-            const factor = 10 ** (this.state.digits - 1 - i);
-            result += factor * document.getElementsByClassName("ergebnis"+i)[0].value;
+        let result = this.state.result_row.slice();
+        for(let i = 0; i < this.props.digits; i++){
+            result[i] = parseInt(document.getElementsByClassName("result"+i)[0].value);
         }
-        console.log("result is: " + result);
+        this.setState({
+            result_row: result,
+        })
         return result;
     }
 
-    getSubtrahend(){
-        var subtrahend = [];
-        for(var i = 0; i < this.props.digits; i++){
-            subtrahend.push();
+    getCorrections(){
+        let corrections = [];
+        for (let i = 0; i < this.props.digits; i++) {
+            if(this.state.corrections_crossedOut[i]){
+                corrections.push(parseInt(document.getElementsByClassName("correction"+i)[0].value));
+            } else{
+                corrections.push(this.props.subtrahend[i]);
+            }
         }
+        return corrections;
     }
-
 
     renderCorrections(){
         const corrections_display = [];
@@ -70,7 +75,6 @@ class SubtractionPanel extends React.Component  {
         }
         return corrections_display;
     }
-
 
     renderSubtrahend(){
         var subtrahend_digits = [];
@@ -123,10 +127,26 @@ class SubtractionPanel extends React.Component  {
                 <ResultNumber 
                     key={res_className}
                     className={res_className} 
-                    number="0"/>
+                    number={this.state.result_row[j]}/>
             )
         }
         return result_display;
+    }
+
+    /*Does not work yet properly -> result does not update. Maybe becasue only
+    defaultValue in ResultNumber???*/
+    refresh(event){
+        event.preventDefault();
+        let emptyArray = [];
+        for (let i = 0; i < this.props.digits; i++) {
+            emptyArray.push(null);
+        }
+        const new_result_row = this.state.result_row.slice().fill(0);
+        this.setState({
+            corrections_crossedOut: emptyArray.slice().fill(false),
+            corrections_row : emptyArray.slice().fill(null),
+            result_row: new_result_row,
+        })
     }
 
     render(){    
@@ -147,8 +167,8 @@ class SubtractionPanel extends React.Component  {
                         <div className="line"></div>
                         
                         {result_display}
-                        <CorrectButton className="check" onClick={() => this.submitCalculation()}/>
-                        <RefreshButton className="refresh"/>
+                        <CorrectButton className="check" onClick={(event) => this.submitCalculation(event)}/>
+                        <RefreshButton className="refresh" onClick={(event) => this.refresh(event)}/>
                     </div>
                 </form>
             </div>
