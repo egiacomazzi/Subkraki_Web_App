@@ -11,7 +11,7 @@ class CorrectionNumber extends React.Component  {
         let className = "roundNumber resultNumber " + this.props.className;
         let visibility = {visibility: this.props.visibility}
         return(
-            <input type="number" min="0" max="9" className={className} style={visibility}></input>
+            <input type="number" min="0" className={className} style={visibility}></input>
         )
     }
 }

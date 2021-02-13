@@ -9,7 +9,6 @@ import CorrectionNumber from './CorrectionNumber.js'
 import PropTypes from 'prop-types';
 
 
-
 class SubtractionPanel extends React.Component  {
     constructor(props){
         super(props);
@@ -23,11 +22,11 @@ class SubtractionPanel extends React.Component  {
             corrections_crossedOut: emptyArray.slice().fill(false),
             corrections_row : emptyArray.slice().fill(null),
             result_row: emptyArray.slice().fill(0),
+            error_message: null,
         }
     }
 
     submitCalculation(event){
-        //FIXME: Should this function stop from refreshing page??? -> Event.preventDefault
         event.preventDefault();
         const result = this.getResult();
         const corrections = this.getCorrections();
@@ -38,7 +37,14 @@ class SubtractionPanel extends React.Component  {
     getResult(){
         let result = this.state.result_row.slice();
         for(let i = 0; i < this.props.digits; i++){
-            result[i] = parseInt(document.getElementsByClassName("result"+i)[0].value);
+            const num = parseInt(document.getElementsByClassName("result"+i)[0].value);
+            if(isNaN(num)){
+                this.setState({
+                    error_message: "Achtung: Gib in der unteren Ergebniszeile nur Zahlen ein, keine Buchstaben oder andere Zeichen. Korrigiere Deine Eingabe.",
+                })
+                return;
+            }
+            result[i] = num;
         }
         this.setState({
             result_row: result,
@@ -49,9 +55,17 @@ class SubtractionPanel extends React.Component  {
     getCorrections(){
         let corrections = [];
         for (let i = 0; i < this.props.digits; i++) {
+        
             if(this.state.corrections_crossedOut[i]){
-                corrections.push(parseInt(document.getElementsByClassName("correction"+i)[0].value));
-            } else{
+                const num = parseInt(document.getElementsByClassName("correction"+i)[0].value);
+                if(isNaN(num)){
+                    this.setState({
+                        error_message: "Achtung: Gib in der obersten Zeile nur Zahlen ein, keine Buchstaben oder andere Zeichen. Korrigiere Deine Eingabe.",
+                    })
+                    return;
+                }
+                corrections.push(num);
+            } else {
                 corrections.push(this.props.subtrahend[i]);
             }
         }
@@ -149,15 +163,23 @@ class SubtractionPanel extends React.Component  {
         })
     }
 
+    renderErrorMessage(){
+        if(this.state.error_message == null){
+            return [];
+        } else {
+            return <div className="errorMessage">{this.state.error_message}</div>
+        }
+    }
+
     render(){    
         const corrections_display = this.renderCorrections();
         const subtrahend_display = this.renderSubtrahend();
         const minuend_display = this.renderMinuend();
         const result_display = this.renderResult();
+        const error_message = this.renderErrorMessage();
 
         return(
             <div className="panel">
-                <form>
                     <div className="grid-container">
                         {corrections_display}
                         {subtrahend_display}
@@ -169,8 +191,8 @@ class SubtractionPanel extends React.Component  {
                         {result_display}
                         <CorrectButton className="check" onClick={(event) => this.submitCalculation(event)}/>
                         <RefreshButton className="refresh" onClick={(event) => this.refresh(event)}/>
+                        {error_message}
                     </div>
-                </form>
             </div>
         )
     }

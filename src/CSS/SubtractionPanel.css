@@ -1,7 +1,7 @@
 .panel {
   padding: 3vw;
   width: 50vw;
-  height: 35vw;
+  height: 38vw;
   border-radius: 5%;
   background-color: rgba(255, 255, 255, 0.7);
   align-content: center;
@@ -18,7 +18,8 @@
     '. subtrahendA subtrahendB subtrahendC . . .'
     'minus minuendA minuendB minuendC . . .'
     'line line line line line . .'
-    '. resultA resultB resultC . check refresh';
+    '. resultA resultB resultC . check refresh'
+    'error error error error error error error';
 }
 
 .line {
@@ -89,4 +90,11 @@ button {
 }
 .refresh {
   grid-area: refresh;
+}
+.errorMessage {
+  grid-area: error;
+  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(255, 0, 111);
+  font-size: 1.5vw;
+  margin-top: 2vw;
 }
