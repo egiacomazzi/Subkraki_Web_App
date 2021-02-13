@@ -52,6 +52,53 @@ class SubtractionPanel extends React.Component  {
         }
     }
 
+
+    renderCorrections(){
+        const corrections_display = [];
+        for(let j = 0; j < this.props.digits; j++){
+            const corr_className = "correction" + j;
+            let display = "hidden";
+            if(this.state.corrections_crossedOut[j]){
+                display = "visible";
+            }
+            corrections_display.push(
+                <CorrectionNumber 
+                    key={corr_className} 
+                    className={corr_className} 
+                    visibility={display}/>
+            )
+        }
+        return corrections_display;
+    }
+
+
+    renderSubtrahend(){
+        var subtrahend_digits = [];
+        const subtrahend_display = [];
+        for(let i = 0; i < this.props.digits; i++){
+            const sub_className = "subtrahend" + i;
+            subtrahend_digits.push(this.props.subtrahend.slice(i, i+1));
+            subtrahend_display.push(
+                <ClickableNumber 
+                    key={sub_className} 
+                    className={sub_className} 
+                    number={subtrahend_digits[i]} 
+                    crossedOut={this.state.corrections_crossedOut[i]}
+                    onClickHandler={(event) => this.subtrahend_onClick(event,i)}/>
+            )
+        }
+        return subtrahend_display;
+    }
+
+    subtrahend_onClick(event, i){
+        event.preventDefault();
+        let new_corrections_crossedOut = this.state.corrections_crossedOut.slice();
+        new_corrections_crossedOut[i] = !new_corrections_crossedOut[i];
+        this.setState({
+            corrections_crossedOut: new_corrections_crossedOut,
+        });
+    }
+
     renderMinuend(){
         var minuend_digits = [];
         const minuend_display = [];
@@ -68,36 +115,6 @@ class SubtractionPanel extends React.Component  {
         return minuend_display;
     }
 
-    subtrahend_onClick(event, i){
-        event.preventDefault();
-        let new_corrections_crossedOut = this.state.corrections_crossedOut.slice();
-        console.log(new_corrections_crossedOut);
-        new_corrections_crossedOut[i] = !new_corrections_crossedOut[i];
-        console.log(new_corrections_crossedOut);
-        this.setState({
-            corrections_crossedOut: new_corrections_crossedOut,
-        });
-        console.log(this.state.corrections_crossedOut);
-    }
-
-    renderSubtrahend(){
-        var subtrahend_digits = [];
-        const subtrahend_display = [];
-        for(var i = 0; i < this.props.digits; i++){
-            const sub_className = "subtrahend" + i;
-            subtrahend_digits.push(this.props.subtrahend.slice(i, i+1));
-            subtrahend_display.push(
-                <ClickableNumber 
-                    key={sub_className} 
-                    className={sub_className} 
-                    number={subtrahend_digits[i]} 
-                    crossedOut={this.state.corrections_crossedOut[i]}
-                    onClickHandler={(event) => this.subtrahend_onClick(event,i)}/>
-            )
-        }
-        return subtrahend_display;
-    }
-
     renderResult(){
         const result_display = [];
         for(var j = 0; j < this.props.digits; j++){
@@ -110,24 +127,6 @@ class SubtractionPanel extends React.Component  {
             )
         }
         return result_display;
-    }
-
-    renderCorrections(){
-        const corrections_display = [];
-        for(var j = 0; j < this.props.digits; j++){
-            const corr_className = "correction" + j;
-            let display = "hidden";
-            if(this.state.corrections_crossedOut[j]){
-                display = "visible";
-            }
-            corrections_display.push(
-                <CorrectionNumber 
-                    key={corr_className} 
-                    className={corr_className} 
-                    visibility={display}/>
-            )
-        }
-        return corrections_display;
     }
 
     render(){    

@@ -1,6 +1,5 @@
 .clickableNumber {
   border: 0.4vw solid var(--primary-lila);
-  position: relative;
 }
 
 .X {

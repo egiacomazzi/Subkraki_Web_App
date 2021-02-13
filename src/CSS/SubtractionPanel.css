@@ -14,7 +14,7 @@
   grid-column-gap: 0.5vw;
   grid-row-gap: 1.5vw;
   grid-template-areas:
-    '. correction1 correction2 correction3 . . .'
+    '. correction0 correction1 correction2 . . .'
     '. subtrahendA subtrahendB subtrahendC . . .'
     'minus minuendA minuendB minuendC . . .'
     'line line line line line . .'
@@ -52,13 +52,19 @@ button {
 
 .subtrahend0 {
   grid-area: subtrahendA;
+  width: 6vw;
+  height: 6vw;
 }
 
 .subtrahend1 {
   grid-area: subtrahendB;
+  width: 6vw;
+  height: 6vw;
 }
 .subtrahend2 {
   grid-area: subtrahendC;
+  width: 6vw;
+  height: 6vw;
 }
 .minuend0 {
   grid-area: minuendA;

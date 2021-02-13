@@ -11,7 +11,7 @@ class ClickableNumber extends React.Component  {
         let className = "clickableNumber roundNumber ";
         let x;
         if(this.props.crossedOut){
-            x = <div onClick={(event) => this.onClick(event)} className="X">X</div>;
+            x = <div onClick={this.props.onClickHandler} className="X">X</div>;
         }
         return(
             <div className={this.props.className}>
