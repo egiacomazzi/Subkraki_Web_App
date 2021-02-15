@@ -21,55 +21,101 @@ class SubtractionPanel extends React.Component  {
         this.state = {
             corrections_crossedOut: emptyArray.slice().fill(false),
             corrections_row : emptyArray.slice().fill(null),
-            result_row: emptyArray.slice().fill(0),
+            result_row: emptyArray.slice().fill(null),
             error_message: null,
+            corrections_row_error: emptyArray.slice().fill(false),
+            result_row_error: emptyArray.slice().fill(false),
         }
     }
 
     submitCalculation(event){
         event.preventDefault();
         const result = this.getResult();
+        if(result.error_message){
+            this.setState({
+                error_message: result.error_message,
+            });
+            return;
+        }
+        this.setState({
+            result_row_error: Array(this.props.digits).fill(false),
+        })
         const corrections = this.getCorrections();
+        if(corrections.error_message){
+            this.setState({
+                error_message: corrections.error_message,
+            });
+            return;
+        }
+        this.setState({
+            corrections_row_error: Array(this.props.digits).fill(false),
+            error_message: null,
+        })
         console.log({result: result, corrections: corrections});
-        return {result: result, corrections: corrections};        
+        return {result: result, corrections: corrections};     
     }
 
     getResult(){
-        let result = this.state.result_row.slice();
+        let result = [];
+        let error_message = null;
         for(let i = 0; i < this.props.digits; i++){
-            const num = parseInt(document.getElementsByClassName("result"+i)[0].value);
-            if(isNaN(num)){
-                this.setState({
-                    error_message: "Achtung: Gib in der unteren Ergebniszeile nur Zahlen ein, keine Buchstaben oder andere Zeichen. Korrigiere Deine Eingabe.",
-                })
-                return;
+            const value = document.getElementsByClassName("result"+i)[0].value;
+            if(value === ""){
+                result.push(parseInt(0));
+            } else {
+                const num = parseInt(value);
+                if(isNaN(num)){
+                    error_message = "Achtung: Gib nur Zahlen ein.";
+                    this.setValidationErrorInResultRow(i);
+                    break;
+                }
+                result.push(num);
             }
-            result[i] = num;
+            
         }
-        this.setState({
-            result_row: result,
-        })
-        return result;
+        return {result: result, error_message: error_message};
     }
+
 
     getCorrections(){
         let corrections = [];
+        let error_message = null;
         for (let i = 0; i < this.props.digits; i++) {
-        
             if(this.state.corrections_crossedOut[i]){
-                const num = parseInt(document.getElementsByClassName("correction"+i)[0].value);
+                const value = document.getElementsByClassName("correction"+i)[0].value;
+                if(value === ""){
+                    error_message = "Achtung: Wenn du eine Zahl oben durchstreichst, musst du auch darüber eine andere Zahl eintragen.";
+                    this.setValidationErrorInCorrectionsRow(i)
+                    break;
+                }
+                const num = parseInt(value);
                 if(isNaN(num)){
-                    this.setState({
-                        error_message: "Achtung: Gib in der obersten Zeile nur Zahlen ein, keine Buchstaben oder andere Zeichen. Korrigiere Deine Eingabe.",
-                    })
-                    return;
+                    error_message =  "Achtung: Gib nur Zahlen ein.";
+                    this.setValidationErrorInCorrectionsRow(i);
+                    break;
                 }
                 corrections.push(num);
             } else {
-                corrections.push(this.props.subtrahend[i]);
+                corrections.push(parseInt(this.props.subtrahend[i]));
             }
         }
-        return corrections;
+        return {corrections: corrections, error_message: error_message};
+    }
+
+    setValidationErrorInResultRow(i){
+        let new_row = this.state.result_row_error.slice();
+        new_row[i] = true;
+        this.setState({
+            result_row_error: new_row,
+        })
+    }
+
+    setValidationErrorInCorrectionsRow(i){
+        let new_row = this.state.corrections_row_error.slice();
+        new_row[i] = true;
+        this.setState({
+            corrections_row_error: new_row,
+        })
     }
 
     renderCorrections(){
@@ -84,7 +130,8 @@ class SubtractionPanel extends React.Component  {
                 <CorrectionNumber 
                     key={corr_className} 
                     className={corr_className} 
-                    visibility={display}/>
+                    visibility={display}
+                    error={this.state.corrections_row_error[j]}/>
             )
         }
         return corrections_display;
@@ -137,11 +184,13 @@ class SubtractionPanel extends React.Component  {
         const result_display = [];
         for(var j = 0; j < this.props.digits; j++){
             const res_className = "result" + j;
+            const num = parseInt(this.state.result_row[j]);
             result_display.push(
                 <ResultNumber 
                     key={res_className}
                     className={res_className} 
-                    number={this.state.result_row[j]}/>
+                    number={num}
+                    error={this.state.result_row_error[j]}/>
             )
         }
         return result_display;

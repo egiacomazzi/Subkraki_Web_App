@@ -1,22 +1,25 @@
 import React from 'react';
 import '../CSS/Numbers.css'
-import '../CSS/ResultNumber.css';
 import PropTypes from 'prop-types';
 
 
 class CorrectionNumber extends React.Component  {    
     
     render(){
-        //FIXME: ExceptionHandling if this.props.number is not parseable into a number
-        let className = "roundNumber resultNumber " + this.props.className;
-        let visibility = {visibility: this.props.visibility}
+        let className = "roundNumber " + this.props.className;
+        let border = 'transparent 0.1vw solid';
+        if(this.props.error){
+            border = 'rgb(255, 0, 111) 0.1vw solid';
+        }
+        let style = {visibility: this.props.visibility, border: border};
         return(
-            <input type="number" min="0" className={className} style={visibility}></input>
+            <input type="text" maxLength="2" className={className} style={style}></input>
         )
     }
 }
 CorrectionNumber.propTypes = {
     visibility: PropTypes.string,
     className: PropTypes.string,
+    error: PropTypes.bool,
 };
 export default CorrectionNumber;
