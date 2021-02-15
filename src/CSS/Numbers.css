@@ -1,0 +1,12 @@
+.roundNumber {
+  display: inline;
+  height: 6vw;
+  width: 6vw;
+  border-radius: 50%;
+  background-color: var(--button-grey);
+  font-size: 3vw;
+  text-align: center;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+}
