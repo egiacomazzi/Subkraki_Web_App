@@ -1,4 +1,5 @@
-button {
+.left,
+.right {
   background-color: transparent;
   border: rgb(15, 22, 219);
   cursor: pointer;

@@ -7,7 +7,7 @@
   align-content: center;
 }
 
-.grid-container {
+.panel > .grid-container {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: auto auto 0fr auto;
@@ -33,7 +33,7 @@
   grid-area: minus;
 }
 
-button {
+.panelControls {
   background-color: var(--primary-lila);
   border: none;
   border-radius: 10%;
