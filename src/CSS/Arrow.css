@@ -1,0 +1,48 @@
+button {
+  background-color: transparent;
+  border: rgb(15, 22, 219);
+  cursor: pointer;
+}
+
+/*.icon {
+   position: absolute; 
+  top: 50%;
+  left: 50%;
+   transform: translate(-50%, -50%); 
+  width: 80px;
+  height: 60px;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+}
+
+.arrow {
+  position: absolute;
+   top: 25px; 
+  width: 90%;
+  height: 2vw;
+  background-color: rgb(15, 22, 219);
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  animation: arrow 700ms linear infinite;
+}
+
+.arrow::after,
+.arrow::before {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 2vw;
+  right: -8px;
+  background-color: rgb(15, 22, 219);
+}
+
+.arrow::after {
+  top: -12px;
+  transform: rotate(45deg);
+}
+
+.arrow::before {
+  top: 12px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  transform: rotate(-45deg);
+} */
