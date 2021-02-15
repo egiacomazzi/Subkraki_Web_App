@@ -11,12 +11,18 @@ class Welcome extends React.Component {
     };
   }
   nextText() {
+    if (this.state.introTextIndex == 7) {
+      return;
+    }
     this.setState({
       introTextIndex: this.state.introTextIndex + 1,
     });
   }
 
   lastText() {
+    if (this.state.introTextIndex == 0) {
+      return;
+    }
     this.setState({
       introTextIndex: this.state.introTextIndex - 1,
     });
@@ -41,6 +47,7 @@ class Welcome extends React.Component {
           text={text.intro[this.state.introTextIndex]}
           nextText={() => this.nextText()}
           lastText={() => this.lastText()}
+          beginning={this.state.introTextIndex === 0 ? true : false}
         />
 
         <Subkraki size="big" />
