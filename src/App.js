@@ -4,11 +4,11 @@ import Speechbubble from './Speechbubble';
 import Subkraki from './Subkraki.js';
 import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js'
 
+
 function App() {
   return (
     <div className="App">
-      <Subkraki size="big" />
-      <Speechbubble />
+      <Welcome />
       <SubtractionPanel subtrahend="777" minuend="456" digits="3"/>
     </div>
   );
