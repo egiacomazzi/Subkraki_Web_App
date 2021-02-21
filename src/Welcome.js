@@ -11,7 +11,6 @@ class Welcome extends React.Component {
     super(props);
     this.state = {
       introTextIndex: 0,
-      // nextFunc: this.nextText(),
     };
     this.text = {
       intro: [
@@ -37,22 +36,18 @@ class Welcome extends React.Component {
   }
 
   nextText() {
-    console.log(this.state.introTextIndex);
-    if (this.state.introTextIndex == 7) {
-      // history.push('/substactionpanel');
-
-      return;
-    }
     this.setState({
       introTextIndex: this.state.introTextIndex + 1,
     });
   }
 
+  // TODO use this method to close the welcome speechbubble with an x at corner
   endWelcome() {
     this.props.history.push('/substactionpanel');
   }
 
   render() {
+    // Component to render if next state schould be the substration panel
     if (this.state.introTextIndex === 7) {
       return (
         <div className="welcome">

@@ -18,14 +18,14 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  //Link,
 } from 'react-router-dom';
 
 export default function App() {
   return (
     <Router>
       <div className="App">
-        <ul>
+        {/* <ul>
           <li>
             <Link to="/">Nothing</Link>
           </li>
@@ -35,7 +35,7 @@ export default function App() {
           <li>
             <Link to="/substactionpanel">Math</Link>
           </li>
-        </ul>
+        </ul> */}
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
