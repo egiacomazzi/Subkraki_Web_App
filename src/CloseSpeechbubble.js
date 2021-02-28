@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Speechbubble.css';
+import './CSS/CloseSpeechbubble.css';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 

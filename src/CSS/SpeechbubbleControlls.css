@@ -1,6 +1,9 @@
 .Speech {
   grid-area: speech;
 }
+.CloseSpeech {
+  grid-area: speech;
+}
 .right {
   grid-area: rightway;
 }
