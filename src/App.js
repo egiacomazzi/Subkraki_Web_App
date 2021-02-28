@@ -40,9 +40,6 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/welcome">
-            <Welcome />
-          </Route>
           <Route path="/substactionpanel">
             <SubtractionPanel
               subtrahend="777"
@@ -50,6 +47,8 @@ export default function App() {
               digits="3"
             />
           </Route>
+          {/* Has to be the last route entered because the url matches from the strat and all of them match with "/" */}
+          <Route path="/" component={Welcome}></Route>
         </Switch>
       </div>
     </Router>

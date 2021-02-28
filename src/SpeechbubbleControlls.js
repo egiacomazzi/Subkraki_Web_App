@@ -3,6 +3,7 @@ import './CSS/SpeechbubbleControlls.css';
 import PropTypes from 'prop-types';
 import Speechbubble from './Speechbubble.js';
 import Arrow from './Arrow.js';
+import CloseSpeechbubble from './CloseSpeechbubble.js';
 
 class SpeechbubbleControlls extends React.Component {
   render() {
@@ -10,6 +11,7 @@ class SpeechbubbleControlls extends React.Component {
       return (
         <div className="SpeechbubbleControls">
           <Speechbubble text={this.props.text} />
+          <CloseSpeechbubble />
           <Arrow class="right" onClick={this.props.nextText} />
         </div>
       );
@@ -17,6 +19,7 @@ class SpeechbubbleControlls extends React.Component {
       return (
         <div className="SpeechbubbleControls">
           <Speechbubble text={this.props.text} />
+          <CloseSpeechbubble />
           <Arrow class="right" onClick={this.props.nextText} />
           <Arrow class="left" onClick={this.props.lastText} />
         </div>
