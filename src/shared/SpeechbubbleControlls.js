@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/SpeechbubbleControlls.css';
+import '../CSS/SpeechbubbleControlls.css';
 import PropTypes from 'prop-types';
 import Speechbubble from './Speechbubble.js';
 import Arrow from './Arrow.js';

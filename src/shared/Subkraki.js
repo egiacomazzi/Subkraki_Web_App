@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Subkraki.css';
+import '../CSS/Subkraki.css';
 import subkraki from './data/Subkraki.png';
 import PropTypes from 'prop-types';
 

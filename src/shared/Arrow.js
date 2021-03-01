@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Arrow.css';
+import '../CSS/Arrow.css';
 import PropTypes from 'prop-types';
 
 class Arrow extends React.Component {

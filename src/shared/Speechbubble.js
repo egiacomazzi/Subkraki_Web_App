@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Speechbubble.css';
+import '../CSS/Speechbubble.css';
 import PropTypes from 'prop-types';
 
 class Speechbubble extends React.Component {
