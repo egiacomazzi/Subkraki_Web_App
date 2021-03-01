@@ -1,7 +1,7 @@
 import React from 'react';
 //import './CSS/Welcome.css';
-import Subkraki from './Subkraki.js';
-import SpeechbubbleControlls from './SpeechbubbleControlls.js';
+import Subkraki from '../shared/Subkraki.js';
+import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 //import history from './history.js';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -39,9 +39,9 @@ class Welcome extends React.Component {
     this.setState({
       introTextIndex: this.state.introTextIndex + 1,
     });
+    console.log(this.state.introTextIndex);
   }
 
-  // TODO use this method to close the welcome speechbubble with an x at corner
   endWelcome() {
     this.props.history.push('/substactionpanel');
   }
