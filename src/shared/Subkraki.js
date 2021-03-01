@@ -1,6 +1,6 @@
 import React from 'react';
 import '../CSS/Subkraki.css';
-import subkraki from './data/Subkraki.png';
+import subkraki from '../data/Subkraki.png';
 import PropTypes from 'prop-types';
 
 class Subkraki extends React.Component {
