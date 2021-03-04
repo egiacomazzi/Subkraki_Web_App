@@ -1,9 +1,7 @@
 .Speech {
   grid-area: speech;
 }
-.CloseSpeech {
-  grid-area: speech;
-}
+
 .right {
   grid-area: rightway;
 }
@@ -11,10 +9,14 @@
 .left {
   grid-area: leftway;
 }
+
 .SpeechbubbleControls {
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-areas: 'speech speech' 'leftway rightway';
-  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    'speech speech speech'
+    'leftway . rightway';
+  grid-template-columns: 2fr 1fr 2fr;
+  grid-template-rows: 3fr 1fr;
 }

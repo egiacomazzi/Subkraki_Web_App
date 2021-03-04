@@ -1,0 +1,42 @@
+.welcome {
+  display: grid;
+  grid-template-areas:
+    'speechPart .'
+    'speechPart subkraki'
+    'speechPart .';
+  grid-template-columns: 2fr 1fr;
+}
+
+.welcome > .SpeechbubbleControls {
+  grid-area: speechPart;
+}
+
+.welcome > .Subkraki {
+  grid-area: subkraki;
+  padding-right: 3vw;
+}
+
+.welcome > .Subkraki > img {
+  width: 25vw;
+}
+
+.welcome .right,
+.welcome .left {
+  width: 28vw;
+}
+
+.welcome .CloseSpeech {
+  width: 5vw;
+  height: 5vw;
+  left: -5vw;
+  top: 0.5vw;
+}
+
+.welcome .bubble {
+  padding: 5vw;
+  height: 15vw;
+}
+
+.welcome .Subkraki {
+  padding-top: 0;
+}

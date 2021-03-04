@@ -2,12 +2,14 @@
   background-color: transparent;
   border: none !important;
 }
+
 .welcome .CloseSpeech {
   z-index: 2;
   width: 10%;
   position: relative;
   left: 78vw;
   top: 2em;
+  grid-area: close;
 }
 .analogy .CloseSpeech {
   z-index: 2;
