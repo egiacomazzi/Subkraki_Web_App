@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 class CloseSpeechbubble extends React.Component {
   render() {
+    const colour = "var(--primary-lila)";
     return (
       <div className="CloseSpeech">
         <button
@@ -22,7 +23,7 @@ class CloseSpeechbubble extends React.Component {
               y1="15"
               x2="25"
               y2="25"
-              stroke="black"
+              stroke={colour}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeMiterlimit="10"
@@ -32,7 +33,7 @@ class CloseSpeechbubble extends React.Component {
               y1="15"
               x2="15"
               y2="25"
-              stroke="black"
+              stroke={colour}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeMiterlimit="10"
@@ -43,7 +44,7 @@ class CloseSpeechbubble extends React.Component {
               cy="20"
               r="19"
               opacity="0"
-              stroke="black"
+              stroke={colour}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeMiterlimit="10"
@@ -51,7 +52,7 @@ class CloseSpeechbubble extends React.Component {
             <path
               d="M20 1c10.45 0 19 8.55 19 19s-8.55 19-19 19-19-8.55-19-19 8.55-19 19-19z"
               className="progress"
-              stroke="black"
+              stroke={colour}
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeMiterlimit="10"

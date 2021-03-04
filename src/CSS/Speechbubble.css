@@ -2,9 +2,13 @@
   position: relative;
   margin: 4em auto 3em;
   width: 70%;
+  display: grid;
+  grid-template-areas:
+    'bubble close'
+    'bubble  .';
 }
 
-.bubble {
+.welcome .bubble {
   position: relative;
   padding: 2em;
   width: auto;
@@ -13,6 +17,7 @@
   background-color: white;
   font-size: 4vw;
   font-family: var(--font-family);
+  text-align: center;
 }
 .bubble p {
   position: relative;
@@ -41,4 +46,27 @@
   bottom: -24px;
   border-top-color: #eee;
   z-index: 1;
+}
+
+.welcome .bubbleText {
+  height: 15vw;
+  font-size: 3.3vw;
+}
+
+@media only screen and (max-width: 500px) {
+  .welcome .bubbleText {
+    font-size: 3vw;
+  }
+
+  .welcome .bubble {
+    padding-top: 3.3vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+
+  .welcome .CloseSpeech {
+    width: 8vw;
+    height: 8vw;
+    left: -8vw;
+  }
 }

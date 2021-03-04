@@ -6,11 +6,10 @@ import PropTypes from 'prop-types';
 class Subkraki extends React.Component {
   render() {
     const bigSubkrakiStyle = {
-      maxWidth: '50%',
       height: 'auto',
     };
     const smallSubkrakiStyle = {
-      maxWidth: '10%',
+      width: '10vw',
       height: 'auto',
     };
 

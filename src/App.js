@@ -1,7 +1,8 @@
 import React from 'react';
 import './CSS/App.css';
-import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js';
 import Welcome from './Welcome/Welcome.js';
+import Calculate from './Calculate/Calculate.js';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,11 +17,7 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/substactionpanel">
-            <SubtractionPanel
-              subtrahend="777"
-              minuend="456"
-              digits="3"
-            />
+            <Calculate />
           </Route>
           {/* Has to be the last route entered because the url matches from the strat and all of them match with "/" */}
           <Route path="/" component={Welcome}></Route>

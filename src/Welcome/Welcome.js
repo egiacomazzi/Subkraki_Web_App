@@ -1,5 +1,5 @@
 import React from 'react';
-//import '../CSS/Welcome.css';
+import '../CSS/Welcome.css';
 import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 //import history from './history.js';
@@ -56,6 +56,8 @@ class Welcome extends React.Component {
             nextText={() => this.endWelcome()}
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
+            end={false}
+            analogy={false}
           />
 
           <Subkraki size="big" />
@@ -69,6 +71,8 @@ class Welcome extends React.Component {
             nextText={() => this.nextText()}
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
+            end={false}
+            analogy={false}
           />
 
           <Subkraki size="big" />

@@ -1,13 +1,17 @@
 import React from 'react';
 import '../CSS/Speechbubble.css';
 import PropTypes from 'prop-types';
+import CloseSpeechbubble from './CloseSpeechbubble';
 
 class Speechbubble extends React.Component {
   render() {
     return (
       <div className="Speech">
         <div className="testimonial">
-          <div className="bubble">{this.props.text}</div>
+          <div className="bubble">
+            <div className="bubbleText">{this.props.text}</div>
+          </div>
+          <CloseSpeechbubble />
         </div>
       </div>
     );
