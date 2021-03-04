@@ -20,7 +20,7 @@ class Calculate extends React.Component {
         'Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ',
         'rechnen, da',
         'kleiner als',
-        'ist',
+        'ist.',
         '- 1 = ',
         ', und erhalten dafür 10 Einer, also ',
         '+ 10 = ',
@@ -33,19 +33,23 @@ class Calculate extends React.Component {
         'Tadaaa! Wir haben unser Ergebnis. Probiere es gleich nochmal mit deiner Aufgabe.',
       ],
     };
+    this.analogy = {
+      sub: ['2', '7', '5'],
+      min: ['1', '5', '6'],
+    };
   }
   lastText() {
     if (this.state.analogyTextIndex == 0) {
       return;
     }
     this.setState({
-      introTextIndex: this.state.analogyTextIndex - 1,
+      analogyTextIndex: this.state.analogyTextIndex - 1,
     });
   }
 
   nextText() {
     this.setState({
-      introTextIndex: this.state.analogyTextIndex + 1,
+      analogyTextIndex: this.state.analogyTextIndex + 1,
     });
     console.log(this.state.analogyTextIndex);
   }
@@ -54,13 +58,49 @@ class Calculate extends React.Component {
     this.props.history.push('/substactionpanel');
   }
 
+  returnText() {
+    switch (this.state.analogyTextIndex) {
+      case 0:
+        return this.text.analogy[0];
+      case 1:
+        return this.text.analogy[1];
+      case 2:
+        var string2 =
+          this.text.analogy[2] +
+          '\n' +
+          this.analogy.sub +
+          '\n' +
+          '- ' +
+          this.analogy.min;
+        return string2;
+      case 3:
+        var string3 =
+          this.text.analogy[3] +
+          this.analogy.sub[2] +
+          '-' +
+          this.analogy.min[2] +
+          ' ' +
+          this.text.analogy[4] +
+          ' ' +
+          this.analogy.sub[2] +
+          ' ' +
+          this.text.analogy[5] +
+          ' ' +
+          this.analogy.min[2] +
+          this.text.analogy[5];
+        return string3;
+      case 4:
+        return this.text.analogy[4];
+    }
+  }
+
   render() {
     return (
       <div className="calculate">
         <SubtractionPanel subtrahend="777" minuend="456" digits="3" />
         <AnalogyPanel
           error={this.props.error}
-          text={this.text.analogy[this.state.analogyTextIndex]}
+          text={this.returnText()}
           nextText={() => this.nextText()}
           lastText={() => this.lastText()}
           beginning={this.state.introTextIndex === 0 ? true : false}
