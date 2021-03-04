@@ -30,6 +30,7 @@ class AnalogyPanel extends React.Component {
           nextText={this.props.nextText}
           lastText={this.props.lastText}
           beginning={this.props.beginning}
+          end={this.props.end}
         />
 
         <Subkraki size="big" />
@@ -45,4 +46,5 @@ AnalogyPanel.propTypes = {
   nextText: PropTypes.func,
   lastText: PropTypes.func,
   beginning: PropTypes.bool,
+  end: PropTypes.bool,
 };

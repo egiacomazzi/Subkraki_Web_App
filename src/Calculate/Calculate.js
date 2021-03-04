@@ -49,6 +49,9 @@ class Calculate extends React.Component {
   }
 
   nextText() {
+    if (this.state.analogyTextIndex == 8) {
+      return;
+    }
     this.setState({
       analogyTextIndex: this.state.analogyTextIndex + 1,
     });
@@ -68,11 +71,12 @@ class Calculate extends React.Component {
       case 2:
         var string2 =
           this.text.analogy[2] +
-          '\n' +
-          this.analogy.sub +
-          '\n' +
+          ' ' +
+          '\r' +
+          String(this.analogy.sub).replace(/,/g, '') +
+          '\r' +
           '- ' +
-          this.analogy.min;
+          String(this.analogy.min).replace(/,/g, '');
         return string2;
       case 3:
         var string3 =
@@ -105,6 +109,57 @@ class Calculate extends React.Component {
           String(Number(this.analogy.sub[2]) + 10) +
           '.';
         return string4;
+      case 5:
+        var string5 =
+          this.text.analogy[11] +
+          ' ' +
+          String(Number(this.analogy.sub[2]) + 10) +
+          '-' +
+          this.analogy.min[2] +
+          ' ' +
+          this.text.analogy[12] +
+          ' ' +
+          String(
+            Number(this.analogy.sub[2]) +
+              10 -
+              Number(this.analogy.min[2]),
+          ) +
+          '.';
+        return string5;
+      case 6:
+        var string6 =
+          this.text.analogy[13] +
+          ' ' +
+          String(Number(this.analogy.sub[1]) - 1) +
+          '-' +
+          this.analogy.min[1] +
+          ' ' +
+          this.text.analogy[14] +
+          ' ' +
+          String(
+            Number(this.analogy.sub[1]) -
+              1 -
+              Number(this.analogy.min[1]),
+          ) +
+          '.';
+        return string6;
+      case 7:
+        var string7 =
+          this.text.analogy[15] +
+          ' ' +
+          this.analogy.sub[0] +
+          '-' +
+          this.analogy.min[0] +
+          '=' +
+          String(
+            Number(this.analogy.sub[0]) - Number(this.analogy.min[0]),
+          ) +
+          ' ' +
+          this.text.analogy[16];
+        return string7;
+      case 8:
+        var string8 = this.text.analogy[17];
+        return string8;
     }
   }
 
@@ -117,7 +172,8 @@ class Calculate extends React.Component {
           text={this.returnText()}
           nextText={() => this.nextText()}
           lastText={() => this.lastText()}
-          beginning={this.state.introTextIndex === 0 ? true : false}
+          beginning={this.state.analogyTextIndex === 0 ? true : false}
+          end={this.state.analogyTextIndex === 8 ? true : false}
         />
       </div>
     );

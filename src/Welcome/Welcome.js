@@ -56,6 +56,7 @@ class Welcome extends React.Component {
             nextText={() => this.endWelcome()}
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
+            end={false}
           />
 
           <Subkraki size="big" />
@@ -69,6 +70,7 @@ class Welcome extends React.Component {
             nextText={() => this.nextText()}
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
+            end={false}
           />
 
           <Subkraki size="big" />
