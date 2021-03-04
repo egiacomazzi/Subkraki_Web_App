@@ -31,6 +31,7 @@ class AnalogyPanel extends React.Component {
           lastText={this.props.lastText}
           beginning={this.props.beginning}
           end={this.props.end}
+          analogy={true}
         />
 
         <Subkraki size="big" />

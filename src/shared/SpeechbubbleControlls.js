@@ -7,31 +7,60 @@ import CloseSpeechbubble from './CloseSpeechbubble.js';
 
 class SpeechbubbleControlls extends React.Component {
   render() {
-    if (this.props.beginning) {
-      return (
-        <div className="SpeechbubbleControls">
-          <Speechbubble text={this.props.text} />
-          <CloseSpeechbubble />
-          <Arrow class="right" onClick={this.props.nextText} />
-        </div>
-      );
-    } else if (this.props.end) {
-      return (
-        <div className="SpeechbubbleControls">
-          <Speechbubble text={this.props.text} />
-          <CloseSpeechbubble />
-          <Arrow class="left" onClick={this.props.lastText} />
-        </div>
-      );
+    if (!this.props.analogy) {
+      if (this.props.beginning) {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="right" onClick={this.props.nextText} />
+          </div>
+        );
+      } else if (this.props.end) {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="left" onClick={this.props.lastText} />
+          </div>
+        );
+      } else {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="right" onClick={this.props.nextText} />
+            <Arrow class="left" onClick={this.props.lastText} />
+          </div>
+        );
+      }
     } else {
-      return (
-        <div className="SpeechbubbleControls">
-          <Speechbubble text={this.props.text} />
-          <CloseSpeechbubble />
-          <Arrow class="right" onClick={this.props.nextText} />
-          <Arrow class="left" onClick={this.props.lastText} />
-        </div>
-      );
+      if (this.props.beginning) {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="right" onClick={this.props.nextText} />
+          </div>
+        );
+      } else if (this.props.end) {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="left" onClick={this.props.lastText} />
+          </div>
+        );
+      } else {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble text={this.props.text} />
+            <CloseSpeechbubble />
+            <Arrow class="right" onClick={this.props.nextText} />
+            <Arrow class="left" onClick={this.props.lastText} />
+          </div>
+        );
+      }
     }
   }
 }
@@ -43,4 +72,5 @@ SpeechbubbleControlls.propTypes = {
   lastText: PropTypes.func,
   beginning: PropTypes.bool,
   end: PropTypes.bool,
+  analogy: PropTypes.bool,
 };

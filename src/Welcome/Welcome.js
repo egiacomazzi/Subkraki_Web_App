@@ -57,6 +57,7 @@ class Welcome extends React.Component {
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
             end={false}
+            analogy={false}
           />
 
           <Subkraki size="big" />
@@ -71,6 +72,7 @@ class Welcome extends React.Component {
             lastText={() => this.lastText()}
             beginning={this.state.introTextIndex === 0 ? true : false}
             end={false}
+            analogy={false}
           />
 
           <Subkraki size="big" />
