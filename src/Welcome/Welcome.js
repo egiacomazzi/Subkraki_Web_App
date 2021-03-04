@@ -1,5 +1,5 @@
 import React from 'react';
-//import '../CSS/Welcome.css';
+import '../CSS/Welcome.css';
 import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 //import history from './history.js';
