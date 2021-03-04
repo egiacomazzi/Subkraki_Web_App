@@ -1,0 +1,14 @@
+.panel {
+  grid-area: panel;
+}
+.analogy {
+  grid-area: analogy;
+}
+
+.calculate {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-areas: 'panel analogy' 'panel analogy';
+  grid-template-columns: 1fr 1fr;
+}

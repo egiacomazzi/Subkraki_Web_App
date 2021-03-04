@@ -8,7 +8,7 @@
     'bubble  .';
 }
 
-.bubble {
+.welcome .bubble {
   position: relative;
   padding: 2em;
   width: auto;
