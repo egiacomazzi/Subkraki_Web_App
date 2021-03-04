@@ -10,7 +10,7 @@ class SpeechbubbleControlls extends React.Component {
       if (this.props.beginning) {
         return (
           <div className="SpeechbubbleControls">
-            <Speechbubble text={this.props.text}
+            <Speechbubble text={this.props.text}/>
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
         );
