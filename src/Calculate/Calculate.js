@@ -21,9 +21,10 @@ class Calculate extends React.Component {
         'rechnen, da',
         'kleiner als',
         'ist.',
-        '- 1 = ',
+        'Wir müssen uns 10 von der Zehnerspalte leihen. Wir ziehen 1 von den Zehnern ab, also',
+        '-1 = ',
         ', und erhalten dafür 10 Einer, also ',
-        '+ 10 = ',
+        '+10 = ',
         'Nun können wir in der Einerspalte',
         'rechnen und das ergibt',
         'In der Zehnerspalte können wir nun einfach',
@@ -87,10 +88,23 @@ class Calculate extends React.Component {
           this.text.analogy[5] +
           ' ' +
           this.analogy.min[2] +
-          this.text.analogy[5];
+          ' ' +
+          this.text.analogy[6];
         return string3;
       case 4:
-        return this.text.analogy[4];
+        var string4 =
+          this.text.analogy[7] +
+          ' ' +
+          this.analogy.sub[1] +
+          this.text.analogy[8] +
+          String(Number(this.analogy.sub[1]) - 1) +
+          this.text.analogy[9] +
+          ' ' +
+          this.analogy.sub[2] +
+          this.text.analogy[10] +
+          String(Number(this.analogy.sub[2]) + 10) +
+          '.';
+        return string4;
     }
   }
 
