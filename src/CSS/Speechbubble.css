@@ -10,7 +10,7 @@
 
 .welcome .bubble {
   position: relative;
-  padding: 2em;
+  padding: 1em 1em 2em 1em;
   width: auto;
   border-radius: 12px;
   border: 4px solid #eee;

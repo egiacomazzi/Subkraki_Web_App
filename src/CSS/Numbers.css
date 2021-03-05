@@ -10,3 +10,16 @@
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica, Arial, sans-serif;
 }
+
+.analogy .roundNumber {
+  display: inline;
+  height: 3vw;
+  width: 3vw;
+  border-radius: 50%;
+  background-color: var(--button-grey);
+  font-size: 1.5vw;
+  text-align: center;
+  border: none;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+}

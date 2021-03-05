@@ -235,30 +235,46 @@ class SubtractionPanel extends React.Component {
     const minuend_display = this.renderMinuend();
     const result_display = this.renderResult();
     const error_message = this.renderErrorMessage();
+    if (!this.props.analogy) {
+      return (
+        <div className="panel">
+          <div className="grid-container">
+            {corrections_display}
+            {subtrahend_display}
 
-    return (
-      <div className="panel">
-        <div className="grid-container">
-          {corrections_display}
-          {subtrahend_display}
+            <div className="minus"> - </div>
+            {minuend_display}
+            <div className="line"></div>
 
-          <div className="minus"> - </div>
-          {minuend_display}
-          <div className="line"></div>
-
-          {result_display}
-          <CorrectButton
-            className="check panelControls"
-            onClick={(event) => this.submitCalculation(event)}
-          />
-          <RefreshButton
-            className="refresh panelControls"
-            onClick={(event) => this.refresh(event)}
-          />
-          {error_message}
+            {result_display}
+            <CorrectButton
+              className="check panelControls"
+              onClick={(event) => this.submitCalculation(event)}
+            />
+            <RefreshButton
+              className="refresh panelControls"
+              onClick={(event) => this.refresh(event)}
+            />
+            {error_message}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="panel">
+          <div className="grid-container">
+            {corrections_display}
+            {subtrahend_display}
+
+            <div className="minus"> - </div>
+            {minuend_display}
+            <div className="line"></div>
+
+            {result_display}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
@@ -266,5 +282,6 @@ SubtractionPanel.propTypes = {
   subtrahend: PropTypes.string,
   minuend: PropTypes.string,
   digits: PropTypes.string,
+  analogy: PropTypes.bool,
 };
 export default SubtractionPanel;
