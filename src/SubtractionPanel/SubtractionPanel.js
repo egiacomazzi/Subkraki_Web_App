@@ -7,6 +7,7 @@ import CorrectButton from './CorrectButton.js';
 import RefreshButton from './RefreshButton.js';
 import CorrectionNumber from './CorrectionNumber.js';
 import PropTypes from 'prop-types';
+import { getAnalogy, getDiagnosis } from '../PrologConnector.js';
 
 class SubtractionPanel extends React.Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class SubtractionPanel extends React.Component {
     };
   }
 
-  submitCalculation(event) {
+  async submitCalculation(event) {
     event.preventDefault();
     const result = this.getResult();
     if (result.error_message) {
@@ -50,7 +51,18 @@ class SubtractionPanel extends React.Component {
       corrections_row_error: Array(this.props.digits).fill(false),
       error_message: null,
     });
-    console.log({ result: result, corrections: corrections });
+    const minuend = this.getMinuend();
+    const subtrahend = this.getSubtrahend();
+
+    let diagnosis = await getDiagnosis(minuend, subtrahend, corrections.corrections, result.result);
+    let analogy = {};
+    if (!diagnosis.correct) {
+      analogy = await getAnalogy(minuend, subtrahend, corrections.corrections, result.result);
+      //TODO: Hier rot markieren welche Spalte falsch war. 
+    }
+    console.log(diagnosis);
+    console.log(analogy);
+
     return { result: result, corrections: corrections };
   }
 
@@ -73,6 +85,36 @@ class SubtractionPanel extends React.Component {
       }
     }
     return { result: result, error_message: error_message };
+  }
+
+  getSubtrahend() {
+    let subtrahend = [];
+    for (let i = 0; i < this.props.digits; i++) {
+      const value = document.getElementsByClassName('minuend' + i)[0]
+        .textContent;
+      if (value === '') {
+        subtrahend.push(parseInt(0));
+      } else {
+        const num = parseInt(value);
+        subtrahend.push(num);
+      }
+    }
+    return subtrahend;
+  }
+
+  getMinuend() {
+    let minuend = [];
+    for (let i = 0; i < this.props.digits; i++) {
+      const value = document.getElementsByClassName('subtrahend' + i)[0]
+        .textContent;
+      if (value === '') {
+        minuend.push(parseInt(0));
+      } else {
+        const num = parseInt(value);
+        minuend.push(num);
+      }
+    }
+    return minuend;
   }
 
   getCorrections() {
@@ -102,6 +144,8 @@ class SubtractionPanel extends React.Component {
     }
     return { corrections: corrections, error_message: error_message };
   }
+
+
 
   setValidationErrorInResultRow(i) {
     let new_row = this.state.result_row_error.slice();
