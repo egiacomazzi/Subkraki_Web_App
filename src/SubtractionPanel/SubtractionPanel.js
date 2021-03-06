@@ -220,7 +220,12 @@ class SubtractionPanel extends React.Component {
     const subtrahend_display = [];
     for (var i = 0; i < this.props.digits; i++) {
       const sub_className = 'subtrahend' + i;
-      subtrahend_digits.push(this.props.subtrahend.slice(i, i + 1));
+
+      if ((this.props.digits - i) <= this.props.subtrahend.length)
+        subtrahend_digits.push(this.props.subtrahend.charAt(this.props.subtrahend.length - this.props.digits + i));
+      else
+        subtrahend_digits.push("0"); //TODO: hier noch die 0 abändern
+
       subtrahend_display.push(
         <Number
           key={sub_className}

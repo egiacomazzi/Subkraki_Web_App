@@ -10,7 +10,7 @@
 export async function getAnalogy(minuend, subtrahend, corrections, result) {
     const problem = [];
     const solution = [];
-    for (let i = minuend.length - 1; i >= 0; i--) {
+    for (let i = 0; i < minuend.length; i++) {
         problem.push([minuend[i], subtrahend[i], ""]);
         solution.push([corrections[i], subtrahend[i], result[i]]);
     }
@@ -50,7 +50,8 @@ export async function getAnalogy(minuend, subtrahend, corrections, result) {
 export async function getDiagnosis(minuend, subtrahend, corrections, result) {
     const problem = [];
     const solution = [];
-    for (let i = minuend.length - 1; i >= 0; i--) {
+
+    for (let i = 0; i < minuend.length; i++) {
         problem.push([minuend[i], subtrahend[i], ""]);
         solution.push([corrections[i], subtrahend[i], result[i]]);
     }
