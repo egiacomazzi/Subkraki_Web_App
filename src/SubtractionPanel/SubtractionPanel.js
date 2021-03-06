@@ -286,10 +286,11 @@ class SubtractionPanel extends React.Component {
         <div className="panel">
           <div className="grid-container">
             {corrections_display}
-            {subtrahend_display}
+            {minuend_display}
 
             <div className="minus"> - </div>
-            {minuend_display}
+            {subtrahend_display}
+            
             <div className="line"></div>
 
             {result_display}
