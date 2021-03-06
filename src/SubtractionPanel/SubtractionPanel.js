@@ -141,7 +141,7 @@ class SubtractionPanel extends React.Component {
         }
         corrections.push(num);
       } else {
-        corrections.push(parseInt(this.props.subtrahend[i]));
+        corrections.push(parseInt(this.props.minuend[i]));
       }
     }
     return { corrections: corrections, error_message: error_message };
@@ -281,31 +281,48 @@ class SubtractionPanel extends React.Component {
     const subtrahend_display = this.renderSubtrahend();
     const result_display = this.renderResult();
     const error_message = this.renderErrorMessage();
+    if (!this.props.analogy) {
+      return (
+        <div className="panel">
+          <div className="grid-container">
+            {corrections_display}
+            {minuend_display}
 
-    return (
-      <div className="panel">
-        <div className="grid-container">
-          {corrections_display}
+            <div className="minus"> - </div>
+            {subtrahend_display}
+            
+            <div className="line"></div>
 
-          {minuend_display}
-
-          <div className="minus"> - </div>
-          {subtrahend_display}
-          <div className="line"></div>
-
-          {result_display}
-          <CorrectButton
-            className="check panelControls"
-            onClick={() => this.props.submit()}
-          />
-          <RefreshButton
-            className="refresh panelControls"
-            onClick={(event) => this.refresh(event)}
-          />
-          {error_message}
+            {result_display}
+            <CorrectButton
+              className="check panelControls"
+              onClick={(event) => this.props.submit()}
+            />
+            <RefreshButton
+              className="refresh panelControls"
+              onClick={(event) => this.refresh(event)}
+            />
+            {error_message}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="panel">
+          <div className="grid-container">
+            {corrections_display}
+            {subtrahend_display}
+
+            <div className="minus"> - </div>
+            {minuend_display}
+            <div className="line"></div>
+
+            {result_display}
+          </div>
+
+        </div>
+      );
+    }
   }
 }
 
@@ -313,6 +330,7 @@ SubtractionPanel.propTypes = {
   subtrahend: PropTypes.string,
   minuend: PropTypes.string,
   digits: PropTypes.string,
+  analogy: PropTypes.bool,
   submit: PropTypes.func,
 };
 export default SubtractionPanel;

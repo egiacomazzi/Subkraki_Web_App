@@ -10,7 +10,7 @@ class SpeechbubbleControlls extends React.Component {
       if (this.props.beginning) {
         return (
           <div className="SpeechbubbleControls">
-            <Speechbubble text={this.props.text}/>
+            <Speechbubble text={this.props.text} />
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
         );
@@ -34,21 +34,36 @@ class SpeechbubbleControlls extends React.Component {
       if (this.props.beginning) {
         return (
           <div className="SpeechbubbleControls">
-            <Speechbubble text={this.props.text} />
+            <Speechbubble
+              text={this.props.text}
+              sub={this.props.sub}
+              min={this.props.min}
+              analogy={this.props.analogy}
+            />
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
         );
       } else if (this.props.end) {
         return (
           <div className="SpeechbubbleControls">
-            <Speechbubble text={this.props.text} />
+            <Speechbubble
+              text={this.props.text}
+              sub={this.props.sub}
+              min={this.props.min}
+              analogy={this.props.analogy}
+            />
             <Arrow class="left" onClick={this.props.lastText} />
           </div>
         );
       } else {
         return (
           <div className="SpeechbubbleControls">
-            <Speechbubble text={this.props.text} />
+            <Speechbubble
+              text={this.props.text}
+              sub={this.props.sub}
+              min={this.props.min}
+              analogy={this.props.analogy}
+            />{' '}
             <Arrow class="right" onClick={this.props.nextText} />
             <Arrow class="left" onClick={this.props.lastText} />
           </div>
@@ -66,4 +81,6 @@ SpeechbubbleControlls.propTypes = {
   beginning: PropTypes.bool,
   end: PropTypes.bool,
   analogy: PropTypes.bool,
+  sub: PropTypes.string,
+  min: PropTypes.string,
 };

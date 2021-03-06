@@ -188,6 +188,8 @@ class Calculate extends React.Component {
           lastText={() => this.lastText()}
           beginning={this.state.analogyTextIndex === 0 ? true : false}
           end={this.state.analogyTextIndex === 8 ? true : false}
+          sub={String(this.analogy.sub).replace(/,/g, '')}
+          min={String(this.analogy.min).replace(/,/g, '')}
         />
       </div>
     );
