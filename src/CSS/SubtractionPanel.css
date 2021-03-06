@@ -14,8 +14,8 @@
   grid-row-gap: 0.7vw;
   grid-template-areas:
     '. correction0 correction1 correction2'
-    '. subtrahendA subtrahendB subtrahendC'
-    'minus minuendA minuendB minuendC'
+    '. minuendA minuendB minuendC'
+    'minus subtrahendA subtrahendB subtrahendC'
     'line line line line'
     '. resultA resultB resultC';
 }
@@ -50,29 +50,28 @@
 
 .analogy .subtrahend0 {
   grid-area: subtrahendA;
-  width: 3vw;
-  height: 3vw;
+ 
 }
 
 .analogy .subtrahend1 {
   grid-area: subtrahendB;
-  width: 3vw;
-  height: 3vw;
 }
 .analogy .subtrahend2 {
   grid-area: subtrahendC;
-  width: 3vw;
-  height: 3vw;
 }
 .analogy .minuend0 {
   grid-area: minuendA;
+   width: 3vw;
+  height: 3vw;
 }
 .analogy .minuend1 {
   grid-area: minuendB;
-}
+ width: 3vw;
+  height: 3vw;}
 .analogy .minuend2 {
   grid-area: minuendC;
-}
+ width: 3vw;
+  height: 3vw;}
 .analogy .result0 {
   grid-area: resultA;
 }
