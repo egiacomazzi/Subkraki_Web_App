@@ -100,8 +100,8 @@
   grid-row-gap: 1.5vw;
   grid-template-areas:
     '. correction0 correction1 correction2 . . .'
-    '. subtrahendA subtrahendB subtrahendC . . .'
-    'minus minuendA minuendB minuendC . . .'
+    '. minuendA minuendB minuendC . . .'
+    'minus subtrahendA subtrahendB subtrahendC . . .'
     'line line line line line . .'
     '. resultA resultB resultC . check refresh'
     'error error error error error error error';
@@ -138,28 +138,28 @@
 
 .subtrahend0 {
   grid-area: subtrahendA;
-  width: 6vw;
-  height: 6vw;
 }
 
 .subtrahend1 {
   grid-area: subtrahendB;
-  width: 6vw;
-  height: 6vw;
 }
 .subtrahend2 {
   grid-area: subtrahendC;
-  width: 6vw;
-  height: 6vw;
 }
 .minuend0 {
   grid-area: minuendA;
+  width: 6vw;
+  height: 6vw;
 }
 .minuend1 {
   grid-area: minuendB;
+  width: 6vw;
+  height: 6vw;
 }
 .minuend2 {
   grid-area: minuendC;
+  width: 6vw;
+  height: 6vw;
 }
 .result0 {
   grid-area: resultA;
