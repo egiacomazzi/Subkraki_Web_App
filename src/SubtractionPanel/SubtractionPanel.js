@@ -290,13 +290,13 @@ class SubtractionPanel extends React.Component {
 
             <div className="minus"> - </div>
             {subtrahend_display}
-            
+
             <div className="line"></div>
 
             {result_display}
             <CorrectButton
               className="check panelControls"
-              onClick={(event) => this.props.submit()}
+              onClick={() => this.props.submit()}
             />
             <RefreshButton
               className="refresh panelControls"
