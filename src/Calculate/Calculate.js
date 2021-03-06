@@ -12,6 +12,9 @@ class Calculate extends React.Component {
       error: 'error1',
       analogyTextIndex: 0,
     };
+
+    this.subtractionRef = React.createRef();
+
     this.text = {
       analogy: [
         'Oh nein, es sieht so aus als sei dir ein Fehler passiert. Wenn du ihn selbst gefunden hast, korrigiere deine Eingabe.',
@@ -35,8 +38,8 @@ class Calculate extends React.Component {
       ],
     };
     this.analogy = {
-      sub: ['2', '7', '5'],
-      min: ['1', '5', '6'],
+      min: ['2', '7', '5'],
+      sub: ['1', '5', '6'],
     };
   }
   lastText() {
@@ -121,8 +124,8 @@ class Calculate extends React.Component {
           ' ' +
           String(
             Number(this.analogy.sub[2]) +
-              10 -
-              Number(this.analogy.min[2]),
+            10 -
+            Number(this.analogy.min[2]),
           ) +
           '.';
         return string5;
@@ -138,8 +141,8 @@ class Calculate extends React.Component {
           ' ' +
           String(
             Number(this.analogy.sub[1]) -
-              1 -
-              Number(this.analogy.min[1]),
+            1 -
+            Number(this.analogy.min[1]),
           ) +
           '.';
         return string6;
@@ -163,10 +166,21 @@ class Calculate extends React.Component {
     }
   }
 
+  async submit() {
+    let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
+    let analogy = r.analogy;
+    let diagnosis = r.diagnosis;
+
+    //TODOOOOOOO
+    console.log(analogy);
+    console.log(diagnosis);
+  }
+
   render() {
     return (
       <div className="calculate">
-        <SubtractionPanel subtrahend="777" minuend="456" digits="3" />
+
+        <SubtractionPanel ref={this.subtractionRef} minuend="777" subtrahend="456" digits="3" submit={() => this.submit()} />
         <AnalogyPanel
           error={this.props.error}
           text={this.returnText()}
