@@ -3,17 +3,12 @@
   border: none !important;
 }
 
-.welcome .CloseSpeech {
+.CloseSpeech {
   z-index: 2;
-  width: 10%;
+  width: 5vw;
+  height: 5vw;
   position: relative;
-  left: 78vw;
-  top: 2em;
+  left: -5vw;
+  top: 0.5vw;
   grid-area: close;
-}
-.analogy .CloseSpeech {
-  z-index: 2;
-  width: 10%;
-  position: relative;
-
 }
