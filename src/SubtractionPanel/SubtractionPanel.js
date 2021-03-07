@@ -15,7 +15,7 @@ class SubtractionPanel extends React.Component {
     /* Stupidest ever way to initialise empyt array, but somehow new Array(digits)
             always gives an array of length 1.*/
     let emptyArray = [];
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       emptyArray.push(null);
     }
     this.state = {
@@ -42,7 +42,7 @@ class SubtractionPanel extends React.Component {
       return;
     }
     this.setState({
-      result_row_error: Array(this.props.digits).fill(false),
+      result_row_error: Array(this.props.minuend.length).fill(false),
     });
     const corrections = this.getCorrections();
     if (corrections.error_message) {
@@ -52,7 +52,7 @@ class SubtractionPanel extends React.Component {
       return;
     }
     this.setState({
-      corrections_row_error: Array(this.props.digits).fill(false),
+      corrections_row_error: Array(this.props.minuend.length).fill(false),
       error_message: null,
     });
     const minuend = this.getMinuend();
@@ -70,7 +70,7 @@ class SubtractionPanel extends React.Component {
   getResult() {
     let result = [];
     let error_message = null;
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       const value = document.getElementsByClassName('result' + i)[0]
         .value;
       if (value === '') {
@@ -91,7 +91,7 @@ class SubtractionPanel extends React.Component {
   //Das ist richtig benannt!
   getSubtrahend() {
     let subtrahend = [];
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       const value = document.getElementsByClassName('subtrahend' + i)[0]
         .textContent;
       if (value === '') {
@@ -106,7 +106,7 @@ class SubtractionPanel extends React.Component {
   //Das ist richtig benannt!
   getMinuend() {
     let minuend = [];
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       const value = document.getElementsByClassName('minuend' + i)[0]
         .textContent;
       if (value === '') {
@@ -122,7 +122,7 @@ class SubtractionPanel extends React.Component {
   getCorrections() {
     let corrections = [];
     let error_message = null;
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       if (this.state.corrections_crossedOut[i]) {
         const value = document.getElementsByClassName(
           'correction' + i,
@@ -167,7 +167,7 @@ class SubtractionPanel extends React.Component {
 
   renderCorrections() {
     const corrections_display = [];
-    for (let j = 0; j < this.props.digits; j++) {
+    for (let j = 0; j < this.props.minuend.length; j++) {
       const corr_className = 'correction' + j;
       let display = 'hidden';
       if (this.state.corrections_crossedOut[j]) {
@@ -188,7 +188,7 @@ class SubtractionPanel extends React.Component {
   renderMinuend() {
     var minuend_digits = [];
     const minuend_display = [];
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       const min_className = 'minuend' + i;
       minuend_digits.push(this.props.minuend.slice(i, i + 1));
       minuend_display.push(
@@ -218,11 +218,11 @@ class SubtractionPanel extends React.Component {
   renderSubtrahend() {
     var subtrahend_digits = [];
     const subtrahend_display = [];
-    for (var i = 0; i < this.props.digits; i++) {
+    for (var i = 0; i < this.props.minuend.length; i++) {
       const sub_className = 'subtrahend' + i;
 
-      if ((this.props.digits - i) <= this.props.subtrahend.length)
-        subtrahend_digits.push(this.props.subtrahend.charAt(this.props.subtrahend.length - this.props.digits + i));
+      if ((this.props.minuend.length - i) <= this.props.subtrahend.length)
+        subtrahend_digits.push(this.props.subtrahend.charAt(this.props.subtrahend.length - this.props.minuend.length + i));
       else
         subtrahend_digits.push("0"); //TODO: hier noch die 0 abändern
 
@@ -239,7 +239,7 @@ class SubtractionPanel extends React.Component {
 
   renderResult() {
     const result_display = [];
-    for (var j = 0; j < this.props.digits; j++) {
+    for (var j = 0; j < this.props.minuend.length; j++) {
       const res_className = 'result' + j;
       const num = parseInt(this.state.result_row[j]);
       result_display.push(
@@ -259,7 +259,7 @@ class SubtractionPanel extends React.Component {
   refresh(event) {
     event.preventDefault();
     let emptyArray = [];
-    for (let i = 0; i < this.props.digits; i++) {
+    for (let i = 0; i < this.props.minuend.length; i++) {
       emptyArray.push(null);
     }
     const new_result_row = this.state.result_row.slice().fill(0);
@@ -334,7 +334,6 @@ class SubtractionPanel extends React.Component {
 SubtractionPanel.propTypes = {
   subtrahend: PropTypes.string,
   minuend: PropTypes.string,
-  digits: PropTypes.string,
   analogy: PropTypes.bool,
   submit: PropTypes.func,
 };

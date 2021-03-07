@@ -143,8 +143,8 @@ class Calculate extends React.Component {
             ' ' +
             String(
               Number(this.analogy.sub[2]) +
-                10 -
-                Number(this.analogy.min[2]),
+              10 -
+              Number(this.analogy.min[2]),
             ) +
             '.';
           return string5;
@@ -160,8 +160,8 @@ class Calculate extends React.Component {
             ' ' +
             String(
               Number(this.analogy.sub[1]) -
-                1 -
-                Number(this.analogy.min[1]),
+              1 -
+              Number(this.analogy.min[1]),
             ) +
             '.';
           return string6;
@@ -175,7 +175,7 @@ class Calculate extends React.Component {
             '=' +
             String(
               Number(this.analogy.sub[0]) -
-                Number(this.analogy.min[0]),
+              Number(this.analogy.min[0]),
             ) +
             ' ' +
             this.text.analogy[16];
@@ -208,16 +208,18 @@ class Calculate extends React.Component {
     //TODOOOOOOO
   }
 
-  getRandomExample(max) {
+  getRandomExample(min, max) {
     let minuend = Math.floor(100 + Math.random() * (max - 100));
     let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
     return { minuend: minuend, subtrahend: subtrahend };
   }
 
   render() {
-    const ex = this.getRandomExample(999);
-    this.minuend = ex.minuend.toString();
-    this.subtrahend = ex.subtrahend.toString();
+    if (this.minuend == '') {
+      const ex = this.getRandomExample(0, 10);
+      this.minuend = ex.minuend.toString();
+      this.subtrahend = ex.subtrahend.toString();
+    }
 
     if (this.state.display) {
       return (
@@ -226,7 +228,6 @@ class Calculate extends React.Component {
             ref={this.subtractionRef}
             minuend={this.minuend}
             subtrahend={this.subtrahend}
-            digits="3"
             submit={() => this.submit()}
           />
           <AnalogyPanel
