@@ -81,7 +81,6 @@ class Calculate extends React.Component {
   }
 
   returnText() {
-    console.log(this.correct);
     if (this.state.correct) {
       return this.text.correct[0];
     } else {
@@ -200,23 +199,19 @@ class Calculate extends React.Component {
       this.analogy.sub = analogy.subtrahend.map(String);
       this.diagnosis.correct = diagnosis.correct;
     }
-    console.log(diagnosis.correct);
     this.setState({ correct: diagnosis.correct, display: true });
-    console.log('after setstate');
-    console.log(this.state.correct);
 
-    //TODOOOOOOO
   }
 
   getRandomExample(min, max) {
-    let minuend = Math.floor(100 + Math.random() * (max - 100));
+    let minuend = Math.floor(min + Math.random() * (max - min));
     let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
     return { minuend: minuend, subtrahend: subtrahend };
   }
 
   render() {
     if (this.minuend == '') {
-      const ex = this.getRandomExample(0, 10);
+      const ex = this.getRandomExample(100, 999);
       this.minuend = ex.minuend.toString();
       this.subtrahend = ex.subtrahend.toString();
     }
