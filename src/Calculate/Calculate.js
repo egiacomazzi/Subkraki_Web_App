@@ -12,11 +12,13 @@ class Calculate extends React.Component {
       error: 'error1',
       analogyTextIndex: 0,
       display: false,
+      correct: null,
     };
 
     this.subtractionRef = React.createRef();
 
     this.text = {
+      correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
       analogy: [
         'Oh nein, es sieht so aus als sei dir ein Fehler passiert. Wenn du ihn selbst gefunden hast, korrigiere deine Eingabe.',
         'Ich zeige dir, wie ich eine ähnliche Aufgabe löse.',
@@ -41,6 +43,15 @@ class Calculate extends React.Component {
     this.analogy = {
       min: ['2', '7', '5'],
       sub: ['1', '5', '6'],
+      res: [],
+      cor: [],
+    };
+    this.diagnosis = {
+      column: null,
+      correct: null,
+      correct_val: [],
+      error: [],
+      spec_error: [],
     };
 
     this.minuend = '';
@@ -70,103 +81,109 @@ class Calculate extends React.Component {
   }
 
   returnText() {
-    switch (this.state.analogyTextIndex) {
-      case 0:
-        return this.text.analogy[0];
-      case 1:
-        return this.text.analogy[1];
-      case 2:
-        var string2 =
-          this.text.analogy[2] +
-          ' ' +
-          '\r' +
-          String(this.analogy.sub).replace(/,/g, '') +
-          '\r' +
-          '- ' +
-          String(this.analogy.min).replace(/,/g, '');
-        return string2;
-      case 3:
-        var string3 =
-          this.text.analogy[3] +
-          this.analogy.sub[2] +
-          '-' +
-          this.analogy.min[2] +
-          ' ' +
-          this.text.analogy[4] +
-          ' ' +
-          this.analogy.sub[2] +
-          ' ' +
-          this.text.analogy[5] +
-          ' ' +
-          this.analogy.min[2] +
-          ' ' +
-          this.text.analogy[6];
-        return string3;
-      case 4:
-        var string4 =
-          this.text.analogy[7] +
-          ' ' +
-          this.analogy.sub[1] +
-          this.text.analogy[8] +
-          String(Number(this.analogy.sub[1]) - 1) +
-          this.text.analogy[9] +
-          ' ' +
-          this.analogy.sub[2] +
-          this.text.analogy[10] +
-          String(Number(this.analogy.sub[2]) + 10) +
-          '.';
-        return string4;
-      case 5:
-        var string5 =
-          this.text.analogy[11] +
-          ' ' +
-          String(Number(this.analogy.sub[2]) + 10) +
-          '-' +
-          this.analogy.min[2] +
-          ' ' +
-          this.text.analogy[12] +
-          ' ' +
-          String(
-            Number(this.analogy.sub[2]) +
-              10 -
-              Number(this.analogy.min[2]),
-          ) +
-          '.';
-        return string5;
-      case 6:
-        var string6 =
-          this.text.analogy[13] +
-          ' ' +
-          String(Number(this.analogy.sub[1]) - 1) +
-          '-' +
-          this.analogy.min[1] +
-          ' ' +
-          this.text.analogy[14] +
-          ' ' +
-          String(
-            Number(this.analogy.sub[1]) -
-              1 -
-              Number(this.analogy.min[1]),
-          ) +
-          '.';
-        return string6;
-      case 7:
-        var string7 =
-          this.text.analogy[15] +
-          ' ' +
-          this.analogy.sub[0] +
-          '-' +
-          this.analogy.min[0] +
-          '=' +
-          String(
-            Number(this.analogy.sub[0]) - Number(this.analogy.min[0]),
-          ) +
-          ' ' +
-          this.text.analogy[16];
-        return string7;
-      case 8:
-        var string8 = this.text.analogy[17];
-        return string8;
+    console.log(this.correct);
+    if (this.state.correct) {
+      return this.text.correct[0];
+    } else {
+      switch (this.state.analogyTextIndex) {
+        case 0:
+          return this.text.analogy[0];
+        case 1:
+          return this.text.analogy[1];
+        case 2:
+          var string2 =
+            this.text.analogy[2] +
+            ' ' +
+            '\r' +
+            String(this.analogy.sub).replace(/,/g, '') +
+            '\r' +
+            '- ' +
+            String(this.analogy.min).replace(/,/g, '');
+          return string2;
+        case 3:
+          var string3 =
+            this.text.analogy[3] +
+            this.analogy.sub[2] +
+            '-' +
+            this.analogy.min[2] +
+            ' ' +
+            this.text.analogy[4] +
+            ' ' +
+            this.analogy.sub[2] +
+            ' ' +
+            this.text.analogy[5] +
+            ' ' +
+            this.analogy.min[2] +
+            ' ' +
+            this.text.analogy[6];
+          return string3;
+        case 4:
+          var string4 =
+            this.text.analogy[7] +
+            ' ' +
+            this.analogy.sub[1] +
+            this.text.analogy[8] +
+            String(Number(this.analogy.sub[1]) - 1) +
+            this.text.analogy[9] +
+            ' ' +
+            this.analogy.sub[2] +
+            this.text.analogy[10] +
+            String(Number(this.analogy.sub[2]) + 10) +
+            '.';
+          return string4;
+        case 5:
+          var string5 =
+            this.text.analogy[11] +
+            ' ' +
+            String(Number(this.analogy.sub[2]) + 10) +
+            '-' +
+            this.analogy.min[2] +
+            ' ' +
+            this.text.analogy[12] +
+            ' ' +
+            String(
+              Number(this.analogy.sub[2]) +
+                10 -
+                Number(this.analogy.min[2]),
+            ) +
+            '.';
+          return string5;
+        case 6:
+          var string6 =
+            this.text.analogy[13] +
+            ' ' +
+            String(Number(this.analogy.sub[1]) - 1) +
+            '-' +
+            this.analogy.min[1] +
+            ' ' +
+            this.text.analogy[14] +
+            ' ' +
+            String(
+              Number(this.analogy.sub[1]) -
+                1 -
+                Number(this.analogy.min[1]),
+            ) +
+            '.';
+          return string6;
+        case 7:
+          var string7 =
+            this.text.analogy[15] +
+            ' ' +
+            this.analogy.sub[0] +
+            '-' +
+            this.analogy.min[0] +
+            '=' +
+            String(
+              Number(this.analogy.sub[0]) -
+                Number(this.analogy.min[0]),
+            ) +
+            ' ' +
+            this.text.analogy[16];
+          return string7;
+        case 8:
+          var string8 = this.text.analogy[17];
+          return string8;
+      }
     }
   }
 
@@ -181,14 +198,17 @@ class Calculate extends React.Component {
     if (!diagnosis.correct) {
       this.analogy.min = analogy.minuend.map(String);
       this.analogy.sub = analogy.subtrahend.map(String);
+      this.diagnosis.correct = diagnosis.correct;
     }
-    this.setState({ display: true });
+    console.log(diagnosis.correct);
+    this.setState({ correct: diagnosis.correct, display: true });
+    console.log('after setstate');
+    console.log(this.state.correct);
 
     //TODOOOOOOO
   }
 
   getRandomExample(max) {
-    console.log(max);
     let minuend = Math.floor(100 + Math.random() * (max - 100));
     let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
     return { minuend: minuend, subtrahend: subtrahend };
