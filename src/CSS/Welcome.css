@@ -32,11 +32,41 @@
   top: 0.5vw;
 }
 
-.welcome .bubble {
-  padding: 5vw;
-  height: 15vw;
-}
-
 .welcome .Subkraki {
   padding-top: 0;
+}
+
+.welcome .bubbleText {
+  font-size: 3.3vw;
+}
+
+.welcome .bubble {
+  position: relative;
+  padding: 3vw;
+  width: 35vw;
+  height: 15vw;
+  border-radius: 12px;
+  border: 4px solid #eee;
+  background-color: white;
+  font-size: 4vw;
+  font-family: var(--font-family);
+  text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+  .welcome .bubbleText {
+    font-size: 3vw;
+  }
+
+  .welcome .bubble {
+    padding-top: 3.3vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+
+  .welcome .CloseSpeech {
+    width: 8vw;
+    height: 8vw;
+    left: -8vw;
+  }
 }
