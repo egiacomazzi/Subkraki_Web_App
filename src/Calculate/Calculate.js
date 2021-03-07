@@ -11,6 +11,7 @@ class Calculate extends React.Component {
     this.state = {
       error: 'error1',
       analogyTextIndex: 0,
+      display: false,
     };
 
     this.subtractionRef = React.createRef();
@@ -127,8 +128,8 @@ class Calculate extends React.Component {
           ' ' +
           String(
             Number(this.analogy.sub[2]) +
-            10 -
-            Number(this.analogy.min[2]),
+              10 -
+              Number(this.analogy.min[2]),
           ) +
           '.';
         return string5;
@@ -144,8 +145,8 @@ class Calculate extends React.Component {
           ' ' +
           String(
             Number(this.analogy.sub[1]) -
-            1 -
-            Number(this.analogy.min[1]),
+              1 -
+              Number(this.analogy.min[1]),
           ) +
           '.';
         return string6;
@@ -181,9 +182,9 @@ class Calculate extends React.Component {
       this.analogy.min = analogy.minuend.map(String);
       this.analogy.sub = analogy.subtrahend.map(String);
     }
+    this.setState({ display: true });
+
     //TODOOOOOOO
-
-
   }
 
   getRandomExample(max) {
@@ -198,22 +199,43 @@ class Calculate extends React.Component {
     this.minuend = ex.minuend.toString();
     this.subtrahend = ex.subtrahend.toString();
 
-    return (
-      <div className="calculate">
-
-        <SubtractionPanel ref={this.subtractionRef} minuend={this.minuend} subtrahend={this.subtrahend} digits="3" submit={() => this.submit()} />
-        <AnalogyPanel
-          error={this.props.error}
-          text={this.returnText()}
-          nextText={() => this.nextText()}
-          lastText={() => this.lastText()}
-          beginning={this.state.analogyTextIndex === 0 ? true : false}
-          end={this.state.analogyTextIndex === 8 ? true : false}
-          sub={String(this.analogy.sub).replace(/,/g, '')}
-          min={String(this.analogy.min).replace(/,/g, '')}
-        />
-      </div>
-    );
+    if (this.state.display) {
+      return (
+        <div className="calculate">
+          <SubtractionPanel
+            ref={this.subtractionRef}
+            minuend={this.minuend}
+            subtrahend={this.subtrahend}
+            digits="3"
+            submit={() => this.submit()}
+          />
+          <AnalogyPanel
+            error={this.props.error}
+            text={this.returnText()}
+            nextText={() => this.nextText()}
+            lastText={() => this.lastText()}
+            beginning={
+              this.state.analogyTextIndex === 0 ? true : false
+            }
+            end={this.state.analogyTextIndex === 8 ? true : false}
+            sub={String(this.analogy.sub).replace(/,/g, '')}
+            min={String(this.analogy.min).replace(/,/g, '')}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div className="calculate">
+          <SubtractionPanel
+            ref={this.subtractionRef}
+            minuend={this.minuend}
+            subtrahend={this.subtrahend}
+            digits="3"
+            submit={() => this.submit()}
+          />
+        </div>
+      );
+    }
   }
 }
 export default withRouter(Calculate);
