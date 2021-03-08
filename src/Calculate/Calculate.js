@@ -94,25 +94,25 @@ class Calculate extends React.Component {
             this.text.analogy[2] +
             ' ' +
             '\r' +
-            String(this.analogy.sub).replace(/,/g, '') +
+            String(this.analogy.min).replace(/,/g, '') +
             '\r' +
             '- ' +
-            String(this.analogy.min).replace(/,/g, '');
+            String(this.analogy.sub).replace(/,/g, '');
           return string2;
         case 3:
           var string3 =
             this.text.analogy[3] +
-            this.analogy.sub[2] +
-            '-' +
             this.analogy.min[2] +
+            '-' +
+            this.analogy.sub[2] +
             ' ' +
             this.text.analogy[4] +
             ' ' +
-            this.analogy.sub[2] +
+            this.analogy.min[2] +
             ' ' +
             this.text.analogy[5] +
             ' ' +
-            this.analogy.min[2] +
+            this.analogy.sub[2] +
             ' ' +
             this.text.analogy[6];
           return string3;
@@ -120,30 +120,30 @@ class Calculate extends React.Component {
           var string4 =
             this.text.analogy[7] +
             ' ' +
-            this.analogy.sub[1] +
+            this.analogy.min[1] +
             this.text.analogy[8] +
-            String(Number(this.analogy.sub[1]) - 1) +
+            String(Number(this.analogy.min[1]) - 1) +
             this.text.analogy[9] +
             ' ' +
-            this.analogy.sub[2] +
+            this.analogy.min[2] +
             this.text.analogy[10] +
-            String(Number(this.analogy.sub[2]) + 10) +
+            String(Number(this.analogy.min[2]) + 10) +
             '.';
           return string4;
         case 5:
           var string5 =
             this.text.analogy[11] +
             ' ' +
-            String(Number(this.analogy.sub[2]) + 10) +
+            String(Number(this.analogy.min[2]) + 10) +
             '-' +
-            this.analogy.min[2] +
+            this.analogy.sub[2] +
             ' ' +
             this.text.analogy[12] +
             ' ' +
             String(
-              Number(this.analogy.sub[2]) +
-              10 -
-              Number(this.analogy.min[2]),
+              Number(this.analogy.min[2]) +
+                10 -
+                Number(this.analogy.sub[2]),
             ) +
             '.';
           return string5;
@@ -151,16 +151,16 @@ class Calculate extends React.Component {
           var string6 =
             this.text.analogy[13] +
             ' ' +
-            String(Number(this.analogy.sub[1]) - 1) +
+            String(Number(this.analogy.min[1]) - 1) +
             '-' +
-            this.analogy.min[1] +
+            this.analogy.sub[1] +
             ' ' +
             this.text.analogy[14] +
             ' ' +
             String(
-              Number(this.analogy.sub[1]) -
-              1 -
-              Number(this.analogy.min[1]),
+              Number(this.analogy.min[1]) -
+                1 -
+                Number(this.analogy.sub[1]),
             ) +
             '.';
           return string6;
@@ -168,13 +168,13 @@ class Calculate extends React.Component {
           var string7 =
             this.text.analogy[15] +
             ' ' +
-            this.analogy.sub[0] +
-            '-' +
             this.analogy.min[0] +
+            '-' +
+            this.analogy.sub[0] +
             '=' +
             String(
-              Number(this.analogy.sub[0]) -
-              Number(this.analogy.min[0]),
+              Number(this.analogy.min[0]) -
+                Number(this.analogy.sub[0]),
             ) +
             ' ' +
             this.text.analogy[16];
@@ -200,7 +200,6 @@ class Calculate extends React.Component {
       this.diagnosis.correct = diagnosis.correct;
     }
     this.setState({ correct: diagnosis.correct, display: true });
-
   }
 
   getRandomExample(min, max) {
