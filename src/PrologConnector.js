@@ -28,7 +28,7 @@ export async function getAnalogy(minuend, subtrahend, corrections, result) {
     let an_subtrahend = [];
     let an_correction = [];
     let an_result = [];
-    for (let d = an.length - 1; d >= 0; d--) {
+    for (let d = 0; d < an.length; d++) {
         an_minuend.push(an[d][0]);
         an_subtrahend.push(an[d][1]);
         an_correction.push(an_sol[d][0]);
