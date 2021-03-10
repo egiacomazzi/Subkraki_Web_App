@@ -88,7 +88,7 @@ class SubtractionPanel extends React.Component {
     return { result: result, error_message: error_message };
   }
 
-  //Das ist richtig benannt!
+
   getSubtrahend() {
     let subtrahend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
@@ -103,7 +103,7 @@ class SubtractionPanel extends React.Component {
     }
     return subtrahend;
   }
-  //Das ist richtig benannt!
+
   getMinuend() {
     let minuend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
@@ -173,14 +173,26 @@ class SubtractionPanel extends React.Component {
       if (this.state.corrections_crossedOut[j]) {
         display = 'visible';
       }
-      corrections_display.push(
-        <CorrectionNumber
-          key={corr_className}
-          className={corr_className}
-          visibility={display}
-          error={this.state.corrections_row_error[j]}
-        />,
-      );
+      if (!this.props.analogy)
+        corrections_display.push(
+          <CorrectionNumber
+            key={corr_className}
+            className={corr_className}
+            visibility={display}
+            error={this.state.corrections_row_error[j]}
+            enabled={true}
+          />,
+        );
+      else
+        corrections_display.push(
+          <CorrectionNumber
+            key={corr_className}
+            className={corr_className}
+            visibility={display}
+            error={this.state.corrections_row_error[j]}
+            enabled={false}
+          />,
+        );
     }
     return corrections_display;
   }
@@ -191,17 +203,28 @@ class SubtractionPanel extends React.Component {
     for (let i = 0; i < this.props.minuend.length; i++) {
       const min_className = 'minuend' + i;
       minuend_digits.push(this.props.minuend.slice(i, i + 1));
-      minuend_display.push(
-        <ClickableNumber
-          key={min_className}
-          className={min_className}
-          number={minuend_digits[i]}
-          crossedOut={this.state.corrections_crossedOut[i]}
-          onClickHandler={(event) =>
-            this.minuend_onClick(event, i)
-          }
-        />,
-      );
+
+      if (!this.props.analogy)
+        minuend_display.push(
+          <ClickableNumber
+            key={min_className}
+            className={min_className}
+            number={minuend_digits[i]}
+            crossedOut={this.state.corrections_crossedOut[i]}
+            onClickHandler={(event) =>
+              this.minuend_onClick(event, i)
+            }
+          />,
+        );
+      else
+        minuend_display.push(
+          <ClickableNumber
+            key={min_className}
+            className={min_className}
+            number={minuend_digits[i]}
+            crossedOut={this.state.corrections_crossedOut[i]}
+          />,
+        );
     }
     return minuend_display;
   }
@@ -241,15 +264,29 @@ class SubtractionPanel extends React.Component {
     const result_display = [];
     for (var j = 0; j < this.props.minuend.length; j++) {
       const res_className = 'result' + j;
-      const num = parseInt(this.state.result_row[j]);
-      result_display.push(
-        <ResultNumber
-          key={res_className}
-          className={res_className}
-          number={num}
-          error={this.state.result_row_error[j]}
-        />,
-      );
+
+
+      if (!this.props.analogy)
+        result_display.push(
+          <ResultNumber
+            key={res_className}
+            className={res_className}
+            number={parseInt(this.state.result_row[j])}
+            error={this.state.result_row_error[j]}
+            enabled={true}
+          />,
+        );
+      else
+        result_display.push(
+          <ResultNumber
+            key={res_className}
+            className={res_className}
+            number={parseInt(this.props.result[j])}
+            error={this.state.result_row_error[j]}
+            enabled={false}
+          />,
+        );
+
     }
     return result_display;
   }
@@ -336,5 +373,7 @@ SubtractionPanel.propTypes = {
   minuend: PropTypes.string,
   analogy: PropTypes.bool,
   submit: PropTypes.func,
+  result: PropTypes.string,
+  correction: PropTypes.string,
 };
 export default SubtractionPanel;

@@ -38,6 +38,8 @@ class SpeechbubbleControlls extends React.Component {
               text={this.props.text}
               sub={this.props.sub}
               min={this.props.min}
+              res={this.props.res}
+              cor={this.props.cor}
               analogy={this.props.analogy}
             />
             <Arrow class="right" onClick={this.props.nextText} />
@@ -50,6 +52,8 @@ class SpeechbubbleControlls extends React.Component {
               text={this.props.text}
               sub={this.props.sub}
               min={this.props.min}
+              res={this.props.res}
+              cor={this.props.cor}
               analogy={this.props.analogy}
             />
             <Arrow class="left" onClick={this.props.lastText} />
@@ -62,6 +66,8 @@ class SpeechbubbleControlls extends React.Component {
               text={this.props.text}
               sub={this.props.sub}
               min={this.props.min}
+              res={this.props.res}
+              cor={this.props.cor}
               analogy={this.props.analogy}
             />{' '}
             <Arrow class="right" onClick={this.props.nextText} />
@@ -83,4 +89,6 @@ SpeechbubbleControlls.propTypes = {
   analogy: PropTypes.bool,
   sub: PropTypes.string,
   min: PropTypes.string,
+  res: PropTypes.string,
+  cor: PropTypes.string,
 };

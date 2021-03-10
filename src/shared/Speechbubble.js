@@ -28,7 +28,8 @@ class Speechbubble extends React.Component {
                   <SubtractionPanel
                     subtrahend={this.props.sub}
                     minuend={this.props.min}
-                    digits="3"
+                    result={this.props.res}
+                    correction={this.props.cor}
                     analogy={true}
                   />
                 }
@@ -48,4 +49,6 @@ Speechbubble.propTypes = {
   analogy: PropTypes.bool,
   min: PropTypes.string,
   sub: PropTypes.string,
+  res: PropTypes.string,
+  cor: PropTypes.string,
 };
