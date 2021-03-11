@@ -35,7 +35,7 @@ class SubtractionPanel extends React.Component {
   */
   async getAnalogyAndDiagnosis() {
     const result = this.getResult();
-    console.log(result);
+
     if (result.error_message) {
       this.setState({
         error_message: result.error_message,
@@ -171,7 +171,7 @@ class SubtractionPanel extends React.Component {
     for (let j = 0; j < this.props.minuend.length; j++) {
       const corr_className = 'correction' + j;
       let display = 'hidden';
-      if (this.state.corrections_crossedOut[j]) {
+      if (this.state.corrections_crossedOut[j] || (this.props.analogy && isNaN(this.props.correction[j]) == false)) {
         display = 'visible';
       }
       if (!this.props.analogy)
@@ -186,12 +186,11 @@ class SubtractionPanel extends React.Component {
         );
       else
         corrections_display.push(
-          <CorrectionNumber
+          <ResultNumber
             key={corr_className}
             className={corr_className}
             visibility={display}
-            error={this.state.corrections_row_error[j]}
-            number={this.props.correction[j]}
+            number={parseInt(this.props.correction[j])}
             enabled={false}
           />,
         );
