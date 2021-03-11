@@ -17,6 +17,12 @@ class Calculate extends React.Component {
 
     this.subtractionRef = React.createRef();
 
+    // Diese Arrays anpassen um Schritt für Schritt die Analogie durchzurechnen
+    // Bei 3 Stellen: 0: hunderter, 1: zehner 2: einer
+    this.curAnalogyResult = [];     // String array | NaN = leeres Feld
+    this.curAnalogyCorrection = []; // String array | NaN = leeres Feld
+    this.curAnalogyMinuendCor = []; // Bool array | false = nicht durchgestrichen
+
     this.text = {
       correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
       noCorrection1digit: ['Wir rechnen ', ' und das ergibt '],
@@ -555,12 +561,26 @@ class Calculate extends React.Component {
     if (!diagnosis.correct) {
       this.analogy.min = analogy.minuend.map(String);
       this.analogy.sub = analogy.subtrahend.map(String);
-      this.analogy.cor = analogy.correction.map(String);
       this.analogy.res = analogy.result.map(String);
+      this.analogy.cor = analogy.correction.map(String);
       this.diagnosis.correct = diagnosis.correct;
       this.einerIndex = this.analogy.min.length - 1;
       this.zehnerIndex = this.analogy.min.length - 2;
       this.hunderterIndex = this.analogy.min.length - 3;
+
+      // Init analogy arrays
+      this.curAnalogyResult = new Array(analogy.minuend.length);
+      for (let i = 0; i < this.curAnalogyResult.length; i++)
+        this.curAnalogyResult[i] = NaN;
+
+      this.curAnalogyCorrection = new Array(analogy.correction.length);
+      for (let i = 0; i < this.curAnalogyCorrection.length; i++)
+        this.curAnalogyCorrection[i] = NaN;
+
+      this.curAnalogyMinuendCor = new Array(analogy.subtrahend.length);
+      for (let i = 0; i < this.curAnalogyMinuendCor.length; i++)
+        this.curAnalogyMinuendCor[i] = false;
+
     }
     this.setState({ correct: diagnosis.correct, display: true });
   }
@@ -598,6 +618,9 @@ class Calculate extends React.Component {
             end={this.endAnalogy ? true : false}
             sub={String(this.analogy.sub).replace(/,/g, '')}
             min={String(this.analogy.min).replace(/,/g, '')}
+            res={this.curAnalogyResult}
+            cor={this.curAnalogyCorrection}
+            min_cor={this.curAnalogyMinuendCor}
           />
         </div>
       );
@@ -608,7 +631,6 @@ class Calculate extends React.Component {
             ref={this.subtractionRef}
             minuend={this.minuend}
             subtrahend={this.subtrahend}
-            digits="3"
             submit={() => this.submit()}
           />
         </div>

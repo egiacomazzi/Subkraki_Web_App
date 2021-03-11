@@ -14,6 +14,9 @@ class ResultNumber extends React.Component {
     if (this.props.error) {
       border = { border: 'rgb(255, 0, 111) 0.1vw solid' };
     }
+    if (isNaN(this.props.enabled))
+      this.props.enabled = true;
+
     return (
       <input
         type="text"
@@ -21,6 +24,7 @@ class ResultNumber extends React.Component {
         defaultValue={number}
         className={className}
         style={border}
+        readOnly={!this.props.enabled}
       ></input>
     );
   }
@@ -29,5 +33,6 @@ ResultNumber.propTypes = {
   number: PropTypes.number,
   className: PropTypes.string,
   error: PropTypes.bool,
+  enabled: PropTypes.bool,
 };
 export default ResultNumber;
