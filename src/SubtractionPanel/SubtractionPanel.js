@@ -35,6 +35,7 @@ class SubtractionPanel extends React.Component {
   */
   async getAnalogyAndDiagnosis() {
     const result = this.getResult();
+    console.log(result);
     if (result.error_message) {
       this.setState({
         error_message: result.error_message,
@@ -190,6 +191,7 @@ class SubtractionPanel extends React.Component {
             className={corr_className}
             visibility={display}
             error={this.state.corrections_row_error[j]}
+            number={this.props.correction[j]}
             enabled={false}
           />,
         );
@@ -222,7 +224,7 @@ class SubtractionPanel extends React.Component {
             key={min_className}
             className={min_className}
             number={minuend_digits[i]}
-            crossedOut={this.state.corrections_crossedOut[i]}
+            crossedOut={this.props.minuend_correction[i]}
           />,
         );
     }
@@ -373,7 +375,8 @@ SubtractionPanel.propTypes = {
   minuend: PropTypes.string,
   analogy: PropTypes.bool,
   submit: PropTypes.func,
-  result: PropTypes.string,
-  correction: PropTypes.string,
+  result: PropTypes.array,
+  correction: PropTypes.array,
+  minuend_correction: PropTypes.array,
 };
 export default SubtractionPanel;

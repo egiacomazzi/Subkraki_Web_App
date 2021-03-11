@@ -18,8 +18,10 @@ class Calculate extends React.Component {
     this.subtractionRef = React.createRef();
 
     // Diese Arrays anpassen um Schritt für Schritt die Analogie durchzurechnen
-    this.curAnalogyResult = [];
-    this.curAnalogyCorrection = [];
+    // Bei 3 Stellen: 0: hunderter, 1: zehner 2: einer
+    this.curAnalogyResult = [];     // String array | NaN = leeres Feld
+    this.curAnalogyCorrection = []; // String array | NaN = leeres Feld
+    this.curAnalogyMinuendCor = []; // Bool array | false = nicht durchgestrichen
 
     this.text = {
       correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
@@ -205,6 +207,7 @@ class Calculate extends React.Component {
       this.analogy.cor = analogy.correction.map(String);
       this.diagnosis.correct = diagnosis.correct;
 
+      // Init analogy arrays
       this.curAnalogyResult = new Array(analogy.minuend.length);
       for (let i = 0; i < this.curAnalogyResult.length; i++)
         this.curAnalogyResult[i] = NaN;
@@ -212,6 +215,11 @@ class Calculate extends React.Component {
       this.curAnalogyCorrection = new Array(analogy.correction.length);
       for (let i = 0; i < this.curAnalogyCorrection.length; i++)
         this.curAnalogyCorrection[i] = NaN;
+
+      this.curAnalogyMinuendCor = new Array(analogy.subtrahend.length);
+      for (let i = 0; i < this.curAnalogyMinuendCor.length; i++)
+        this.curAnalogyMinuendCor[i] = false;
+
 
     }
     this.setState({ correct: diagnosis.correct, display: true });
@@ -252,6 +260,7 @@ class Calculate extends React.Component {
             min={String(this.analogy.min).replace(/,/g, '')}
             res={this.curAnalogyResult}
             cor={this.curAnalogyCorrection}
+            min_cor={this.curAnalogyMinuendCor}
           />
         </div>
       );

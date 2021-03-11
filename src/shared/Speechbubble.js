@@ -31,6 +31,7 @@ class Speechbubble extends React.Component {
                     result={this.props.res}
                     correction={this.props.cor}
                     analogy={true}
+                    minuend_correction={this.props.min_cor}
                   />
                 }
               </div>
@@ -49,6 +50,7 @@ Speechbubble.propTypes = {
   analogy: PropTypes.bool,
   min: PropTypes.string,
   sub: PropTypes.string,
-  res: PropTypes.string,
-  cor: PropTypes.string,
+  res: PropTypes.array,
+  cor: PropTypes.array,
+  min_cor: PropTypes.array,
 };
