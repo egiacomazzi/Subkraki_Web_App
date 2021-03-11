@@ -430,7 +430,7 @@ class Calculate extends React.Component {
             // all minuend digits need a correction
             if (Number(this.analogy.min[this.zehnerIndex]) === 0) {
               // if zehner is 0 and einer needs to borough from zehner this special case happens
-              //TODOOOOO
+              //TODOOOOO besser machen, zu volle Sprechblase. Muss in einzelne Teile aufgeteilt werden.
               switch (this.state.analogyTextIndex) {
                 case 2:
                   var string2withCorrectionAllZero = this.returnStringStartEinerstelle();
