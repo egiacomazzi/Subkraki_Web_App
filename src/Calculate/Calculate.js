@@ -137,7 +137,8 @@ class Calculate extends React.Component {
     return string;
   }
   // Produces followin Text
-  // "TODO"
+  // "Wir fangen bei der Einerspalte ganz rechts an.
+  // Wir könne nicht einfach min[einerIndex]-sub[einerIndex] rechnen, da min[einerIndex] kleiner als sub[einerIndex] ist."
   returnStringStartEinerstelle() {
     var string1WithCorrection2Digits =
       this.text.withCorrectionEinerstelleFalse[0] +
@@ -151,6 +152,9 @@ class Calculate extends React.Component {
       this.text.withCorrectionEinerstelleFalse[3];
     return string1WithCorrection2Digits;
   }
+  // Produces following text
+  // "Weiter geht es in der Zehnerzeile. Wir können nicht einfach min[zehnerIndex]-sub[zehnerIndex] rechnen,
+  // da min[zehnerIndex] kleiner als sub[zehnerIndex] ist."
   returnStringZehnerstelle() {
     var string =
       this.text.withCorrectionAbZehnerFalse[2] +
@@ -429,6 +433,49 @@ class Calculate extends React.Component {
               //TODOOOOO
               switch (this.state.analogyTextIndex) {
                 case 2:
+                  var string2withCorrectionAllZero = this.returnStringStartEinerstelle();
+                  return string2withCorrectionAllZero;
+                case 3:
+                  var string3withCorrectionAllZero =
+                    'Wir müssen uns 10 Einer von den Zehnern leihen. Um von der 0 etwas zu leihen, machen wir eine 10 aus ihr, indem wir uns einen Hunderter leihen. Wir rechnen also 5-1=4. ' +
+                    'Dann können wir uns von den 10 Zehnern einen leihen, also 10-' +
+                    this.analogy.min[this.zehnerIndex] +
+                    '1=' +
+                    this.analogy.cor[this.zehnerIndex];
+                  ' rechnen und haben 10 Einer zur Verfügung, also 10+' +
+                    this.analogy.min[this.einerIndex] +
+                    '=' +
+                    this.analogy.cor[this.einerIndex] +
+                    '.';
+                  return string3withCorrectionAllZero;
+                case 4:
+                  var string4withCorrectionAllZero = this.returnStringNoCorrection(
+                    'Einer',
+                    this.analogy.cor[this.einerIndex],
+                    this.analogy.sub[this.einerIndex],
+                    this.analogy.res[this.einerIndex],
+                  );
+                  return string4withCorrectionAllZero;
+                case 5:
+                  var string7withCorrectionAllZero = this.returnStringNoCorrection(
+                    'Zehner',
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.sub[this.zehnerIndex],
+                    this.analogy.res[this.zehnerIndex],
+                  );
+                  return string7withCorrectionAllZero;
+                case 8:
+                  var string8withCorrectionAllZero = this.returnStringNoCorrection(
+                    'Hunderter',
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.sub[this.hunderterIndex],
+                    this.analogy.res[this.hunderterIndex],
+                  );
+                  return string8withCorrectionAllZero;
+                case 9:
+                  finalString = this.text.analogy[17];
+                  this.endAnalogy = true;
+                  return finalString;
               }
             } else {
               // all three digits need correction but zehner is not 0
