@@ -104,6 +104,7 @@ class Calculate extends React.Component {
     this.hunderterIndex = null;
 
     this.styling = [0, 0, 0];
+    this.tempCorrectionStep = null;
   }
   lastText() {
     if (this.state.analogyTextIndex == 0) {
@@ -221,6 +222,30 @@ class Calculate extends React.Component {
       '.';
     return string2WithCorrection2Digits;
   }
+  updateCorrectionsAndResult(
+    crossHunderter,
+    crossZehner,
+    crossEiner,
+    corHunderter,
+    corZehner,
+    corEiner,
+    resHunderter,
+    resZehner,
+    resEiner,
+  ) {
+    this.curAnalogyMinuendCor[this.hunderterIndex] = crossHunderter;
+    this.curAnalogyMinuendCor[this.zehnerIndex] = crossZehner;
+    this.curAnalogyMinuendCor[this.einerIndex] = crossEiner;
+
+    this.curAnalogyCorrection[this.hunderterIndex] = corHunderter;
+    this.curAnalogyCorrection[this.zehnerIndex] = corZehner;
+    this.curAnalogyCorrection[this.einerIndex] = corEiner;
+
+    this.curAnalogyResult[this.hunderterIndex] = resHunderter;
+    this.curAnalogyResult[this.zehnerIndex] = resZehner;
+    this.curAnalogyResult[this.einerIndex] = resEiner;
+    return;
+  }
 
   returnText() {
     if (this.state.correct) {
@@ -231,6 +256,7 @@ class Calculate extends React.Component {
         case 0:
           return this.text.analogy[0];
         case 1:
+          this.styling = [0, 0, 0];
           return this.text.analogy[1];
       }
       // Analogies with no corrections
@@ -251,7 +277,17 @@ class Calculate extends React.Component {
                 this.analogy.res[0] +
                 '.';
               // update analogy
-              this.curAnalogyResult[0] = this.analogy.res[0];
+              this.updateCorrectionsAndResult(
+                false,
+                false,
+                false,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                this.analogy.res[0],
+              );
 
               //update styling
               this.styling = [1, 0, 0];
@@ -281,9 +317,17 @@ class Calculate extends React.Component {
                 ) +
                 '.';
               // update analogy
-              this.curAnalogyResult[
-                this.einerIndex
-              ] = this.analogy.res[this.einerIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                false,
+                false,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                this.analogy.res[this.einerIndex],
+              );
 
               //update styling
               this.styling =
@@ -298,9 +342,18 @@ class Calculate extends React.Component {
                 this.analogy.res[this.zehnerIndex],
               );
               // update analogy
-              this.curAnalogyResult[
-                this.zehnerIndex
-              ] = this.analogy.res[this.zehnerIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                false,
+                false,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                this.analogy.res[this.zehnerIndex],
+                this.analogy.res[this.einerIndex],
+              );
+
               //update styling
               this.styling =
                 this.einerIndex == 2 ? [0, 1, 0] : [1, 0, 0];
@@ -321,9 +374,18 @@ class Calculate extends React.Component {
                 this.analogy.res[this.hunderterIndex],
               );
               // update analogy
-              this.curAnalogyResult[
-                this.hunderterIndex
-              ] = this.analogy.res[this.hunderterIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                false,
+                false,
+                NaN,
+                NaN,
+                NaN,
+                this.analogy.res[this.hunderterIndex],
+                this.analogy.res[this.zehnerIndex],
+                this.analogy.res[this.einerIndex],
+              );
+
               //update styling
               this.styling = [1, 0, 0];
 
@@ -342,6 +404,18 @@ class Calculate extends React.Component {
           switch (this.state.analogyTextIndex) {
             case 2:
               var string1WithCorrection2Digits = this.returnStringStartEinerstelle();
+              // update analogy
+              this.updateCorrectionsAndResult(
+                false,
+                false,
+                false,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+                NaN,
+              );
               //update styling
               this.styling = [0, 1, 0];
               return string1WithCorrection2Digits;
@@ -357,14 +431,17 @@ class Calculate extends React.Component {
               );
 
               // update analogy
-              this.curAnalogyMinuendCor[this.einerIndex] = true;
-              this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-              this.curAnalogyCorrection[
-                this.einerIndex
-              ] = this.analogy.cor[this.einerIndex];
-              this.curAnalogyCorrection[
-                this.zehnerIndex
-              ] = this.analogy.cor[this.zehnerIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                true,
+                true,
+                NaN,
+                this.analogy.cor[this.zehnerIndex],
+                this.analogy.cor[this.einerIndex],
+                NaN,
+                NaN,
+                NaN,
+              );
 
               //update styling
               this.styling = [0, 1, 0];
@@ -379,9 +456,18 @@ class Calculate extends React.Component {
               );
 
               // update analogy
-              this.curAnalogyResult[
-                this.einerIndex
-              ] = this.analogy.res[this.einerIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                true,
+                true,
+                NaN,
+                this.analogy.cor[this.zehnerIndex],
+                this.analogy.cor[this.einerIndex],
+                NaN,
+                NaN,
+                this.analogy.res[this.einerIndex],
+              );
+
               //update styling
               this.styling = [0, 1, 0];
 
@@ -395,9 +481,18 @@ class Calculate extends React.Component {
               );
 
               // update analogy
-              this.curAnalogyResult[
-                this.zehnerIndex
-              ] = this.analogy.res[this.zehnerIndex];
+              this.updateCorrectionsAndResult(
+                false,
+                true,
+                true,
+                NaN,
+                this.analogy.cor[this.zehnerIndex],
+                this.analogy.cor[this.einerIndex],
+                NaN,
+                this.analogy.res[this.zehnerIndex],
+                this.analogy.res[this.einerIndex],
+              );
+
               //update styling
               this.styling = [1, 0, 0];
 
@@ -429,9 +524,17 @@ class Calculate extends React.Component {
                   '.';
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.einerIndex
-                ] = this.analogy.res[this.einerIndex];
+                this.updateCorrectionsAndResult(
+                  false,
+                  false,
+                  false,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  this.analogy.res[this.einerIndex],
+                );
                 //update styling
                 this.styling = [0, 0, 1];
 
@@ -439,6 +542,18 @@ class Calculate extends React.Component {
               case 3:
                 var string3withCorrectioninBack = this.returnStringZehnerstelle(
                   this.analogy.min[this.zehnerIndex],
+                );
+                // update analogy
+                this.updateCorrectionsAndResult(
+                  false,
+                  false,
+                  false,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  this.analogy.res[this.einerIndex],
                 );
                 //update styling
                 this.styling = [0, 1, 0];
@@ -455,14 +570,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-                this.curAnalogyMinuendCor[this.hunderterIndex] = true;
-                this.curAnalogyCorrection[
-                  this.zehnerIndex
-                ] = this.analogy.cor[this.zehnerIndex];
-                this.curAnalogyCorrection[
-                  this.hunderterIndex
-                ] = this.analogy.cor[this.hunderterIndex];
+                this.updateCorrectionsAndResult(
+                  true,
+                  true,
+                  false,
+                  this.analogy.cor[this.hunderterIndex],
+                  this.analogy.cor[this.zehnerIndex],
+                  NaN,
+                  NaN,
+                  NaN,
+                  this.analogy.res[this.einerIndex],
+                );
                 //update styling
                 this.styling = [0, 1, 0];
 
@@ -476,9 +594,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.zehnerIndex
-                ] = this.analogy.res[this.zehnerIndex];
+                this.updateCorrectionsAndResult(
+                  true,
+                  true,
+                  false,
+                  this.analogy.cor[this.hunderterIndex],
+                  this.analogy.cor[this.zehnerIndex],
+                  NaN,
+                  NaN,
+                  this.analogy.res[this.zehnerIndex],
+                  this.analogy.res[this.einerIndex],
+                );
 
                 //update styling
                 this.styling = [0, 1, 0];
@@ -493,9 +619,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.hunderterIndex
-                ] = this.analogy.res[this.hunderterIndex];
+                this.updateCorrectionsAndResult(
+                  true,
+                  true,
+                  false,
+                  this.analogy.cor[this.hunderterIndex],
+                  this.analogy.cor[this.zehnerIndex],
+                  NaN,
+                  this.analogy.res[this.hunderterIndex],
+                  this.analogy.res[this.zehnerIndex],
+                  this.analogy.res[this.einerIndex],
+                );
 
                 //update styling
                 this.styling = [1, 0, 0];
@@ -515,6 +649,18 @@ class Calculate extends React.Component {
             switch (this.state.analogyTextIndex) {
               case 2:
                 var string2withCorrectioninFront = this.returnStringStartEinerstelle();
+                // update analogy
+                this.updateCorrectionsAndResult(
+                  false,
+                  false,
+                  false,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                );
                 //update styling
                 this.styling = [0, 0, 1];
                 return string2withCorrectioninFront;
@@ -530,14 +676,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyMinuendCor[this.einerIndex] = true;
-                this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-                this.curAnalogyCorrection[
-                  this.einerIndex
-                ] = this.analogy.cor[this.einerIndex];
-                this.curAnalogyCorrection[
-                  this.zehnerIndex
-                ] = this.analogy.cor[this.zehnerIndex];
+                this.updateCorrectionsAndResult(
+                  false,
+                  true,
+                  true,
+                  NaN,
+                  this.analogy.cor[this.zehnerIndex],
+                  this.analogy.cor[this.einerIndex],
+                  NaN,
+                  NaN,
+                  NaN,
+                );
 
                 //update styling
                 this.styling = [0, 0, 1];
@@ -552,9 +701,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.einerIndex
-                ] = this.analogy.res[this.einerIndex];
+                this.updateCorrectionsAndResult(
+                  false,
+                  true,
+                  true,
+                  NaN,
+                  this.analogy.cor[this.zehnerIndex],
+                  this.analogy.cor[this.einerIndex],
+                  NaN,
+                  NaN,
+                  this.analogy.res[this.einerIndex],
+                );
 
                 //update styling
                 this.styling = [0, 0, 1];
@@ -569,9 +726,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.zehnerIndex
-                ] = this.analogy.res[this.zehnerIndex];
+                this.updateCorrectionsAndResult(
+                  false,
+                  true,
+                  true,
+                  NaN,
+                  this.analogy.cor[this.zehnerIndex],
+                  this.analogy.cor[this.einerIndex],
+                  NaN,
+                  this.analogy.res[this.zehnerIndex],
+                  this.analogy.res[this.einerIndex],
+                );
 
                 //update styling
                 this.styling = [0, 1, 0];
@@ -586,9 +751,17 @@ class Calculate extends React.Component {
                 );
 
                 // update analogy
-                this.curAnalogyResult[
-                  this.hunderterIndex
-                ] = this.analogy.res[this.hunderterIndex];
+                this.updateCorrectionsAndResult(
+                  false,
+                  true,
+                  true,
+                  NaN,
+                  this.analogy.cor[this.zehnerIndex],
+                  this.analogy.cor[this.einerIndex],
+                  this.analogy.res[this.hunderterIndex],
+                  this.analogy.res[this.zehnerIndex],
+                  this.analogy.res[this.einerIndex],
+                );
 
                 //update styling
                 this.styling = [1, 0, 0];
@@ -608,6 +781,18 @@ class Calculate extends React.Component {
               switch (this.state.analogyTextIndex) {
                 case 2:
                   var string2withCorrectionAllZero = this.returnStringStartEinerstelle();
+                  // update analogy
+                  this.updateCorrectionsAndResult(
+                    false,
+                    false,
+                    false,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
                   //update styling
                   this.styling = [0, 0, 1];
                   return string2withCorrectionAllZero;
@@ -625,20 +810,17 @@ class Calculate extends React.Component {
                     '.';
 
                   // update analogy
-                  this.curAnalogyMinuendCor[this.einerIndex] = true;
-                  this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-                  this.curAnalogyMinuendCor[
-                    this.hunderterIndex
-                  ] = true;
-                  this.curAnalogyCorrection[
-                    this.einerIndex
-                  ] = this.analogy.cor[this.einerIndex];
-                  this.curAnalogyCorrection[
-                    this.zehnerIndex
-                  ] = this.analogy.cor[this.zehnerIndex];
-                  this.curAnalogyCorrection[
-                    this.hunderterIndex
-                  ] = this.analogy.cor[this.hunderterIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
 
                   //update styling
                   this.styling = [0, 0, 1];
@@ -653,9 +835,17 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.einerIndex
-                  ] = this.analogy.res[this.einerIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    this.analogy.res[this.einerIndex],
+                  );
 
                   //update styling
                   this.styling = [0, 0, 1];
@@ -670,9 +860,17 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.zehnerIndex
-                  ] = this.analogy.res[this.zehnerIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    this.analogy.res[this.zehnerIndex],
+                    this.analogy.res[this.einerIndex],
+                  );
 
                   //update styling
                   this.styling = [0, 1, 0];
@@ -687,9 +885,17 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.hunderterIndex
-                  ] = this.analogy.res[this.hunderterIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    this.analogy.res[this.hunderterIndex],
+                    this.analogy.res[this.zehnerIndex],
+                    this.analogy.res[this.einerIndex],
+                  );
 
                   //update styling
                   this.styling = [1, 0, 0];
@@ -706,6 +912,18 @@ class Calculate extends React.Component {
               switch (this.state.analogyTextIndex) {
                 case 2:
                   var string2withCorrectionAll = this.returnStringStartEinerstelle();
+                  // update analogy
+                  this.updateCorrectionsAndResult(
+                    false,
+                    false,
+                    false,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
                   //update styling
                   this.styling = [0, 0, 1];
                   return string2withCorrectionAll;
@@ -722,17 +940,23 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyMinuendCor[this.einerIndex] = true;
-                  this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-                  this.curAnalogyCorrection[
-                    this.einerIndex
-                  ] = this.analogy.cor[this.einerIndex];
-                  if (
+                  this.tempCorrectionStep =
                     Number(this.analogy.cor[this.zehnerIndex]) > 9
-                  ) {
-                    this.curAnalogyCorrection[this.zehnerIndex] =
-                      this.analogy.cor[this.zehnerIndex] - 10;
-                  }
+                      ? this.analogy.cor[this.zehnerIndex] - 10
+                      : this.analogy.cor[this.zehnerIndex];
+
+                  this.updateCorrectionsAndResult(
+                    false,
+                    true,
+                    true,
+                    NaN,
+                    this.tempCorrectionStep,
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
+
                   //update styling
                   this.styling = [0, 0, 1];
                   return string3withCorrectionAll;
@@ -745,9 +969,18 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.einerIndex
-                  ] = this.analogy.res[this.einerIndex];
+                  this.updateCorrectionsAndResult(
+                    false,
+                    true,
+                    true,
+                    NaN,
+                    this.tempCorrectionStep,
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    this.analogy.res[this.einerIndex],
+                  );
+
                   //update styling
                   this.styling = [0, 0, 1];
 
@@ -756,6 +989,20 @@ class Calculate extends React.Component {
                   var string5withCorrectionAll = this.returnStringZehnerstelle(
                     this.analogy.cor[this.zehnerIndex] - 10,
                   );
+                  // update analogy
+                  this.updateCorrectionsAndResult(
+                    false,
+                    true,
+                    true,
+                    NaN,
+                    this.tempCorrectionStep,
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    this.analogy.res[this.einerIndex],
+                  );
+                  //update styling
+                  this.styling = [0, 0, 1];
                   return string5withCorrectionAll;
                 case 6:
                   var string6withCorrectionAll = this.returnStringCorrectionStep(
@@ -771,16 +1018,17 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyMinuendCor[this.zehnerIndex] = true;
-                  this.curAnalogyMinuendCor[
-                    this.hunderterIndex
-                  ] = true;
-                  this.curAnalogyCorrection[
-                    this.zehnerIndex
-                  ] = this.analogy.cor[this.zehnerIndex];
-                  this.curAnalogyCorrection[
-                    this.hunderterIndex
-                  ] = this.analogy.cor[this.hunderterIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    NaN,
+                    this.analogy.res[this.einerIndex],
+                  );
 
                   //update styling
                   this.styling = [0, 1, 0];
@@ -795,9 +1043,18 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.zehnerIndex
-                  ] = this.analogy.res[this.zehnerIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    NaN,
+                    this.analogy.res[this.zehnerIndex],
+                    this.analogy.res[this.einerIndex],
+                  );
+
                   //update styling
                   this.styling = [0, 1, 0];
 
@@ -811,9 +1068,18 @@ class Calculate extends React.Component {
                   );
 
                   // update analogy
-                  this.curAnalogyResult[
-                    this.hunderterIndex
-                  ] = this.analogy.res[this.hunderterIndex];
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    true,
+                    this.analogy.cor[this.hunderterIndex],
+                    this.analogy.cor[this.zehnerIndex],
+                    this.analogy.cor[this.einerIndex],
+                    this.analogy.res[this.hunderterIndex],
+                    this.analogy.res[this.zehnerIndex],
+                    this.analogy.res[this.einerIndex],
+                  );
+
                   //update styling
                   this.styling = [1, 0, 0];
 
@@ -865,8 +1131,14 @@ class Calculate extends React.Component {
       );
       for (let i = 0; i < this.curAnalogyMinuendCor.length; i++)
         this.curAnalogyMinuendCor[i] = false;
+      this.setState({
+        analogyTextIndex: 0,
+      });
     }
-    this.setState({ correct: diagnosis.correct, display: true });
+    this.setState({
+      correct: diagnosis.correct,
+      display: true,
+    });
   }
 
   getRandomExample(min, max) {
