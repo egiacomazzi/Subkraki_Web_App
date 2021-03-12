@@ -8,6 +8,10 @@ class ClickableNumber extends React.Component {
   render() {
     const number = parseInt(this.props.number, 10);
     let className = 'clickableNumber roundNumber ';
+    if (this.props.highlighted) {
+      className = className + 'highlighted';
+    }
+
     let x;
     if (this.props.crossedOut) {
       x = (
@@ -34,5 +38,6 @@ ClickableNumber.propTypes = {
   className: PropTypes.string,
   crossedOut: PropTypes.bool,
   onClickHandler: PropTypes.func,
+  highlighted: PropTypes.bool,
 };
 export default ClickableNumber;

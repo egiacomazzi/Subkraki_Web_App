@@ -102,6 +102,8 @@ class Calculate extends React.Component {
     this.einerIndex = null;
     this.zehnerIndex = null;
     this.hunderterIndex = null;
+
+    this.styling = [1, 1, 1];
   }
   lastText() {
     if (this.state.analogyTextIndex == 0) {
@@ -250,6 +252,9 @@ class Calculate extends React.Component {
                 '.';
               // update analogy
               this.curAnalogyResult[0] = this.analogy.res[0];
+
+              //update styling
+              this.styling = [1, 0, 0];
 
               return stringNoCorr1Digit;
             case 3:
@@ -808,6 +813,7 @@ class Calculate extends React.Component {
             minuend={this.minuend}
             subtrahend={this.subtrahend}
             submit={() => this.submit()}
+            highlighting={[0, 0, 0]}
           />
           <AnalogyPanel
             error={this.props.error}
@@ -823,6 +829,7 @@ class Calculate extends React.Component {
             res={this.curAnalogyResult}
             cor={this.curAnalogyCorrection}
             min_cor={this.curAnalogyMinuendCor}
+            highlighting={this.styling}
           />
         </div>
       );
@@ -834,6 +841,7 @@ class Calculate extends React.Component {
             minuend={this.minuend}
             subtrahend={this.subtrahend}
             submit={() => this.submit()}
+            highlighting={[0, 0, 0]}
           />
         </div>
       );

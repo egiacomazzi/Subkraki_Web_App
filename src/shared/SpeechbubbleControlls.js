@@ -42,6 +42,7 @@ class SpeechbubbleControlls extends React.Component {
               cor={this.props.cor}
               analogy={this.props.analogy}
               min_cor={this.props.min_cor}
+              highlighting={this.props.highlighting}
             />
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
@@ -57,6 +58,7 @@ class SpeechbubbleControlls extends React.Component {
               cor={this.props.cor}
               analogy={this.props.analogy}
               min_cor={this.props.min_cor}
+              highlighting={this.props.highlighting}
             />
             <Arrow class="left" onClick={this.props.lastText} />
           </div>
@@ -72,6 +74,7 @@ class SpeechbubbleControlls extends React.Component {
               cor={this.props.cor}
               analogy={this.props.analogy}
               min_cor={this.props.min_cor}
+              highlighting={this.props.highlighting}
             />{' '}
             <Arrow class="right" onClick={this.props.nextText} />
             <Arrow class="left" onClick={this.props.lastText} />
@@ -95,4 +98,5 @@ SpeechbubbleControlls.propTypes = {
   res: PropTypes.array,
   cor: PropTypes.array,
   min_cor: PropTypes.array,
+  highlighting: PropTypes.array,
 };
