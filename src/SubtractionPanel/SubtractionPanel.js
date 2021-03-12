@@ -262,6 +262,10 @@ class SubtractionPanel extends React.Component {
     const subtrahend_display = [];
     for (var i = 0; i < this.props.minuend.length; i++) {
       const sub_className = 'subtrahend' + i;
+      let highlighted = false;
+      if (this.props.highlighting[i] == 1) {
+        highlighted = true;
+      }
 
       if (
         this.props.minuend.length - i <=
@@ -281,6 +285,7 @@ class SubtractionPanel extends React.Component {
           key={sub_className}
           className={sub_className}
           number={subtrahend_digits[i]}
+          highlighted={highlighted}
         />,
       );
     }
@@ -291,6 +296,10 @@ class SubtractionPanel extends React.Component {
     const result_display = [];
     for (var j = 0; j < this.props.minuend.length; j++) {
       const res_className = 'result' + j;
+      let highlighted = false;
+      if (this.props.highlighting[j] == 1) {
+        highlighted = true;
+      }
 
       if (!this.props.analogy)
         result_display.push(
@@ -300,6 +309,7 @@ class SubtractionPanel extends React.Component {
             number={parseInt(this.state.result_row[j])}
             error={this.state.result_row_error[j]}
             enabled={true}
+            highlighted={false}
           />,
         );
       else
@@ -310,6 +320,7 @@ class SubtractionPanel extends React.Component {
             number={parseInt(this.props.result[j])}
             error={this.state.result_row_error[j]}
             enabled={false}
+            highlighted={highlighted}
           />,
         );
     }

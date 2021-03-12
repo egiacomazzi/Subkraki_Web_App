@@ -6,16 +6,24 @@ class ResultNumber extends React.Component {
   render() {
     //FIXME: ExceptionHandling if this.props.number is not parseable into a number
     let className = 'roundNumber ' + this.props.className;
+    className = this.props.highlighted
+      ? className + ' highlighted'
+      : className;
     let number = this.props.number;
     if (isNaN(number)) {
       number = '';
     }
-    let style = { border: 'transparent 0.1vw solid', visibility: this.props.visibility, };
+    let style = {
+      border: 'transparent 0.1vw solid',
+      visibility: this.props.visibility,
+    };
     if (this.props.error) {
-      style = { border: 'rgb(255, 0, 111) 0.1vw solid', visibility: this.props.visibility, };
+      style = {
+        border: 'rgb(255, 0, 111) 0.1vw solid',
+        visibility: this.props.visibility,
+      };
     }
-    if (isNaN(this.props.enabled))
-      this.props.enabled = true;
+    if (isNaN(this.props.enabled)) this.props.enabled = true;
 
     return (
       <input
@@ -35,5 +43,6 @@ ResultNumber.propTypes = {
   error: PropTypes.bool,
   enabled: PropTypes.bool,
   visibility: PropTypes.string,
+  highlighted: PropTypes.bool,
 };
 export default ResultNumber;
