@@ -179,6 +179,10 @@ class SubtractionPanel extends React.Component {
     const corrections_display = [];
     for (let j = 0; j < this.props.minuend.length; j++) {
       var corr_className = 'correction' + j;
+      let highlighted = false;
+      if (this.props.highlighting[j] == 1) {
+        highlighted = true;
+      }
 
       let display = 'hidden';
       if (
@@ -206,6 +210,7 @@ class SubtractionPanel extends React.Component {
             visibility={display}
             number={parseInt(this.props.correction[j])}
             enabled={false}
+            highlighted={highlighted}
           />,
         );
     }
