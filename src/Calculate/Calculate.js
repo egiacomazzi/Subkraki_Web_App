@@ -23,6 +23,8 @@ class Calculate extends React.Component {
     this.curAnalogyCorrection = []; // String array | NaN = leeres Feld
     this.curAnalogyMinuendCor = []; // Bool array | false = nicht durchgestrichen
 
+    this.analogySubPanelVisibility = 'hidden';
+
     this.text = {
       correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
       noCorrection1digit: ['Wir rechnen ', ' und das ergibt '],
@@ -254,11 +256,16 @@ class Calculate extends React.Component {
       // first two texts needed for all analogies
       switch (this.state.analogyTextIndex) {
         case 0:
+          this.analogySubPanelVisibility = 'hidden';
           return this.text.analogy[0];
         case 1:
+          this.analogySubPanelVisibility = 'hidden';
           this.styling = [0, 0, 0];
           return this.text.analogy[1];
       }
+
+      this.analogySubPanelVisibility = 'visible';
+
       // Analogies with no corrections
       const equals = (a, b) =>
         JSON.stringify(a) === JSON.stringify(b);
@@ -313,7 +320,7 @@ class Calculate extends React.Component {
                 '=' +
                 String(
                   Number(this.analogy.min[this.einerIndex]) -
-                    Number(this.analogy.sub[this.einerIndex]),
+                  Number(this.analogy.sub[this.einerIndex]),
                 ) +
                 '.';
               // update analogy
@@ -1179,6 +1186,7 @@ class Calculate extends React.Component {
             cor={this.curAnalogyCorrection}
             min_cor={this.curAnalogyMinuendCor}
             highlighting={this.styling}
+            subpanel_visibility={this.analogySubPanelVisibility}
           />
         </div>
       );

@@ -279,8 +279,8 @@ class SubtractionPanel extends React.Component {
         subtrahend_digits.push(
           this.props.subtrahend.charAt(
             this.props.subtrahend.length -
-              this.props.minuend.length +
-              i,
+            this.props.minuend.length +
+            i,
           ),
         );
       else subtrahend_digits.push('0'); //TODO: hier noch die 0 abändern
@@ -364,6 +364,9 @@ class SubtractionPanel extends React.Component {
     const subtrahend_display = this.renderSubtrahend();
     const result_display = this.renderResult();
     const error_message = this.renderErrorMessage();
+
+    let style = { visibility: this.props.subpanel_visibility };
+
     if (!this.props.analogy) {
       return (
         <div className="panel">
@@ -391,7 +394,7 @@ class SubtractionPanel extends React.Component {
       );
     } else {
       return (
-        <div className="panel">
+        <div className="panel" style={style}>
           <div className="grid-container">
             {corrections_display}
             {subtrahend_display}
@@ -417,5 +420,6 @@ SubtractionPanel.propTypes = {
   correction: PropTypes.array,
   minuend_correction: PropTypes.array,
   highlighting: PropTypes.array,
+  subpanel_visibility: PropTypes.string,
 };
 export default SubtractionPanel;

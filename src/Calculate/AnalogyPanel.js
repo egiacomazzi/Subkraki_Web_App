@@ -38,6 +38,7 @@ class AnalogyPanel extends React.Component {
           cor={this.props.cor}
           min_cor={this.props.min_cor}
           highlighting={this.props.highlighting}
+          subpanel_visibility={this.props.subpanel_visibility}
         />
 
         <Subkraki size="big" />
@@ -60,4 +61,5 @@ AnalogyPanel.propTypes = {
   cor: PropTypes.array,
   min_cor: PropTypes.array,
   highlighting: PropTypes.array,
+  subpanel_visibility: PropTypes.string,
 };
