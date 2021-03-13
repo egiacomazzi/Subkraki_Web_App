@@ -132,6 +132,22 @@ class Calculate extends React.Component {
   endWelcome() {
     this.props.history.push('/substactionpanel');
   }
+
+  //" Wir fangen bei den Einern an und rechnen Minuend[einerIndex] - Subtrahend[einerIndex] = Ergebnis[einerIndex]."
+  returnStringStartEinerstelleWithoutCorrection() {
+    return (
+      this.text.withCorrectionAbZehnerFalse[0] +
+      'Einern ' +
+      this.text.withCorrectionAbZehnerFalse[1] +
+      this.analogy.min[this.einerIndex] +
+      '-' +
+      this.analogy.sub[this.einerIndex] +
+      '=' +
+      this.analogy.res[this.einerIndex] +
+      '.'
+    );
+  }
+
   // Function to return the String of "Jetzt rechnen wir..." with inputs at which column (stelle) the calculation of min-sub=res happens
   // "Jetzt rechnen wir die stellestelle mit min-sub=res.""
   returnStringNoCorrection(stelle, min, sub, res) {
@@ -310,19 +326,8 @@ class Calculate extends React.Component {
           // no correction + 2-3 digit long
           switch (this.state.analogyTextIndex) {
             case 2:
-              var string2multipleDigits =
-                this.text.noCorrectionMoredigits[0] +
-                'Einern ' +
-                this.text.noCorrectionMoredigits[1] +
-                this.analogy.min[this.einerIndex] +
-                '-' +
-                this.analogy.sub[this.einerIndex] +
-                '=' +
-                String(
-                  Number(this.analogy.min[this.einerIndex]) -
-                  Number(this.analogy.sub[this.einerIndex]),
-                ) +
-                '.';
+              var string2multipleDigits = this.returnStringStartEinerstelleWithoutCorrection();
+
               // update analogy
               this.updateCorrectionsAndResult(
                 false,
@@ -519,17 +524,7 @@ class Calculate extends React.Component {
             // Einerstelle does not need any correction but Zehner and Hunderter
             switch (this.state.analogyTextIndex) {
               case 2:
-                var string2withCorrectioninBack =
-                  this.text.withCorrectionAbZehnerFalse[0] +
-                  'Einern ' +
-                  this.text.withCorrectionAbZehnerFalse[1] +
-                  this.analogy.min[this.einerIndex] +
-                  '-' +
-                  this.analogy.sub[this.einerIndex] +
-                  '=' +
-                  this.analogy.res[this.einerIndex] +
-                  '.';
-
+                var string2withCorrectioninBack = this.returnStringStartEinerstelleWithoutCorrection();
                 // update analogy
                 this.updateCorrectionsAndResult(
                   false,
