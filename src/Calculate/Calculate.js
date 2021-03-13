@@ -800,14 +800,57 @@ class Calculate extends React.Component {
                   return string2withCorrectionAllZero;
                 case 3:
                   var string3withCorrectionAllZero =
-                    'Wir müssen uns 10 Einer von den Zehnern leihen. Um von der 0 etwas zu leihen, machen wir eine 10 aus ihr, indem wir uns einen Hunderter leihen. Wir rechnen also 5-1=4. ' +
-                    'Dann können wir uns von den 10 Zehnern einen leihen, also 10-' +
-                    this.analogy.min[this.zehnerIndex] +
-                    '1=' +
-                    this.analogy.cor[this.zehnerIndex];
-                  ' rechnen und haben 10 Einer zur Verfügung, also 10+' +
+                    'Wir müssen uns 10 Einer von den Zehnern leihen. Huch, bei den Zehnern steht eine 0! Wir können uns noch nichts leihen.';
+                  // update analogy
+                  this.updateCorrectionsAndResult(
+                    false,
+                    false,
+                    false,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
+
+                  //update styling
+                  this.styling = [0, 0, 1];
+                  return string3withCorrectionAllZero;
+
+                case 4:
+                  var string4withCorrectionAllZero =
+                    'Also müssen wir uns erst noch 10 Zehner von den Hundertern leihen. Dafür rechnen wir ' +
+                    this.analogy.min[this.hunderterIndex] +
+                    '-1=' +
+                    this.analogy.cor[this.hunderterIndex] +
+                    '. Jetzt haben wir 10 Zehner und können aus der 0 bei den Zehnern eine 10 machen.';
+
+                  // update analogy
+                  this.updateCorrectionsAndResult(
+                    true,
+                    true,
+                    false,
+                    this.analogy.cor[this.hunderterIndex],
+                    '10',
+                    NaN,
+                    NaN,
+                    NaN,
+                    NaN,
+                  );
+
+                  //update styling
+                  this.styling = [0, 0, 1];
+                  return string4withCorrectionAllZero;
+                case 5:
+                  var string5withCorrectionAllZero =
+                    'Zurück bei den Einern: Jetzt können wir uns einen Zehner leihen. Wir rechnen ' +
+                    '10' +
+                    '-1=' +
+                    this.analogy.cor[this.zehnerIndex] +
+                    '. Also haben wir 10 Einer bekommen und rechnen ' +
                     this.analogy.min[this.einerIndex] +
-                    '=' +
+                    '+10=' +
                     this.analogy.cor[this.einerIndex] +
                     '.';
 
@@ -827,9 +870,10 @@ class Calculate extends React.Component {
                   //update styling
                   this.styling = [0, 0, 1];
 
-                  return string3withCorrectionAllZero;
-                case 4:
-                  var string4withCorrectionAllZero = this.returnStringNoCorrection(
+                  return string5withCorrectionAllZero;
+
+                case 6:
+                  var string6withCorrectionAllZero = this.returnStringNoCorrection(
                     'Einer',
                     this.analogy.cor[this.einerIndex],
                     this.analogy.sub[this.einerIndex],
@@ -852,8 +896,8 @@ class Calculate extends React.Component {
                   //update styling
                   this.styling = [0, 0, 1];
 
-                  return string4withCorrectionAllZero;
-                case 5:
+                  return string6withCorrectionAllZero;
+                case 7:
                   var string7withCorrectionAllZero = this.returnStringNoCorrection(
                     'Zehner',
                     this.analogy.cor[this.zehnerIndex],
@@ -878,7 +922,7 @@ class Calculate extends React.Component {
                   this.styling = [0, 1, 0];
 
                   return string7withCorrectionAllZero;
-                case 6:
+                case 8:
                   var string8withCorrectionAllZero = this.returnStringNoCorrection(
                     'Hunderter',
                     this.analogy.cor[this.hunderterIndex],
@@ -903,7 +947,7 @@ class Calculate extends React.Component {
                   this.styling = [1, 0, 0];
 
                   return string8withCorrectionAllZero;
-                case 7:
+                case 9:
                   finalString = this.text.analogy[17];
                   this.endAnalogy = true;
                   this.styling = [0, 0, 0];
