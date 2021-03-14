@@ -5,12 +5,14 @@ import { withRouter } from 'react-router-dom';
 
 class CloseSpeechbubble extends React.Component {
   render() {
-    const colour = "var(--primary-lila)";
+    const colour = 'var(--primary-lila)';
     return (
       <div className="CloseSpeech">
         <button
           className="buttonClose"
-          onClick={() => this.props.history.push('/substactionpanel')}
+          onClick={() =>
+            this.props.history.push('/substractionpanel')
+          }
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

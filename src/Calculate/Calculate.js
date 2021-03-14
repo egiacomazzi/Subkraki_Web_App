@@ -4,6 +4,7 @@ import SubtractionPanel from '../SubtractionPanel/SubtractionPanel.js';
 import AnalogyPanel from './AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
+import OwnExercise from '../OwnExercise/OwnExercise.js';
 
 class Calculate extends React.Component {
   constructor(props) {
@@ -13,7 +14,9 @@ class Calculate extends React.Component {
       analogyTextIndex: 0,
       display: false,
       correct: null,
+      ownExerciseDisplay: false,
     };
+    this.openOwnExercise = this.openOwnExercise.bind(this);
 
     this.subtractionRef = React.createRef();
 
@@ -130,7 +133,7 @@ class Calculate extends React.Component {
   }
 
   endWelcome() {
-    this.props.history.push('/substactionpanel');
+    this.props.history.push('/substractionpanel');
   }
 
   //" Wir fangen bei den Einern an und rechnen Minuend[einerIndex] - Subtrahend[einerIndex] = Ergebnis[einerIndex]."
@@ -1192,6 +1195,11 @@ class Calculate extends React.Component {
     let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
     return { minuend: minuend, subtrahend: subtrahend };
   }
+  openOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: true,
+    });
+  }
 
   render() {
     if (this.minuend == '') {
@@ -1229,6 +1237,12 @@ class Calculate extends React.Component {
           />
         </div>
       );
+    } else if (this.state.ownExerciseDisplay) {
+      return (
+        <div className="calculate">
+          <OwnExercise />
+        </div>
+      );
     } else {
       return (
         <div className="calculate">
@@ -1239,6 +1253,12 @@ class Calculate extends React.Component {
             submit={() => this.submit()}
             highlighting={[0, 0, 0]}
           />
+          <button
+            className="ownExerciseButton"
+            onClick={this.openOwnExercise}
+          >
+            Eigene Aufgabe
+          </button>
         </div>
       );
     }

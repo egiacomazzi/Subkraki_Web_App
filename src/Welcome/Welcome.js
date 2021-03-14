@@ -43,7 +43,7 @@ class Welcome extends React.Component {
   }
 
   endWelcome() {
-    this.props.history.push('/substactionpanel');
+    this.props.history.push('/substractionpanel');
   }
 
   render() {
