@@ -1,6 +1,5 @@
 import React from 'react';
-
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -34,7 +33,8 @@ class InputOwnNumbers extends React.Component {
       });
     } else {
       //TODO: hier müssen die Zahlen dann ans Substractionpanel übergeben werden und das Eine Aufgaben Ding wieder versteckt werden
-      console.log(minuend, subtrahend);
+      this.props.submit(minuend, subtrahend);
+
     }
   }
   render() {
@@ -91,4 +91,7 @@ class InputOwnNumbers extends React.Component {
   }
 }
 
+InputOwnNumbers.propTypes = {
+  submit: PropTypes.func,
+};
 export default InputOwnNumbers;

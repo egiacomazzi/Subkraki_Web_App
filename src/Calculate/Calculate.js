@@ -1195,9 +1195,18 @@ class Calculate extends React.Component {
     let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
     return { minuend: minuend, subtrahend: subtrahend };
   }
+
   openOwnExercise() {
     this.setState({
       ownExerciseDisplay: true,
+    });
+  }
+
+  getOwnExercise(min, sub) {
+    this.minuend = min;
+    this.subtrahend = sub;
+    this.setState({
+      ownExerciseDisplay: false,
     });
   }
 
@@ -1240,7 +1249,9 @@ class Calculate extends React.Component {
     } else if (this.state.ownExerciseDisplay) {
       return (
         <div className="calculate">
-          <OwnExercise />
+          <OwnExercise
+            returnEx={(min, sub) => this.getOwnExercise(min, sub)}
+          />
         </div>
       );
     } else {
