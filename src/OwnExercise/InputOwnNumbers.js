@@ -33,6 +33,7 @@ class InputOwnNumbers extends React.Component {
         showError: true,
       });
     } else {
+      //TODO: hier müssen die Zahlen dann ans Substractionpanel übergeben werden und das Eine Aufgaben Ding wieder versteckt werden
       console.log(minuend, subtrahend);
     }
   }
