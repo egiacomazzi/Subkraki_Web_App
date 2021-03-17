@@ -1,7 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 //import Speechbubble from '../shared/Speechbubble';
-import InputOwnNumbers from './InputOwnNumbers';
+import InputOwnNumbers from './InputOwnNumbers.js';
+import Subkraki from '../shared/Subkraki.js';
+
 import PropTypes from 'prop-types';
 
 class OwnExercise extends React.Component {
@@ -21,6 +23,7 @@ class OwnExercise extends React.Component {
         <InputOwnNumbers
           submit={(min, sub) => this.returnExercise(min, sub)}
         />
+        <Subkraki />
       </div>
     );
   }
