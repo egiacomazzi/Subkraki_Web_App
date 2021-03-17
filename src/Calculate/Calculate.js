@@ -15,8 +15,12 @@ class Calculate extends React.Component {
       display: false,
       correct: null,
       ownExerciseDisplay: false,
+      rend: 0,
     };
     this.openOwnExercise = this.openOwnExercise.bind(this);
+    this.createRandomExercise = this.createRandomExercise.bind(this);
+    this.getRandomExample = this.getRandomExample.bind(this);
+    this.hideAnalogyPanel = this.hideAnalogyPanel.bind(this);
 
     this.subtractionRef = React.createRef();
 
@@ -111,6 +115,7 @@ class Calculate extends React.Component {
     this.styling = [0, 0, 0];
     this.tempCorrectionStep = null;
   }
+
   lastText() {
     if (this.state.analogyTextIndex == 0) {
       return;
@@ -1196,6 +1201,15 @@ class Calculate extends React.Component {
     return { minuend: minuend, subtrahend: subtrahend };
   }
 
+  createRandomExercise() {
+    let ex = this.getRandomExample(100, 999);
+    this.minuend = ex.minuend.toString();
+    this.subtrahend = ex.subtrahend.toString();
+    this.setState({
+      rend: this.state.rend + 1,
+    });
+  }
+
   openOwnExercise() {
     this.setState({
       ownExerciseDisplay: true,
@@ -1210,11 +1224,13 @@ class Calculate extends React.Component {
     });
   }
 
+  hideAnalogyPanel() {
+    this.setState({ display: false });
+  }
+
   render() {
     if (this.minuend == '') {
-      const ex = this.getRandomExample(100, 999);
-      this.minuend = ex.minuend.toString();
-      this.subtrahend = ex.subtrahend.toString();
+      this.createRandomExercise();
     }
 
     if (this.state.display) {
@@ -1243,6 +1259,7 @@ class Calculate extends React.Component {
             min_cor={this.curAnalogyMinuendCor}
             highlighting={this.styling}
             subpanel_visibility={this.analogySubPanelVisibility}
+            close_func={this.hideAnalogyPanel}
           />
         </div>
       );
@@ -1269,6 +1286,12 @@ class Calculate extends React.Component {
             onClick={this.openOwnExercise}
           >
             Eigene Aufgabe
+          </button>
+          <button
+            className="randomExercise"
+            onClick={this.createRandomExercise}
+          >
+            Zufällige Aufgabe
           </button>
         </div>
       );

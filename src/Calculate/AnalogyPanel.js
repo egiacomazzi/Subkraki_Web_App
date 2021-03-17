@@ -7,6 +7,11 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 class AnalogyPanel extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
   render() {
     // Component to render if next state schould be the substration panel
     // if (this.props.introTextIndex === 7) {
@@ -39,6 +44,7 @@ class AnalogyPanel extends React.Component {
           min_cor={this.props.min_cor}
           highlighting={this.props.highlighting}
           subpanel_visibility={this.props.subpanel_visibility}
+          close_func={this.props.close_func}
         />
 
         <Subkraki size="big" />
@@ -62,4 +68,5 @@ AnalogyPanel.propTypes = {
   min_cor: PropTypes.array,
   highlighting: PropTypes.array,
   subpanel_visibility: PropTypes.string,
+  close_func: PropTypes.func,
 };
