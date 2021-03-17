@@ -10,6 +10,8 @@ class InputOwnNumbers extends React.Component {
     };
     this.errorText = null;
     this.returnSubMintoSub = this.returnSubMintoSub.bind(this);
+    this.text =
+      'Gib hier die Zahlen für deine eigene Aufgabe ein. Achte darauf, dass die obere Zahl größer ist als die untere.';
   }
   returnSubMintoSub() {
     var minuend = document.getElementById('obereZahl').value;
@@ -48,28 +50,25 @@ class InputOwnNumbers extends React.Component {
       return (
         <div className="inputOwnEx">
           <div className="inputOwnExBubble">
-            <div className="ownExerciseContent">
-              Gib hier die Zahlen für deine eigene Aufgabe ein. Achte
-              darauf, dass die obere Zahl größer ist als die untere.
-              <div className="obereZahlText">Obere Zahl:</div>
-              <input
-                type="number"
-                className="obereZahlInput"
-                id="obereZahl"
-              ></input>
-              <div className="untereZahlText">Untere Zahl:</div>
-              <input
-                type="number"
-                className="untereZahlInput"
-                id="untereZahl"
-              ></input>
-              <button
-                className="eigeneAufgabeSubmit"
-                onClick={this.returnSubMintoSub}
-              >
-                Los
-              </button>
-            </div>
+            {this.text}
+            <div className="obereZahlText">Obere Zahl:</div>
+            <input
+              type="number"
+              className="obereZahlInput"
+              id="obereZahl"
+            ></input>
+            <div className="untereZahlText">Untere Zahl:</div>
+            <input
+              type="number"
+              className="untereZahlInput"
+              id="untereZahl"
+            ></input>
+            <button
+              className="eigeneAufgabeSubmit"
+              onClick={this.returnSubMintoSub}
+            >
+              Los
+            </button>
           </div>
         </div>
       );
@@ -77,6 +76,7 @@ class InputOwnNumbers extends React.Component {
       return (
         <div className="inputOwnEx">
           <div className="inputOwnExBubble">
+            {this.text}
             <div className="obereZahlText">Obere Zahl:</div>
             <input
               type="number"
