@@ -1,0 +1,34 @@
+.inputOwnEx {
+  position: relative;
+  margin: 4em auto 3em;
+  width: 70%;
+}
+
+.inputOwnExBubble p {
+  position: relative;
+  z-index: 2;
+}
+.inputOwnExBubble p:last-child {
+  margin-bottom: 0;
+}
+
+.inputOwnExBubble:before,
+.inputOwnExBubble:after {
+  display: block;
+  position: absolute;
+  right: 4em;
+  bottom: -18px;
+  width: 0;
+  height: 0;
+  content: '\0020';
+  border: solid 20px transparent;
+  border-bottom: 0;
+  border-top-color: #fff;
+  overflow: hidden;
+  z-index: 2;
+}
+.inputOwnExBubble:before {
+  bottom: -24px;
+  border-top-color: #eee;
+  z-index: 1;
+}

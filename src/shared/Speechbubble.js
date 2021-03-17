@@ -33,7 +33,9 @@ class Speechbubble extends React.Component {
                     analogy={true}
                     minuend_correction={this.props.min_cor}
                     highlighting={this.props.highlighting}
-                    subpanel_visibility={this.props.subpanel_visibility}
+                    subpanel_visibility={
+                      this.props.subpanel_visibility
+                    }
                   />
                 }
               </div>

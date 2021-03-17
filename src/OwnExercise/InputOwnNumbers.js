@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import '../CSS/InputOwnNumbers.css';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -31,60 +32,74 @@ class InputOwnNumbers extends React.Component {
       this.setState({
         showError: true,
       });
+    } else if (Number(minuend) > 999 || Number(subtrahend) > 999) {
+      this.errorText = 'Bitte gib nur Zahlen bis 999 ein.';
+      console.log('Bitte gib nur Zahlen bis 999 ein.');
+      this.setState({
+        showError: true,
+      });
     } else {
       //TODO: hier müssen die Zahlen dann ans Substractionpanel übergeben werden und das Eine Aufgaben Ding wieder versteckt werden
       this.props.submit(minuend, subtrahend);
-
     }
   }
   render() {
     if (!this.state.showError) {
       return (
         <div className="inputOwnEx">
-          <div className="obereZahlText">Obere Zahl:</div>
-          <input
-            type="number"
-            className="obereZahlInput"
-            id="obereZahl"
-          ></input>
-          <div className="untereZahlText">Untere Zahl:</div>
-          <input
-            type="number"
-            className="untereZahlInput"
-            id="untereZahl"
-          ></input>
-
-          <button
-            className="eigeneAufgabeSubmit"
-            onClick={this.returnSubMintoSub}
-          >
-            Los
-          </button>
+          <div className="inputOwnExBubble">
+            <div className="ownExerciseContent">
+              Gib hier die Zahlen für deine eigene Aufgabe ein. Achte
+              darauf, dass die obere Zahl größer ist als die untere.
+              <div className="obereZahlText">Obere Zahl:</div>
+              <input
+                type="number"
+                className="obereZahlInput"
+                id="obereZahl"
+              ></input>
+              <div className="untereZahlText">Untere Zahl:</div>
+              <input
+                type="number"
+                className="untereZahlInput"
+                id="untereZahl"
+              ></input>
+              <button
+                className="eigeneAufgabeSubmit"
+                onClick={this.returnSubMintoSub}
+              >
+                Los
+              </button>
+            </div>
+          </div>
         </div>
       );
     } else {
       return (
         <div className="inputOwnEx">
-          <div className="obereZahlText">Obere Zahl:</div>
-          <input
-            type="number"
-            className="obereZahlInput"
-            id="obereZahl"
-          ></input>
-          <div className="untereZahlText">Untere Zahl:</div>
-          <input
-            type="number"
-            className="untereZahlInput"
-            id="untereZahl"
-          ></input>
-          <p className="errorText">{this.errorText}</p>
+          <div className="inputOwnExBubble">
+            <div className="obereZahlText">Obere Zahl:</div>
+            <input
+              type="number"
+              max="999"
+              className="obereZahlInput"
+              id="obereZahl"
+            ></input>
+            <div className="untereZahlText">Untere Zahl:</div>
+            <input
+              type="number"
+              max="999"
+              className="untereZahlInput"
+              id="untereZahl"
+            ></input>
+            <p className="errorText">{this.errorText}</p>
 
-          <button
-            className="eigeneAufgabeSubmit"
-            onClick={this.returnSubMintoSub}
-          >
-            Los
-          </button>
+            <button
+              className="eigeneAufgabeSubmit"
+              onClick={this.returnSubMintoSub}
+            >
+              Los
+            </button>
+          </div>
         </div>
       );
     }
