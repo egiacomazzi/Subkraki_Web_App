@@ -20,6 +20,7 @@ class Calculate extends React.Component {
     this.openOwnExercise = this.openOwnExercise.bind(this);
     this.createRandomExercise = this.createRandomExercise.bind(this);
     this.getRandomExample = this.getRandomExample.bind(this);
+    this.hideAnalogyPanel = this.hideAnalogyPanel.bind(this);
 
     this.subtractionRef = React.createRef();
 
@@ -1223,6 +1224,10 @@ class Calculate extends React.Component {
     });
   }
 
+  hideAnalogyPanel() {
+    this.setState({ display: false });
+  }
+
   render() {
     if (this.minuend == '') {
       this.createRandomExercise();
@@ -1254,6 +1259,7 @@ class Calculate extends React.Component {
             min_cor={this.curAnalogyMinuendCor}
             highlighting={this.styling}
             subpanel_visibility={this.analogySubPanelVisibility}
+            close_func={this.hideAnalogyPanel}
           />
         </div>
       );
