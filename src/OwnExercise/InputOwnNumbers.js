@@ -16,7 +16,12 @@ class InputOwnNumbers extends React.Component {
   returnSubMintoSub() {
     var minuend = document.getElementById('obereZahl').value;
     var subtrahend = document.getElementById('untereZahl').value;
-    if (
+    if (isNaN(minuend) || isNaN(subtrahend)) {
+      this.errorText = 'Bitte gib nur Zahlen ein.';
+      this.setState({
+        showError: true,
+      });
+    } else if (
       minuend == '' ||
       minuend == null ||
       subtrahend == '' ||
@@ -53,13 +58,15 @@ class InputOwnNumbers extends React.Component {
             {this.text}
             <div className="obereZahlText">Obere Zahl:</div>
             <input
-              type="number"
+              //type="number"
+              maxLength="3"
               className="obereZahlInput"
               id="obereZahl"
             ></input>
             <div className="untereZahlText">Untere Zahl:</div>
             <input
-              type="number"
+              //type="number"
+              maxLength="3"
               className="untereZahlInput"
               id="untereZahl"
             ></input>
@@ -79,14 +86,16 @@ class InputOwnNumbers extends React.Component {
             {this.text}
             <div className="obereZahlText">Obere Zahl:</div>
             <input
-              type="number"
+              //type="number"
+              maxLength="3"
               max="999"
               className="obereZahlInput"
               id="obereZahl"
             ></input>
             <div className="untereZahlText">Untere Zahl:</div>
             <input
-              type="number"
+              // type="number"
+              maxLength="3"
               max="999"
               className="untereZahlInput"
               id="untereZahl"

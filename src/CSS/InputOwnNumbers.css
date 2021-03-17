@@ -41,3 +41,27 @@
   border-top-color: #eee;
   z-index: 1;
 }
+
+.obereZahlInput,
+.untereZahlInput {
+  display: block;
+  margin: 2em auto;
+  border: none;
+  padding: 0;
+  width: 4.5ch;
+  background: repeating-linear-gradient(
+      90deg,
+      black 0,
+      black 1ch,
+      transparent 0,
+      transparent 1.5ch
+    )
+    0 100%/ 4ch 2px no-repeat;
+
+  font: 5ch droid sans mono, consolas, monospace;
+  letter-spacing: 0.5ch;
+}
+/* input &:focus {
+  outline: none;
+  color: dodgerblue;
+} */
