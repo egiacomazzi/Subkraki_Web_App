@@ -45,7 +45,7 @@
 .obereZahlInput,
 .untereZahlInput {
   display: block;
-  margin: 2em auto;
+  margin: 1em auto;
   border: none;
   padding: 0;
   width: 4.5ch;
@@ -61,7 +61,11 @@
   font: 5ch droid sans mono, consolas, monospace;
   letter-spacing: 0.5ch;
 }
-/* input &:focus {
+.obereZahlInput:focus,
+.untereZahlInput:focus {
   outline: none;
   color: dodgerblue;
-} */
+}
+.errorText {
+  color: red;
+}

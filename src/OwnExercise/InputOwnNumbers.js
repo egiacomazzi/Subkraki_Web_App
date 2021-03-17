@@ -17,7 +17,8 @@ class InputOwnNumbers extends React.Component {
     var minuend = document.getElementById('obereZahl').value;
     var subtrahend = document.getElementById('untereZahl').value;
     if (isNaN(minuend) || isNaN(subtrahend)) {
-      this.errorText = 'Bitte gib nur Zahlen ein.';
+      this.errorText =
+        'Du hast Buchstaben eingegeben. Bitte gib nur Zahlen ein.';
       this.setState({
         showError: true,
       });
@@ -27,7 +28,7 @@ class InputOwnNumbers extends React.Component {
       subtrahend == '' ||
       subtrahend == null
     ) {
-      this.errorText = 'Bitte gib die Zahlen ein.';
+      this.errorText = 'Bitte gib Zahlen ein.';
       this.setState({
         showError: true,
       });
