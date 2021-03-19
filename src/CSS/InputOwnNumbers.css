@@ -11,6 +11,42 @@
   border-radius: 12px;
   border: 4px solid #eee;
   background-color: white;
+  display: grid;
+  align-items: center;
+  grid-template-areas:
+    'textOwnEx textOwnEx'
+    'obereZahl obereInput'
+    'untereZahl untereInput'
+    'errorText errorText'
+    'losButton losButton';
+}
+.ownExText {
+  grid-area: textOwnEx;
+  text-align: center;
+}
+.obereZahlText {
+  grid-area: obereZahl;
+  text-align: center;
+  font-size: 3vw;
+}
+.obereZahlInput {
+  grid-area: obereInput;
+}
+.untereZahlText {
+  grid-area: untereZahl;
+  text-align: center;
+  font-size: 3vw;
+}
+.untereZahlInput {
+  grid-area: untereInput;
+}
+
+.eigeneAufgabeSubmit {
+  grid-area: losButton;
+}
+.errorText {
+  grid-area: errorText;
+  text-align: center;
 }
 
 .inputOwnExBubble p {
@@ -68,4 +104,14 @@
 }
 .errorText {
   color: red;
+}
+
+.eigeneAufgabeSubmit {
+  background-color: var(--primary-lila);
+  color: #a8d0e6;
+  border: none;
+  text-decoration: none;
+  border-radius: 10%;
+  font-size: 10vw;
+  padding: 2vw 6vw;
 }
