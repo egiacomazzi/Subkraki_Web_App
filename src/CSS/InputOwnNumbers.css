@@ -23,6 +23,7 @@
 .ownExText {
   grid-area: textOwnEx;
   text-align: center;
+  font-size: 2.5vw;
 }
 .obereZahlText {
   grid-area: obereZahl;
@@ -47,6 +48,7 @@
 .errorText {
   grid-area: errorText;
   text-align: center;
+  font-size: 2.5vw;
 }
 
 .inputOwnExBubble p {

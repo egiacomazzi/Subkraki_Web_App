@@ -56,7 +56,7 @@ class InputOwnNumbers extends React.Component {
       return (
         <div className="inputOwnEx">
           <div className="inputOwnExBubble">
-            {this.text}
+            <div className="ownExText">{this.text}</div>
             <div className="obereZahlText">Obere Zahl:</div>
             <input
               //type="number"
@@ -84,7 +84,7 @@ class InputOwnNumbers extends React.Component {
       return (
         <div className="inputOwnEx">
           <div className="inputOwnExBubble">
-            {this.text}
+            <div className="ownExText">{this.text}</div>
             <div className="obereZahlText">Obere Zahl:</div>
             <input
               //type="number"
