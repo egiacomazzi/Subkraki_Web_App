@@ -5,6 +5,7 @@
 }
 
 .inputOwnExBubble {
+  font-family: var(--font-family);
   position: relative;
   padding: 2em;
   width: auto;
@@ -27,7 +28,7 @@
 }
 .obereZahlText {
   grid-area: obereZahl;
-  text-align: center;
+  text-align: right;
   font-size: 3vw;
 }
 .obereZahlInput {
@@ -35,7 +36,7 @@
 }
 .untereZahlText {
   grid-area: untereZahl;
-  text-align: center;
+  text-align: right;
   font-size: 3vw;
 }
 .untereZahlInput {
@@ -44,6 +45,9 @@
 
 .eigeneAufgabeSubmit {
   grid-area: losButton;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 .errorText {
   grid-area: errorText;
@@ -102,7 +106,7 @@
 .obereZahlInput:focus,
 .untereZahlInput:focus {
   outline: none;
-  color: dodgerblue;
+  color: var(--light-blue);
 }
 .errorText {
   color: red;
@@ -114,6 +118,8 @@
   border: none;
   text-decoration: none;
   border-radius: 10%;
-  font-size: 10vw;
+  font-size: 8vw;
   padding: 2vw 6vw;
+  width: 50%;
+  margin: 0vw 25%;
 }

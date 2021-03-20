@@ -1265,7 +1265,7 @@ class Calculate extends React.Component {
       );
     } else if (this.state.ownExerciseDisplay) {
       return (
-        <div className="calculate">
+        <div className="ownEx">
           <OwnExercise
             returnEx={(min, sub) => this.getOwnExercise(min, sub)}
           />
