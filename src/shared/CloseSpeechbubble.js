@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 class CloseSpeechbubble extends React.Component {
-
   close() {
     if (this.props.location.pathname == '/') {
       this.props.history.push('/substractionpanel');
-    } else {//if (this.props.location.pathname == '/substractionpanel') {
+    } else {
+      //if (this.props.location.pathname == '/substractionpanel') {
       this.props.close_func();
     }
   }
@@ -17,10 +17,7 @@ class CloseSpeechbubble extends React.Component {
     const colour = 'var(--primary-lila)';
     return (
       <div className="CloseSpeech">
-        <button
-          className="buttonClose"
-          onClick={() => this.close()}
-        >
+        <button className="buttonClose" onClick={() => this.close()}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 40 40"
@@ -81,4 +78,5 @@ CloseSpeechbubble.propTypes = {
   }).isRequired,
   location: PropTypes.object.isRequired,
   close_func: PropTypes.func,
+  ownEx: PropTypes.func,
 };

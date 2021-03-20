@@ -2,6 +2,7 @@
   position: relative;
   margin: 4em auto 3em;
   width: 70%;
+  grid-area: bubble;
 }
 
 .inputOwnExBubble {
@@ -20,6 +21,15 @@
     'untereZahl untereInput'
     'errorText errorText'
     'losButton losButton';
+}
+.inputOwnExBubble .CloseSpeech {
+  z-index: 2;
+  width: 5vw;
+  height: 5vw;
+  position: relative;
+  left: 0vw;
+  top: 0.5vw;
+  grid-area: close;
 }
 .ownExText {
   grid-area: textOwnEx;

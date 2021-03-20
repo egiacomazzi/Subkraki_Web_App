@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import '../CSS/InputOwnNumbers.css';
+import { withRouter } from 'react-router-dom';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -13,6 +14,7 @@ class InputOwnNumbers extends React.Component {
     this.text =
       'Gib hier die Zahlen für deine eigene Aufgabe ein. Achte darauf, dass die obere Zahl größer ist als die untere.';
   }
+
   returnSubMintoSub() {
     var minuend = document.getElementById('obereZahl').value;
     var subtrahend = document.getElementById('untereZahl').value;
@@ -118,5 +120,8 @@ class InputOwnNumbers extends React.Component {
 
 InputOwnNumbers.propTypes = {
   submit: PropTypes.func,
+  history: PropTypes.shape({
+    replace: PropTypes.func.isRequired,
+  }).isRequired,
 };
-export default InputOwnNumbers;
+export default withRouter(InputOwnNumbers);

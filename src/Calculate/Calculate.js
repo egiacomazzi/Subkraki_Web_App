@@ -1215,6 +1215,11 @@ class Calculate extends React.Component {
       ownExerciseDisplay: true,
     });
   }
+  closeOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: false,
+    });
+  }
 
   getOwnExercise(min, sub) {
     this.minuend = min;
@@ -1265,11 +1270,10 @@ class Calculate extends React.Component {
       );
     } else if (this.state.ownExerciseDisplay) {
       return (
-        <div className="ownEx">
-          <OwnExercise
-            returnEx={(min, sub) => this.getOwnExercise(min, sub)}
-          />
-        </div>
+        <OwnExercise
+          returnEx={(min, sub) => this.getOwnExercise(min, sub)}
+          close_func={() => this.closeOwnExercise()}
+        />
       );
     } else {
       return (
