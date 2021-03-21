@@ -1,6 +1,7 @@
 .panel {
   grid-area: panel;
 }
+
 .analogy {
   grid-area: analogy;
 }
@@ -9,6 +10,34 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-areas: 'panel analogy' 'panel analogy';
+  grid-template-areas: '. .' 'panel analogy' 'subkraki_small analogy';
   grid-template-columns: 1fr 1fr;
+  padding-top: 5vw;
+}
+
+.calculate .Speech {
+  width: 100%;
+}
+
+.calculate .testimonial {
+  padding: 0 5.2vw 0 5.5vw;
+}
+
+.calculate > .Subkraki {
+  grid-area: analogy;
+  margin: auto;
+}
+
+.calculate > .Subkraki > img {
+  height: 30vw;
+}
+
+.Subkraki_small {
+  grid-area: subkraki_small;
+}
+
+.Subkraki_small > img {
+  height: 10vw;
+  padding-top: 3vw;
+  padding-left: 28vw;
 }

@@ -5,6 +5,7 @@
     'speechPart subkraki'
     'speechPart .';
   grid-template-columns: 2fr 1fr;
+  padding: 8vw 0 0 0;
 }
 
 .welcome > .SpeechbubbleControls {
@@ -17,16 +18,12 @@
 }
 
 .welcome > .Subkraki > img {
-  width: 25vw;
+  height: 30vw;
 }
 
 .welcome .right,
 .welcome .left {
   width: 28vw;
-}
-
-.welcome .Subkraki {
-  padding-top: 0;
 }
 
 .welcome .bubbleText {
@@ -35,7 +32,7 @@
 
 .welcome .bubble {
   position: relative;
-  padding: 3vw;
+  padding: 3.5vw 3vw 3vw 3vw;
   width: 35vw;
   height: 15vw;
   border-radius: 12px;
@@ -46,13 +43,17 @@
   text-align: center;
 }
 
-@media only screen and (max-width: 500px) {
+.welcome .testimonial {
+  margin: 0 10vw;
+}
+
+@media only screen and (max-width: 600px) {
   .welcome .bubbleText {
     font-size: 3vw;
   }
 
   .welcome .bubble {
-    padding-top: 3.3vw;
+    padding-top: 5vw;
     padding-left: 1vw;
     padding-right: 1vw;
   }

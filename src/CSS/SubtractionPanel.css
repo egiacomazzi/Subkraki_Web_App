@@ -84,12 +84,11 @@
 }
 
 .panel {
-  padding: 3vw;
+  padding: 1vw;
   width: 50vw;
-  height: 38vw;
+  height: 34vw;
   border-radius: 5%;
   background-color: rgba(255, 255, 255, 0.7);
-  align-content: center;
 }
 
 .panel > .grid-container {

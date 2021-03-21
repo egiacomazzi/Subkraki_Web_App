@@ -4,7 +4,9 @@ import SubtractionPanel from '../SubtractionPanel/SubtractionPanel.js';
 import AnalogyPanel from './AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
+import Subkraki from '../shared/Subkraki';
 import OwnExercise from '../OwnExercise/OwnExercise.js';
+
 
 class Calculate extends React.Component {
   constructor(props) {
@@ -1266,6 +1268,7 @@ class Calculate extends React.Component {
             subpanel_visibility={this.analogySubPanelVisibility}
             close_func={this.hideAnalogyPanel}
           />
+          <Subkraki size="small" />
         </div>
       );
     } else if (this.state.ownExerciseDisplay) {
@@ -1285,6 +1288,7 @@ class Calculate extends React.Component {
             submit={() => this.submit()}
             highlighting={[0, 0, 0]}
           />
+          <Subkraki />
           <button
             className="ownExerciseButton"
             onClick={this.openOwnExercise}

@@ -1,6 +1,5 @@
 import React from 'react';
 //import '../CSS/Welcome.css';
-import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 import '../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
