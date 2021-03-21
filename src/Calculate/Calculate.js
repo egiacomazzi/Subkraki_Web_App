@@ -1155,6 +1155,9 @@ class Calculate extends React.Component {
 
   async submit() {
     let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
+    if (typeof r === 'undefined')
+      return;
+
     let analogy = r.analogy;
     let diagnosis = r.diagnosis;
     console.log(analogy);

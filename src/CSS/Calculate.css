@@ -46,7 +46,7 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-areas: '. .' 'panel analogy' 'subkraki_small analogy';
+  grid-template-areas: '. .' 'random Button' 'own Button';
   align-items: center;
   justify-content: space-evenly;
   padding-bottom: 1cm;

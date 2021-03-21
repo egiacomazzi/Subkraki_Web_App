@@ -34,7 +34,6 @@ class SubtractionPanel extends React.Component {
    */
   async getAnalogyAndDiagnosis() {
     const result = this.getResult();
-
     if (result.error_message) {
       this.setState({
         error_message: result.error_message,
@@ -44,6 +43,7 @@ class SubtractionPanel extends React.Component {
     this.setState({
       result_row_error: Array(this.props.minuend.length).fill(false),
     });
+
     const corrections = this.getCorrections();
     if (corrections.error_message) {
       this.setState({

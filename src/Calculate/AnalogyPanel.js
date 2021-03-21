@@ -3,6 +3,7 @@ import React from 'react';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 import '../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
+import Subkraki from '../shared/Subkraki';
 import { withRouter } from 'react-router-dom';
 
 class AnalogyPanel extends React.Component {
