@@ -16,7 +16,7 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/substactionpanel">
+          <Route path="/substractionpanel">
             <Calculate />
           </Route>
           {/* Has to be the last route entered because the url matches from the strat and all of them match with "/" */}

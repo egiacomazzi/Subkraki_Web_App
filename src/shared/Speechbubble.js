@@ -5,6 +5,13 @@ import CloseSpeechbubble from './CloseSpeechbubble';
 import SubtractionPanel from '../SubtractionPanel/SubtractionPanel';
 
 class Speechbubble extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+
+  }
+
+
   render() {
     if (!this.props.analogy) {
       return (
@@ -28,13 +35,19 @@ class Speechbubble extends React.Component {
                   <SubtractionPanel
                     subtrahend={this.props.sub}
                     minuend={this.props.min}
-                    digits="3"
+                    result={this.props.res}
+                    correction={this.props.cor}
                     analogy={true}
+                    minuend_correction={this.props.min_cor}
+                    highlighting={this.props.highlighting}
+                    subpanel_visibility={
+                      this.props.subpanel_visibility
+                    }
                   />
                 }
               </div>
             </div>
-            <CloseSpeechbubble />
+            <CloseSpeechbubble close_func={this.props.close_func} />
           </div>
         </div>
       );
@@ -48,4 +61,10 @@ Speechbubble.propTypes = {
   analogy: PropTypes.bool,
   min: PropTypes.string,
   sub: PropTypes.string,
+  res: PropTypes.array,
+  cor: PropTypes.array,
+  min_cor: PropTypes.array,
+  highlighting: PropTypes.array,
+  subpanel_visibility: PropTypes.string,
+  close_func: PropTypes.func,
 };

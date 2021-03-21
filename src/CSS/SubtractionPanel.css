@@ -182,3 +182,7 @@
   font-size: 1.5vw;
   margin-top: 2vw;
 }
+
+.highlighted {
+  background: var(--highlight) !important;
+}

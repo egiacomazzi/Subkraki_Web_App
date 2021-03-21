@@ -1,0 +1,135 @@
+.inputOwnEx {
+  position: relative;
+  margin: 4em auto 3em;
+  width: 70%;
+  grid-area: bubble;
+}
+
+.inputOwnExBubble {
+  font-family: var(--font-family);
+  position: relative;
+  padding: 2em;
+  width: auto;
+  border-radius: 12px;
+  border: 4px solid #eee;
+  background-color: white;
+  display: grid;
+  align-items: center;
+  grid-template-areas:
+    'textOwnEx textOwnEx'
+    'obereZahl obereInput'
+    'untereZahl untereInput'
+    'errorText errorText'
+    'losButton losButton';
+}
+.inputOwnExBubble .CloseSpeech {
+  z-index: 2;
+  width: 5vw;
+  height: 5vw;
+  position: relative;
+  left: 0vw;
+  top: 0.5vw;
+  grid-area: close;
+}
+.ownExText {
+  grid-area: textOwnEx;
+  text-align: center;
+  font-size: 2.5vw;
+}
+.obereZahlText {
+  grid-area: obereZahl;
+  text-align: right;
+  font-size: 3vw;
+}
+.obereZahlInput {
+  grid-area: obereInput;
+}
+.untereZahlText {
+  grid-area: untereZahl;
+  text-align: right;
+  font-size: 3vw;
+}
+.untereZahlInput {
+  grid-area: untereInput;
+}
+
+.eigeneAufgabeSubmit {
+  grid-area: losButton;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.errorText {
+  grid-area: errorText;
+  text-align: center;
+  font-size: 2.5vw;
+}
+
+.inputOwnExBubble p {
+  position: relative;
+  z-index: 2;
+}
+.inputOwnExBubble p:last-child {
+  margin-bottom: 0;
+}
+
+.inputOwnExBubble:before,
+.inputOwnExBubble:after {
+  display: block;
+  position: absolute;
+  right: 4em;
+  bottom: -18px;
+  width: 0;
+  height: 0;
+  content: '\0020';
+  border: solid 20px transparent;
+  border-bottom: 0;
+  border-top-color: #fff;
+  overflow: hidden;
+  z-index: 2;
+}
+.inputOwnExBubble:before {
+  bottom: -24px;
+  border-top-color: #eee;
+  z-index: 1;
+}
+
+.obereZahlInput,
+.untereZahlInput {
+  display: block;
+  margin: 1em auto;
+  border: none;
+  padding: 0;
+  width: 4.5ch;
+  background: repeating-linear-gradient(
+      90deg,
+      black 0,
+      black 1ch,
+      transparent 0,
+      transparent 1.5ch
+    )
+    0 100%/ 4ch 2px no-repeat;
+
+  font: 5ch droid sans mono, consolas, monospace;
+  letter-spacing: 0.5ch;
+}
+.obereZahlInput:focus,
+.untereZahlInput:focus {
+  outline: none;
+  color: var(--light-blue);
+}
+.errorText {
+  color: red;
+}
+
+.eigeneAufgabeSubmit {
+  background-color: var(--primary-lila);
+  color: #a8d0e6;
+  border: none;
+  text-decoration: none;
+  border-radius: 10%;
+  font-size: 8vw;
+  padding: 2vw 6vw;
+  width: 50%;
+  margin: 0vw 25%;
+}
