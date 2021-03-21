@@ -1,15 +1,19 @@
 .inputOwnEx {
   position: relative;
-  margin: 4em auto 3em;
   width: 70%;
   grid-area: bubble;
+  margin: auto;
+  display: grid;
+  grid-template-areas: 'inputExercise close';
 }
 
 .inputOwnExBubble {
   font-family: var(--font-family);
   position: relative;
-  padding: 2em;
-  width: auto;
+  grid-area: inputExercise;
+  padding: 3vw;
+  width: 45vw;
+  height: 40vw;
   border-radius: 12px;
   border: 4px solid #eee;
   background-color: white;
@@ -21,20 +25,13 @@
     'untereZahl untereInput'
     'errorText errorText'
     'losButton losButton';
+  grid-template-rows: 15vw 7vw 7vw 7vw 6vw;
 }
-.inputOwnExBubble .CloseSpeech {
-  z-index: 2;
-  width: 5vw;
-  height: 5vw;
-  position: relative;
-  left: 0vw;
-  top: 0.5vw;
-  grid-area: close;
-}
+
 .ownExText {
   grid-area: textOwnEx;
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 3vw;
 }
 .obereZahlText {
   grid-area: obereZahl;
@@ -53,16 +50,11 @@
   grid-area: untereInput;
 }
 
-.eigeneAufgabeSubmit {
-  grid-area: losButton;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-}
 .errorText {
   grid-area: errorText;
   text-align: center;
   font-size: 2.5vw;
+  color: var(--error-pink);
 }
 
 .inputOwnExBubble p {
@@ -97,7 +89,7 @@
 .obereZahlInput,
 .untereZahlInput {
   display: block;
-  margin: 1em auto;
+  margin: 0vw auto;
   border: none;
   padding: 0;
   width: 4.5ch;
@@ -110,7 +102,7 @@
     )
     0 100%/ 4ch 2px no-repeat;
 
-  font: 5ch droid sans mono, consolas, monospace;
+  font: 3.5vw droid sans mono, consolas, monospace;
   letter-spacing: 0.5ch;
 }
 .obereZahlInput:focus,
@@ -118,18 +110,24 @@
   outline: none;
   color: var(--light-blue);
 }
-.errorText {
-  color: red;
-}
 
 .eigeneAufgabeSubmit {
   background-color: var(--primary-lila);
-  color: #a8d0e6;
+  color: var(--light-blue);
   border: none;
   text-decoration: none;
-  border-radius: 10%;
-  font-size: 8vw;
-  padding: 2vw 6vw;
-  width: 50%;
-  margin: 0vw 25%;
+  border-radius: 4%/12%;
+  font-size: 5vw;
+  width: 20vw;
+  grid-area: losButton;
+  margin: auto;
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .inputOwnEx > .CloseSpeech {
+    width: 8vw;
+    height: 8vw;
+    left: -8vw;
+  }
 }

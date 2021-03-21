@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../CSS/InputOwnNumbers.css';
 import { withRouter } from 'react-router-dom';
+import CloseSpeechbubble from '../shared/CloseSpeechbubble.js';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class InputOwnNumbers extends React.Component {
               Los
             </button>
           </div>
+          <CloseSpeechbubble close_func={this.props.close_func} />
         </div>
       );
     } else {
@@ -123,5 +125,6 @@ InputOwnNumbers.propTypes = {
   history: PropTypes.shape({
     replace: PropTypes.func.isRequired,
   }).isRequired,
+  close_func: PropTypes.func,
 };
 export default withRouter(InputOwnNumbers);

@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 //import Speechbubble from '../shared/Speechbubble';
 import InputOwnNumbers from './InputOwnNumbers.js';
 import Subkraki from '../shared/Subkraki.js';
-import CloseSpeechbubble from '../shared/CloseSpeechbubble.js';
 import '../CSS/OwnExercise.css';
 
 import PropTypes from 'prop-types';
@@ -26,8 +25,6 @@ class OwnExercise extends React.Component {
           submit={(min, sub) => this.returnExercise(min, sub)}
           close_func={this.props.close_func}
         />
-        <CloseSpeechbubble close_func={this.props.close_func} />
-
         <Subkraki />
       </div>
     );
