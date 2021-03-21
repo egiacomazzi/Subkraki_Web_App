@@ -1,0 +1,19 @@
+.ownEx {
+  display: grid;
+  grid-template-areas:
+    'bubble close'
+    'bubble .'
+    'subkraki subkraki';
+}
+.ownEx > .CloseSpeech {
+  z-index: 2;
+  width: 5vw;
+  height: 5vw;
+  position: relative;
+  left: 0vw;
+  top: 0.5vw;
+  grid-area: close;
+}
+.ownEx > .Subkraki {
+  grid-area: subkraki;
+}

@@ -5,6 +5,11 @@ import Speechbubble from './Speechbubble.js';
 import Arrow from './Arrow.js';
 
 class SpeechbubbleControlls extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+  }
+
   render() {
     if (!this.props.analogy) {
       if (this.props.beginning) {
@@ -44,6 +49,7 @@ class SpeechbubbleControlls extends React.Component {
               min_cor={this.props.min_cor}
               highlighting={this.props.highlighting}
               subpanel_visibility={this.props.subpanel_visibility}
+              close_func={this.props.close_func}
             />
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
@@ -61,6 +67,7 @@ class SpeechbubbleControlls extends React.Component {
               min_cor={this.props.min_cor}
               highlighting={this.props.highlighting}
               subpanel_visibility={this.props.subpanel_visibility}
+              close_func={this.props.close_func}
             />
             <Arrow class="left" onClick={this.props.lastText} />
           </div>
@@ -78,6 +85,7 @@ class SpeechbubbleControlls extends React.Component {
               min_cor={this.props.min_cor}
               highlighting={this.props.highlighting}
               subpanel_visibility={this.props.subpanel_visibility}
+              close_func={this.props.close_func}
             />{' '}
             <Arrow class="right" onClick={this.props.nextText} />
             <Arrow class="left" onClick={this.props.lastText} />
@@ -103,4 +111,5 @@ SpeechbubbleControlls.propTypes = {
   min_cor: PropTypes.array,
   highlighting: PropTypes.array,
   subpanel_visibility: PropTypes.string,
+  close_func: PropTypes.func,
 };

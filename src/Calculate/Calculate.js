@@ -4,6 +4,7 @@ import SubtractionPanel from '../SubtractionPanel/SubtractionPanel.js';
 import AnalogyPanel from './AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
+import OwnExercise from '../OwnExercise/OwnExercise.js';
 
 class Calculate extends React.Component {
   constructor(props) {
@@ -13,7 +14,13 @@ class Calculate extends React.Component {
       analogyTextIndex: 0,
       display: false,
       correct: null,
+      ownExerciseDisplay: false,
+      rend: 0,
     };
+    this.openOwnExercise = this.openOwnExercise.bind(this);
+    this.createRandomExercise = this.createRandomExercise.bind(this);
+    this.getRandomExample = this.getRandomExample.bind(this);
+    this.hideAnalogyPanel = this.hideAnalogyPanel.bind(this);
 
     this.subtractionRef = React.createRef();
 
@@ -108,6 +115,7 @@ class Calculate extends React.Component {
     this.styling = [0, 0, 0];
     this.tempCorrectionStep = null;
   }
+
   lastText() {
     if (this.state.analogyTextIndex == 0) {
       return;
@@ -130,7 +138,7 @@ class Calculate extends React.Component {
   }
 
   endWelcome() {
-    this.props.history.push('/substactionpanel');
+    this.props.history.push('/substractionpanel');
   }
 
   //" Wir fangen bei den Einern an und rechnen Minuend[einerIndex] - Subtrahend[einerIndex] = Ergebnis[einerIndex]."
@@ -1193,11 +1201,41 @@ class Calculate extends React.Component {
     return { minuend: minuend, subtrahend: subtrahend };
   }
 
+  createRandomExercise() {
+    let ex = this.getRandomExample(100, 999);
+    this.minuend = ex.minuend.toString();
+    this.subtrahend = ex.subtrahend.toString();
+    this.setState({
+      rend: this.state.rend + 1,
+    });
+  }
+
+  openOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: true,
+    });
+  }
+  closeOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: false,
+    });
+  }
+
+  getOwnExercise(min, sub) {
+    this.minuend = min;
+    this.subtrahend = sub;
+    this.setState({
+      ownExerciseDisplay: false,
+    });
+  }
+
+  hideAnalogyPanel() {
+    this.setState({ display: false });
+  }
+
   render() {
     if (this.minuend == '') {
-      const ex = this.getRandomExample(100, 999);
-      this.minuend = ex.minuend.toString();
-      this.subtrahend = ex.subtrahend.toString();
+      this.createRandomExercise();
     }
 
     if (this.state.display) {
@@ -1226,8 +1264,16 @@ class Calculate extends React.Component {
             min_cor={this.curAnalogyMinuendCor}
             highlighting={this.styling}
             subpanel_visibility={this.analogySubPanelVisibility}
+            close_func={this.hideAnalogyPanel}
           />
         </div>
+      );
+    } else if (this.state.ownExerciseDisplay) {
+      return (
+        <OwnExercise
+          returnEx={(min, sub) => this.getOwnExercise(min, sub)}
+          close_func={() => this.closeOwnExercise()}
+        />
       );
     } else {
       return (
@@ -1239,6 +1285,18 @@ class Calculate extends React.Component {
             submit={() => this.submit()}
             highlighting={[0, 0, 0]}
           />
+          <button
+            className="ownExerciseButton"
+            onClick={this.openOwnExercise}
+          >
+            Eigene Aufgabe
+          </button>
+          <button
+            className="randomExercise"
+            onClick={this.createRandomExercise}
+          >
+            Zufällige Aufgabe
+          </button>
         </div>
       );
     }
