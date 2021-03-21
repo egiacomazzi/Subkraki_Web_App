@@ -4,6 +4,7 @@ import SubtractionPanel from '../SubtractionPanel/SubtractionPanel.js';
 import AnalogyPanel from './AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
+import Subkraki from '../shared/Subkraki';
 
 class Calculate extends React.Component {
   constructor(props) {
@@ -142,8 +143,8 @@ class Calculate extends React.Component {
             ' ' +
             String(
               Number(this.analogy.sub[2]) +
-              10 -
-              Number(this.analogy.min[2]),
+                10 -
+                Number(this.analogy.min[2]),
             ) +
             '.';
           return string5;
@@ -159,8 +160,8 @@ class Calculate extends React.Component {
             ' ' +
             String(
               Number(this.analogy.sub[1]) -
-              1 -
-              Number(this.analogy.min[1]),
+                1 -
+                Number(this.analogy.min[1]),
             ) +
             '.';
           return string6;
@@ -174,7 +175,7 @@ class Calculate extends React.Component {
             '=' +
             String(
               Number(this.analogy.sub[0]) -
-              Number(this.analogy.min[0]),
+                Number(this.analogy.min[0]),
             ) +
             ' ' +
             this.text.analogy[16];
@@ -200,7 +201,6 @@ class Calculate extends React.Component {
       this.diagnosis.correct = diagnosis.correct;
     }
     this.setState({ correct: diagnosis.correct, display: true });
-
   }
 
   getRandomExample(min, max) {
@@ -237,6 +237,7 @@ class Calculate extends React.Component {
             sub={String(this.analogy.sub).replace(/,/g, '')}
             min={String(this.analogy.min).replace(/,/g, '')}
           />
+          <Subkraki size="small" />
         </div>
       );
     } else {
@@ -249,6 +250,7 @@ class Calculate extends React.Component {
             digits="3"
             submit={() => this.submit()}
           />
+          <Subkraki />
         </div>
       );
     }

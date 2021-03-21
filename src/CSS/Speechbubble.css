@@ -1,6 +1,5 @@
 .testimonial {
   position: relative;
-  margin: 4em auto 3em;
   width: 70%;
   display: grid;
   grid-template-areas:

@@ -1,25 +1,18 @@
 .App {
-  /* background-color: #61dafb; */
   height: 100%;
 }
 
-.App::before {
-  content: ' ';
-  display: block;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  opacity: 0.5;
-  background-image: url('../data/underwater.gif');
-  background-repeat: no-repeat;
-  background-position: 50% 0;
-  background-size: cover;
-}
 .SubHallo {
   color: white;
   font-size: 3vh;
   margin: 0;
+}
+
+html {
+  background: url('../data/underwater.gif') no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }

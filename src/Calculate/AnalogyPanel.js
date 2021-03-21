@@ -1,6 +1,5 @@
 import React from 'react';
 //import '../CSS/Welcome.css';
-import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 import '../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
@@ -24,20 +23,18 @@ class AnalogyPanel extends React.Component {
     //   );
     // } else {
     return (
-      <div className="analogy">
-        <SpeechbubbleControlls
-          text={this.props.text}
-          nextText={this.props.nextText}
-          lastText={this.props.lastText}
-          beginning={this.props.beginning}
-          end={this.props.end}
-          analogy={true}
-          sub={this.props.sub}
-          min={this.props.min}
-        />
-
-        <Subkraki size="big" />
-      </div>
+        <div className="analogy">
+          <SpeechbubbleControlls
+            text={this.props.text}
+            nextText={this.props.nextText}
+            lastText={this.props.lastText}
+            beginning={this.props.beginning}
+            end={this.props.end}
+            analogy={true}
+            sub={this.props.sub}
+            min={this.props.min}
+          />
+        </div>
     );
   }
 }
