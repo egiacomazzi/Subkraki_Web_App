@@ -1289,19 +1289,21 @@ class Calculate extends React.Component {
             highlighting={[0, 0, 0]}
           />
           <Subkraki />
-          <button
-            className="ownExerciseButton"
-            onClick={this.openOwnExercise}
-          >
-            Eigene Aufgabe
-          </button>
-          <button
-            className="randomExercise"
-            onClick={this.createRandomExercise}
-          >
-            Zufällige Aufgabe
-          </button>
-        </div>
+          <div className="buttonContainer">
+            <button
+              className="ownExerciseButton"
+              onClick={this.openOwnExercise}
+            >
+              Eigene Aufgabe
+            </button>
+            <button
+              className="randomExerciseButton"
+              onClick={this.createRandomExercise}
+            >
+              Zufällige Aufgabe
+            </button>
+          </div>
+        </div >
       );
     }
   }
