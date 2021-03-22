@@ -1155,6 +1155,9 @@ class Calculate extends React.Component {
 
   async submit() {
     let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
+    if (typeof r === 'undefined')
+      return;
+
     let analogy = r.analogy;
     let diagnosis = r.diagnosis;
     console.log(analogy);
@@ -1289,19 +1292,21 @@ class Calculate extends React.Component {
             highlighting={[0, 0, 0]}
           />
           <Subkraki />
-          <button
-            className="ownExerciseButton"
-            onClick={this.openOwnExercise}
-          >
-            Eigene Aufgabe
-          </button>
-          <button
-            className="randomExercise"
-            onClick={this.createRandomExercise}
-          >
-            Zufällige Aufgabe
-          </button>
-        </div>
+          <div className="buttonContainer">
+            <button
+              className="ownExerciseButton"
+              onClick={this.openOwnExercise}
+            >
+              Eigene Aufgabe
+            </button>
+            <button
+              className="randomExerciseButton"
+              onClick={this.createRandomExercise}
+            >
+              Zufällige Aufgabe
+            </button>
+          </div>
+        </div >
       );
     }
   }

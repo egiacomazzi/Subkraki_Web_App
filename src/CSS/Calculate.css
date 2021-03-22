@@ -41,3 +41,34 @@
   padding-top: 3vw;
   padding-left: 28vw;
 }
+
+.buttonContainer {
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-areas: '. .' 'random Button' 'own Button';
+  align-items: center;
+  justify-content: space-evenly;
+  padding-bottom: 1cm;
+}
+
+.randomExerciseButton {
+  background-color: #24305e;
+  color: #a8d0e6;
+  font-size: x-large;
+  border-style: none;
+  width: 150%;
+  height: 350%;
+  font-weight: bold;
+  border-radius: 10px;
+}
+.ownExerciseButton {
+  background-color: #24305e;
+  color: #a8d0e6;
+  font-size: x-large;
+  border-style: none;
+  width: 150%;
+  height: 350%;
+  font-weight: bold;
+  border-radius: 10px;
+}
