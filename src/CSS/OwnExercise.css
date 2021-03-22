@@ -1,9 +1,10 @@
 .ownEx {
   display: grid;
   grid-template-areas:
-    'bubble close'
-    'bubble .'
-    'subkraki subkraki';
+    'bubble subkraki'
+    'bubble subkraki';
+  grid-template-columns: 2fr 1fr;
+  margin-top: 4vw;
 }
 .ownEx > .CloseSpeech {
   z-index: 2;
@@ -16,4 +17,9 @@
 }
 .ownEx > .Subkraki {
   grid-area: subkraki;
+  margin: auto;
+}
+
+.ownEx > .Subkraki > img {
+  height: 30vw;
 }

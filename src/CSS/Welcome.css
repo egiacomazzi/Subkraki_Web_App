@@ -14,7 +14,7 @@
 
 .welcome > .Subkraki {
   grid-area: subkraki;
-  padding-right: 3vw;
+  margin: auto;
 }
 
 .welcome > .Subkraki > img {
