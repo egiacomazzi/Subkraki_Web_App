@@ -114,6 +114,7 @@ class InputOwnNumbers extends React.Component {
               Los
             </button>
           </div>
+          <CloseSpeechbubble close_func={this.props.close_func} />
         </div>
       );
     }
