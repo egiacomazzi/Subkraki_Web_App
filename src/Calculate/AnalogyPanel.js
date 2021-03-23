@@ -12,21 +12,6 @@ class AnalogyPanel extends React.Component {
   }
 
   render() {
-    // Component to render if next state schould be the substration panel
-    // if (this.props.introTextIndex === 7) {
-    //   return (
-    //     <div className="analogy">
-    //       <SpeechbubbleControlls
-    //         text={this.props.text}
-    //         nextText={this.props.nextText}
-    //         lastText={this.props.lastText}
-    //         beginning={this.state.introTextIndex === 0 ? true : false}
-    //       />
-
-    //       <Subkraki size="big" />
-    //     </div>
-    //   );
-    // } else {
     return (
       <div className="analogy">
         <SpeechbubbleControlls
