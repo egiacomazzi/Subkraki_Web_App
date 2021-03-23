@@ -7,7 +7,6 @@ import '../CSS/Calculate.css';
 import Subkraki from '../shared/Subkraki';
 import OwnExercise from '../OwnExercise/OwnExercise.js';
 
-
 class Calculate extends React.Component {
   constructor(props) {
     super(props);
@@ -109,6 +108,7 @@ class Calculate extends React.Component {
 
     this.minuend = '';
     this.subtrahend = '';
+    this.beginningAnalogy = true;
     this.endAnalogy = false;
     this.einerIndex = null;
     this.zehnerIndex = null;
@@ -277,14 +277,34 @@ class Calculate extends React.Component {
 
   returnText() {
     if (this.state.correct) {
+      this.endAnalogy = true;
+      this.beginningAnalogy = true;
+      // important if one first gets the exercise wrong and then correct
+      this.analogySubPanelVisibility = 'hidden';
+      // update analogy
+      this.updateCorrectionsAndResult(
+        false,
+        false,
+        false,
+        NaN,
+        NaN,
+        NaN,
+        NaN,
+        NaN,
+        NaN,
+      );
+      console.log(this.endAnalogy);
       return this.text.correct[0];
     } else {
+      this.endAnalogy = false;
       // first two texts needed for all analogies
       switch (this.state.analogyTextIndex) {
         case 0:
+          this.beginningAnalogy = true;
           this.analogySubPanelVisibility = 'hidden';
           return this.text.analogy[0];
         case 1:
+          this.beginningAnalogy = false;
           this.analogySubPanelVisibility = 'hidden';
           this.styling = [0, 0, 0];
           return this.text.analogy[1];
@@ -1155,8 +1175,7 @@ class Calculate extends React.Component {
 
   async submit() {
     let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
-    if (typeof r === 'undefined')
-      return;
+    if (typeof r === 'undefined') return;
 
     let analogy = r.analogy;
     let diagnosis = r.diagnosis;
@@ -1258,9 +1277,7 @@ class Calculate extends React.Component {
             text={this.returnText()}
             nextText={() => this.nextText()}
             lastText={() => this.lastText()}
-            beginning={
-              this.state.analogyTextIndex === 0 ? true : false
-            }
+            beginning={this.beginningAnalogy ? true : false}
             end={this.endAnalogy ? true : false}
             sub={String(this.analogy.sub).replace(/,/g, '')}
             min={String(this.analogy.min).replace(/,/g, '')}
@@ -1306,7 +1323,7 @@ class Calculate extends React.Component {
               Zufällige Aufgabe
             </button>
           </div>
-        </div >
+        </div>
       );
     }
   }

@@ -36,7 +36,7 @@ class SpeechbubbleControlls extends React.Component {
         );
       }
     } else {
-      if (this.props.beginning) {
+      if (this.props.beginning && !this.props.end) {
         return (
           <div className="SpeechbubbleControls">
             <Speechbubble
@@ -54,7 +54,7 @@ class SpeechbubbleControlls extends React.Component {
             <Arrow class="right" onClick={this.props.nextText} />
           </div>
         );
-      } else if (this.props.end) {
+      } else if (this.props.end && !this.props.beginning) {
         return (
           <div className="SpeechbubbleControls">
             <Speechbubble
@@ -70,6 +70,23 @@ class SpeechbubbleControlls extends React.Component {
               close_func={this.props.close_func}
             />
             <Arrow class="left" onClick={this.props.lastText} />
+          </div>
+        );
+      } else if (this.props.end && this.props.beginning) {
+        return (
+          <div className="SpeechbubbleControls">
+            <Speechbubble
+              text={this.props.text}
+              sub={this.props.sub}
+              min={this.props.min}
+              res={this.props.res}
+              cor={this.props.cor}
+              analogy={this.props.analogy}
+              min_cor={this.props.min_cor}
+              highlighting={this.props.highlighting}
+              subpanel_visibility={this.props.subpanel_visibility}
+              close_func={this.props.close_func}
+            />
           </div>
         );
       } else {

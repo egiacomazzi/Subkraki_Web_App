@@ -279,8 +279,8 @@ class SubtractionPanel extends React.Component {
         subtrahend_digits.push(
           this.props.subtrahend.charAt(
             this.props.subtrahend.length -
-            this.props.minuend.length +
-            i,
+              this.props.minuend.length +
+              i,
           ),
         );
       else subtrahend_digits.push('0'); //TODO: hier noch die 0 abändern
