@@ -1,88 +1,3 @@
-.analogy .panel {
-  padding: 1.5vw;
-  width: 25vw;
-  height: 19vw;
-  border-radius: 5%;
-  background-color: rgba(255, 255, 255, 0.7);
-  align-content: center;
-}
-.analogy .panel > .grid-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: auto auto 0fr auto;
-  grid-column-gap: 0.25vw;
-  grid-row-gap: 0.7vw;
-  grid-template-areas:
-    '. correction0 correction1 correction2'
-    '. minuendA minuendB minuendC'
-    'minus subtrahendA subtrahendB subtrahendC'
-    'line line line line'
-    '. resultA resultB resultC';
-}
-.analogy .line {
-  border-top: 0.25vw solid var(--primary-lila);
-  grid-area: line;
-}
-
-.analogy .minus {
-  font-size: 2.5vw;
-  text-align: center;
-  grid-area: minus;
-}
-
-.analogy .panelControls {
-  background-color: var(--primary-lila);
-  border: none;
-  border-radius: 10%;
-}
-
-.analogy .correction0 {
-  grid-area: correction0;
-}
-
-.analogy .correction1 {
-  grid-area: correction1;
-}
-
-.analogy .correction2 {
-  grid-area: correction2;
-}
-
-.analogy .subtrahend0 {
-  grid-area: subtrahendA;
-}
-
-.analogy .subtrahend1 {
-  grid-area: subtrahendB;
-}
-.analogy .subtrahend2 {
-  grid-area: subtrahendC;
-}
-.analogy .minuend0 {
-  grid-area: minuendA;
-  width: 3vw;
-  height: 3vw;
-}
-.analogy .minuend1 {
-  grid-area: minuendB;
-  width: 3vw;
-  height: 3vw;
-}
-.analogy .minuend2 {
-  grid-area: minuendC;
-  width: 3vw;
-  height: 3vw;
-}
-.analogy .result0 {
-  grid-area: resultA;
-}
-.analogy .result1 {
-  grid-area: resultB;
-}
-.analogy .result2 {
-  grid-area: resultC;
-}
-
 .panel {
   padding: 1vw;
   width: 50vw;
@@ -185,4 +100,89 @@
 
 .highlighted {
   background: var(--highlight) !important;
+}
+
+.analogy .panel {
+  padding: 2vw 0 0 0 !important;
+  width: 25vw;
+  height: 17vw;
+  border-radius: 5%;
+  background-color: rgba(255, 255, 255, 0.7);
+  align-content: center;
+}
+.analogy .panel > .grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto auto 0fr auto;
+  grid-column-gap: 0.25vw;
+  grid-row-gap: 0.7vw;
+  grid-template-areas:
+    '. correction0 correction1 correction2'
+    '. minuendA minuendB minuendC'
+    'minus subtrahendA subtrahendB subtrahendC'
+    'line line line line'
+    '. resultA resultB resultC';
+}
+.analogy .line {
+  border-top: 0.25vw solid var(--primary-lila);
+  grid-area: line;
+}
+
+.analogy .minus {
+  font-size: 2.5vw;
+  text-align: center;
+  grid-area: minus;
+}
+
+.analogy .panelControls {
+  background-color: var(--primary-lila);
+  border: none;
+  border-radius: 10%;
+}
+
+.analogy .correction0 {
+  grid-area: correction0;
+}
+
+.analogy .correction1 {
+  grid-area: correction1;
+}
+
+.analogy .correction2 {
+  grid-area: correction2;
+}
+
+.analogy .subtrahend0 {
+  grid-area: subtrahendA;
+}
+
+.analogy .subtrahend1 {
+  grid-area: subtrahendB;
+}
+.analogy .subtrahend2 {
+  grid-area: subtrahendC;
+}
+.analogy .minuend0 {
+  grid-area: minuendA;
+  width: 3vw;
+  height: 3vw;
+}
+.analogy .minuend1 {
+  grid-area: minuendB;
+  width: 3vw;
+  height: 3vw;
+}
+.analogy .minuend2 {
+  grid-area: minuendC;
+  width: 3vw;
+  height: 3vw;
+}
+.analogy .result0 {
+  grid-area: resultA;
+}
+.analogy .result1 {
+  grid-area: resultB;
+}
+.analogy .result2 {
+  grid-area: resultC;
 }

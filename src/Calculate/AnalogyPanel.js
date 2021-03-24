@@ -1,5 +1,4 @@
 import React from 'react';
-import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
 import '../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
@@ -30,8 +29,6 @@ class AnalogyPanel extends React.Component {
           subpanel_visibility={this.props.subpanel_visibility}
           close_func={this.props.close_func}
         />
-
-        <Subkraki />
       </div>
     );
   }

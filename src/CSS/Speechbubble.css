@@ -2,9 +2,7 @@
   position: relative;
   width: 70%;
   display: grid;
-  grid-template-areas:
-    'bubble close'
-    'bubble  .';
+  grid-template-areas: 'bubble close';
 }
 
 .bubble p {
