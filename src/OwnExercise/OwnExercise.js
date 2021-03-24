@@ -13,8 +13,6 @@ class OwnExercise extends React.Component {
   }
 
   render() {
-    console.log('hello');
-
     return (
       <div className="ownEx">
         {/* <Speechbubble

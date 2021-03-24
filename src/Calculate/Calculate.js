@@ -33,6 +33,8 @@ class Calculate extends React.Component {
 
     this.analogySubPanelVisibility = 'hidden';
 
+    this.refresh = false;
+
     this.text = {
       correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
       noCorrection1digit: ['Wir rechnen ', ' und das ergibt '],
@@ -1229,6 +1231,10 @@ class Calculate extends React.Component {
     let ex = this.getRandomExample(100, 999);
     this.minuend = ex.minuend.toString();
     this.subtrahend = ex.subtrahend.toString();
+
+    if (this.subtractionRef.current != null)
+      this.subtractionRef.current.refresh(null);
+
     this.setState({
       rend: this.state.rend + 1,
     });
@@ -1248,6 +1254,10 @@ class Calculate extends React.Component {
   getOwnExercise(min, sub) {
     this.minuend = min;
     this.subtrahend = sub;
+
+    if (this.subtractionRef.current != null)
+      this.subtractionRef.current.refresh(null);
+
     this.setState({
       ownExerciseDisplay: false,
     });

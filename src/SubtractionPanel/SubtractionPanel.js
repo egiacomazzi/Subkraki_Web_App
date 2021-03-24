@@ -2,10 +2,9 @@ import React from 'react';
 import '../CSS/SubtractionPanel.css';
 import ClickableNumber from './ClickableNumber.js';
 import Number from './Number';
-import ResultNumber from './ResultNumber';
+import InputNumber from './InputNumber';
 import CorrectButton from './CorrectButton.js';
 import RefreshButton from './RefreshButton.js';
-import CorrectionNumber from './CorrectionNumber.js';
 import PropTypes from 'prop-types';
 import { getAnalogy, getDiagnosis } from '../PrologConnector.js';
 
@@ -26,6 +25,11 @@ class SubtractionPanel extends React.Component {
       corrections_row_error: emptyArray.slice().fill(false),
       result_row_error: emptyArray.slice().fill(false),
     };
+
+    this.resultOnChange = this.resultOnChange.bind(this);
+    this.correctionsOnChange = this.correctionsOnChange.bind(this);
+
+
   }
 
   /**
@@ -175,6 +179,14 @@ class SubtractionPanel extends React.Component {
     });
   }
 
+  correctionsOnChange(event) {
+    let value = event.target.value;
+    let j = parseInt(event.target.classList[1].slice(-1));
+    let new_row = this.state.corrections_row;
+    new_row[j] = value;
+    this.setState({ corrections_row: new_row });
+  }
+
   renderCorrections() {
     const corrections_display = [];
     for (let j = 0; j < this.props.minuend.length; j++) {
@@ -194,17 +206,19 @@ class SubtractionPanel extends React.Component {
       }
       if (!this.props.analogy)
         corrections_display.push(
-          <CorrectionNumber
+          <InputNumber
             key={corr_className}
             className={corr_className}
             visibility={display}
             error={this.state.corrections_row_error[j]}
             enabled={true}
+            number={parseInt(this.state.corrections_row[j])}
+            onChangeFunc={this.correctionsOnChange}
           />,
         );
       else
         corrections_display.push(
-          <ResultNumber
+          <InputNumber
             key={corr_className}
             className={corr_className}
             visibility={display}
@@ -257,8 +271,13 @@ class SubtractionPanel extends React.Component {
     event.preventDefault();
     let new_corrections_crossedOut = this.state.corrections_crossedOut.slice();
     new_corrections_crossedOut[i] = !new_corrections_crossedOut[i];
+
+    let new_correction_row = this.state.corrections_row;
+    new_correction_row[i] = NaN;
+
     this.setState({
       corrections_crossedOut: new_corrections_crossedOut,
+      correction_row: new_correction_row,
     });
   }
 
@@ -279,8 +298,8 @@ class SubtractionPanel extends React.Component {
         subtrahend_digits.push(
           this.props.subtrahend.charAt(
             this.props.subtrahend.length -
-              this.props.minuend.length +
-              i,
+            this.props.minuend.length +
+            i,
           ),
         );
       else subtrahend_digits.push('0'); //TODO: hier noch die 0 abändern
@@ -297,6 +316,14 @@ class SubtractionPanel extends React.Component {
     return subtrahend_display;
   }
 
+  resultOnChange(event) {
+    let value = event.target.value;
+    let j = parseInt(event.target.classList[1].slice(-1));
+    let new_row = this.state.result_row;
+    new_row[j] = value;
+    this.setState({ result_row: new_row });
+  }
+
   renderResult() {
     const result_display = [];
     for (var j = 0; j < this.props.minuend.length; j++) {
@@ -308,18 +335,19 @@ class SubtractionPanel extends React.Component {
 
       if (!this.props.analogy)
         result_display.push(
-          <ResultNumber
+          <InputNumber
             key={res_className}
             className={res_className}
             number={parseInt(this.state.result_row[j])}
             error={this.state.result_row_error[j]}
             enabled={true}
             highlighted={false}
+            onChangeFunc={this.resultOnChange}
           />,
         );
       else
         result_display.push(
-          <ResultNumber
+          <InputNumber
             key={res_className}
             className={res_className}
             number={parseInt(this.props.result[j])}
@@ -332,19 +360,23 @@ class SubtractionPanel extends React.Component {
     return result_display;
   }
 
-  /*Does not work yet properly -> result does not update. Maybe becasue only
-    defaultValue in ResultNumber???*/
+
+  /**
+   * Refreshes the inputs in the SubtractionPanel
+   * @param {*} event 
+   */
   refresh(event) {
-    event.preventDefault();
+    if (event != null)
+      event.preventDefault();
+
     let emptyArray = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
       emptyArray.push(null);
     }
-    const new_result_row = this.state.result_row.slice().fill(0);
     this.setState({
       corrections_crossedOut: emptyArray.slice().fill(false),
-      corrections_row: emptyArray.slice().fill(null),
-      result_row: new_result_row,
+      corrections_row: emptyArray.slice().fill(NaN),
+      result_row: emptyArray.slice().fill(NaN),
     });
   }
 
