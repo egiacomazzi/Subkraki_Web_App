@@ -18,7 +18,7 @@ class CorrectButton extends React.Component {
             y1="35.9767"
             x2="27.91"
             y2="49.7936"
-            stroke="#A8D0E6"
+            stroke="var(--light-blue)"
             strokeWidth="9"
             strokeLinecap="round"
           />
@@ -27,7 +27,7 @@ class CorrectButton extends React.Component {
             y1="26.8035"
             x2="29.9588"
             y2="51.1372"
-            stroke="#A8D0E6"
+            stroke="var(--light-blue)"
             strokeWidth="9"
             strokeLinecap="round"
             strokeLinejoin="round"

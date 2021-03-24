@@ -1320,7 +1320,7 @@ class Calculate extends React.Component {
               className="randomExerciseButton"
               onClick={this.createRandomExercise}
             >
-              Zufällige Aufgabe
+              Neue Aufgabe
             </button>
           </div>
         </div>

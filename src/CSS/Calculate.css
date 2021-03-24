@@ -10,7 +10,7 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-areas: '. .' 'panel analogy' 'subkraki_small analogy';
+  grid-template-areas: 'buttons .' 'panel analogy' 'subkraki_small analogy';
   grid-template-columns: 1fr 1fr;
   padding-top: 5vw;
 }
@@ -45,30 +45,31 @@
 .buttonContainer {
   width: 100%;
   height: auto;
+  grid-area: buttons;
   display: grid;
-  grid-template-areas: '. .' 'random Button' 'own Button';
+  grid-template-areas: 'random Button' 'own Button';
   align-items: center;
-  justify-content: space-evenly;
   padding-bottom: 1cm;
+  margin-left: 2vw;
 }
 
 .randomExerciseButton {
-  background-color: #24305e;
-  color: #a8d0e6;
-  font-size: x-large;
+  background-color: var(--primary-lila);
+  color: var(--light-blue);
+  font-size: 3vw;
   border-style: none;
-  width: 150%;
-  height: 350%;
+  width: 25vw;
+  height: 10vw;
   font-weight: bold;
   border-radius: 10px;
 }
 .ownExerciseButton {
-  background-color: #24305e;
-  color: #a8d0e6;
-  font-size: x-large;
+  background-color: var(--primary-lila);
+  color: var(--light-blue);
+  font-size: 3vw;
   border-style: none;
-  width: 150%;
-  height: 350%;
+  width: 25vw;
+  height: 10vw;
   font-weight: bold;
   border-radius: 10px;
 }
