@@ -1,5 +1,6 @@
 .panel {
   grid-area: panel;
+  margin-left: 2vw;
 }
 
 .analogy {
@@ -10,9 +11,10 @@
   width: 100%;
   height: auto;
   display: grid;
-  grid-template-areas: 'buttons .' 'panel analogy' 'subkraki_small analogy';
+  grid-template-areas: 'buttons subkraki_small' 'panel analogy';
   grid-template-columns: 1fr 1fr;
-  padding-top: 5vw;
+  grid-template-rows: 10vw auto;
+  align-items: center;
 }
 
 .calculate .Speech {
@@ -20,7 +22,16 @@
 }
 
 .calculate .testimonial {
-  padding: 0 5.2vw 0 5.5vw;
+  padding: 0 1.5vw 0 3.5vw;
+  width: 40vw;
+}
+
+.calculate .SpeechbubbleControls {
+  grid-template-rows: 36.5vw 10vw;
+}
+
+.calculate .CloseSpeech {
+  margin-top: 2vw;
 }
 
 .calculate > .Subkraki {
@@ -34,42 +45,53 @@
 
 .Subkraki_small {
   grid-area: subkraki_small;
+  text-align: center;
 }
 
 .Subkraki_small > img {
-  height: 10vw;
-  padding-top: 3vw;
-  padding-left: 28vw;
+  height: 8vw;
+  margin-top: 1vw;
 }
 
 .buttonContainer {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 12vw;
   grid-area: buttons;
   display: grid;
-  grid-template-areas: 'random Button' 'own Button';
+  grid-template-areas: 'ownButton randomButton ';
   align-items: center;
-  padding-bottom: 1cm;
-  margin-left: 2vw;
+  margin-left: 6vw;
 }
 
 .randomExerciseButton {
   background-color: var(--primary-lila);
   color: var(--light-blue);
-  font-size: 3vw;
+  font-size: 2vw;
   border-style: none;
-  width: 25vw;
-  height: 10vw;
+  width: 20vw;
+  height: 5vw;
   font-weight: bold;
   border-radius: 10px;
 }
 .ownExerciseButton {
   background-color: var(--primary-lila);
   color: var(--light-blue);
-  font-size: 3vw;
+  font-size: 2vw;
   border-style: none;
-  width: 25vw;
-  height: 10vw;
+  width: 20vw;
+  height: 5vw;
   font-weight: bold;
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .calculate .bubble {
+    padding-top: 4vw;
+  }
+
+  .calculate .CloseSpeech {
+    width: 7vw;
+    height: 7vw;
+    left: -7vw;
+  }
 }

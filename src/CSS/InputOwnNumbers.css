@@ -13,9 +13,9 @@
   grid-area: inputExercise;
   padding: 3vw;
   width: 45vw;
-  height: 40vw;
+  height: 42vw;
   border-radius: 12px;
-  border: 4px solid #eee;
+  border: 0.5vw solid #eee;
   background-color: white;
   display: grid;
   align-items: center;
@@ -25,7 +25,29 @@
     'untereZahl untereInput'
     'errorText errorText'
     'losButton losButton';
-  grid-template-rows: 15vw 7vw 7vw 7vw 6vw;
+  grid-template-rows: 15vw 7vw 7vw 8vw 7vw;
+}
+
+.inputOwnExBubble:before,
+.inputOwnExBubble:after {
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  content: '\0020';
+  overflow: hidden;
+  z-index: 2;
+  left: 50.5vw;
+  bottom: 15vw;
+  border: solid 3vw transparent;
+  border-left-color: #fff;
+}
+.inputOwnExBubble:before {
+  z-index: 1;
+  left: 51vw;
+  border-top: 0;
+  border: solid 3vw transparent;
+  border-left-color: #eee;
 }
 
 .ownExText {
@@ -65,27 +87,6 @@
   margin-bottom: 0;
 }
 
-.inputOwnExBubble:before,
-.inputOwnExBubble:after {
-  display: block;
-  position: absolute;
-  right: 4em;
-  bottom: -18px;
-  width: 0;
-  height: 0;
-  content: '\0020';
-  border: solid 20px transparent;
-  border-bottom: 0;
-  border-top-color: #fff;
-  overflow: hidden;
-  z-index: 2;
-}
-.inputOwnExBubble:before {
-  bottom: -24px;
-  border-top-color: #eee;
-  z-index: 1;
-}
-
 .obereZahlInput,
 .untereZahlInput {
   display: block;
@@ -120,7 +121,9 @@
   font-size: 5vw;
   width: 20vw;
   grid-area: losButton;
-  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1vw;
   text-align: center;
 }
 
