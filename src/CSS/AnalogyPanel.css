@@ -8,12 +8,13 @@
   font-size: 2vw;
   font-family: var(--font-family);
   text-align: justify;
+  margin-top: 2vw;
 }
 
 .analogy .bubble:before,
 .analogy .bubble:after {
   right: 18vw;
-  bottom: 32.5vw;
+  top: -1vw;
   border: solid 2vw transparent;
   border-top: 0;
   border-bottom-color: #fff;
@@ -22,7 +23,7 @@
 
 .analogy .bubble::before {
   right: 18vw;
-  bottom: 33vw;
+  top: -3.8vw;
   border: solid 2vw transparent;
   border-bottom-color: #eee;
   z-index: -1;

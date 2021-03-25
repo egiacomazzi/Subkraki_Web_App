@@ -26,6 +26,14 @@
   width: 40vw;
 }
 
+.calculate .SpeechbubbleControls {
+  grid-template-rows: 36.5vw 10vw;
+}
+
+.calculate .CloseSpeech {
+  margin-top: 2vw;
+}
+
 .calculate > .Subkraki {
   grid-area: analogy;
   margin: auto;
@@ -42,6 +50,7 @@
 
 .Subkraki_small > img {
   height: 8vw;
+  margin-top: 1vw;
 }
 
 .buttonContainer {
@@ -73,4 +82,16 @@
   height: 5vw;
   font-weight: bold;
   border-radius: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .calculate .bubble {
+    padding-top: 4vw;
+  }
+
+  .calculate .CloseSpeech {
+    width: 7vw;
+    height: 7vw;
+    left: -7vw;
+  }
 }
