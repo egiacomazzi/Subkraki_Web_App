@@ -205,6 +205,12 @@ class Calculate extends React.Component {
       '.';
     return string2WithCorrection2Digits;
   }
+  // Produces the following lines of text:
+  // Tadaaa! Wir haben unser Ergebnis. Probiere es gleich nochmal mit deiner Aufgabe.
+  returnStringFinalResult() {
+    return this.text.analogy[2];
+  }
+
   updateCorrectionsAndResult(
     crossHunderter,
     crossZehner,
@@ -302,7 +308,7 @@ class Calculate extends React.Component {
 
               return stringNoCorr1Digit;
             case 3:
-              var finalString = this.text.analogy[17];
+              var finalString = this.returnStringFinalResult();
               this.endAnalogy = true;
               this.styling = [0, 0, 0];
               return finalString;
@@ -358,7 +364,7 @@ class Calculate extends React.Component {
               return string3multipleDigits;
             case 4:
               if (this.hunderterIndex < 0) {
-                finalString = this.text.analogy[17];
+                finalString = this.returnStringFinalResult();
                 this.endAnalogy = true;
                 this.styling = [0, 0, 0];
                 return finalString;
@@ -388,7 +394,7 @@ class Calculate extends React.Component {
 
               return string4multipleDigits;
             case 5:
-              finalString = this.text.analogy[17];
+              finalString = this.returnStringFinalResult();
               this.endAnalogy = true;
               this.styling = [0, 0, 0];
               return finalString;
@@ -495,7 +501,7 @@ class Calculate extends React.Component {
 
               return string5withCorrection;
             case 6:
-              finalString = this.text.analogy[17];
+              finalString = this.returnStringFinalResult();
               this.endAnalogy = true;
               this.styling = [0, 0, 0];
               return finalString;
@@ -623,7 +629,7 @@ class Calculate extends React.Component {
 
                 return string6withCorrectioninBack;
               case 7:
-                finalString = this.text.analogy[17];
+                finalString = this.returnStringFinalResult();
                 this.endAnalogy = true;
                 this.styling = [0, 0, 0];
                 return finalString;
@@ -755,7 +761,7 @@ class Calculate extends React.Component {
 
                 return string6withCorrectioninFront;
               case 7:
-                finalString = this.text.analogy[17];
+                finalString = this.returnStringFinalResult();
                 this.endAnalogy = true;
                 this.styling = [0, 0, 0];
                 return finalString;
@@ -931,7 +937,7 @@ class Calculate extends React.Component {
 
                   return string8withCorrectionAllZero;
                 case 9:
-                  finalString = this.text.analogy[17];
+                  finalString = this.returnStringFinalResult();
                   this.endAnalogy = true;
                   this.styling = [0, 0, 0];
                   return finalString;
@@ -1114,7 +1120,7 @@ class Calculate extends React.Component {
 
                   return string8withCorrectionAll;
                 case 9:
-                  finalString = this.text.analogy[17];
+                  finalString = this.returnStringFinalResult();
                   this.endAnalogy = true;
                   this.styling = [0, 0, 0];
                   return finalString;
