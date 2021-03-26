@@ -1,0 +1,75 @@
+{
+  "correct": ["Super! Du hast die Aufgabe richtig gelöst!"],
+  "noCorrection1digit": ["Wir rechnen ", " und das ergibt "],
+  "noCorrectionMoredigits": [
+    "Wir fangen bei den ",
+    "an und rechnen ",
+    "Jetzt rechnen wir die ",
+    "stelle mit "
+  ],
+  "withCorrectionEinerstelleFalse": [
+    "Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ",
+    " rechnen, da ",
+    " kleiner als ",
+    " ist.",
+    "Wir müssen uns 10 von der ",
+    "spalte leihen. Wir ziehen 1 von den ",
+    " ab, also ",
+    " - 1 = ",
+    ", und erhalten dafür 10 ",
+    ", also ",
+    " + 10 = "
+  ],
+  "withCorrectionAbZehnerFalse": [
+    "Wir fangen bei den ",
+    " an und rechnen ",
+    "Weiter geht es in der ",
+    "zeile. Wir können nicht einfach ",
+    " rechnen, da ",
+    " kleiner als ",
+    " ist.",
+    "Wir müssen uns 10 von der ",
+    "spalte leihen. Wir ziehen 1 von den ",
+    " ab, also ",
+    " - 1 = ",
+    ", und erhalten dafür 10",
+    " also ",
+    " + 10 = "
+  ],
+  "analogy": [
+    "Oh nein, es sieht so aus als sei dir ein Fehler passiert. Wenn du ihn selbst gefunden hast, korrigiere deine Eingabe.",
+    "Ich zeige dir, wie ich eine ähnliche Aufgabe löse.",
+    "Eine vergleichbare Aufgabe ist das hier:",
+    "Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ",
+    "rechnen, da ",
+    "kleiner als ",
+    "ist.",
+    "Wir müssen uns 10 von der Zehnerspalte leihen. Wir ziehen 1 von den Zehnern ab, also",
+    " - 1 = ",
+    ", und erhalten dafür 10 Einer, also ",
+    " + 10 = ",
+    "Nun können wir in der Einerspalte",
+    "rechnen und das ergibt",
+    "In der Zehnerspalte können wir nun einfach",
+    "rechnen. Das ergibt",
+    "In der Hunderterspalte können wir einfach",
+    "rechnen.",
+    "Tadaaa! Wir haben unser Ergebnis. Probiere es gleich nochmal mit deiner Aufgabe."
+  ],
+  "digits": ["Einer", "Zehner", "Hunderter"],
+  "digits_with_n": ["Einern", "Zehnern", "Hundertern"],
+  "special_case_3": [
+    "Wir müssen uns 10 Einer von den Zehnern leihen. Huch, bei den Zehnern steht eine 0! Wir können uns noch nichts leihen."
+  ],
+  "special_case_4": [
+    "Also müssen wir uns erst noch 10 Zehner von den Hundertern leihen. Dafür rechnen wir ",
+    " - 1 = ",
+    ". Jetzt haben wir 10 Zehner und können aus der 0 bei den Zehnern eine 10 machen."
+  ],
+  "special_case_5": [
+    "Zurück bei den Einern: Jetzt können wir uns einen Zehner leihen. Wir rechnen 10 - 1 = ",
+    ". Also haben wir 10 Einer bekommen und rechnen ",
+    " + 10 = ",
+    "."
+  ]
+}
