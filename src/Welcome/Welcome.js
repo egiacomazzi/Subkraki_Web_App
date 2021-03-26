@@ -2,9 +2,9 @@ import React from 'react';
 import '../CSS/Welcome.css';
 import Subkraki from '../shared/Subkraki.js';
 import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
-//import history from './history.js';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
+import welcomeTexts from '../data/welcomeTexts.json';
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -13,16 +13,7 @@ class Welcome extends React.Component {
       introTextIndex: 0,
     };
     this.text = {
-      intro: [
-        'Hallo! Ich bin Subkraki und möchte mit dir das Subtrahieren üben.',
-        'Herzlichen Willkommen in der Unterwasserwelt!',
-        //'Unten links kannst du den Zahlenraum auswählen, in dem du rechnen möchtest.',
-        //'Wähle deinen Zahlenraum direkt aus.',
-        //'Oben in der Mitte kannst du klicken, damit ich dir eine Aufgabe stelle.',
-        //'Unten rechts kannst du klicken, wenn du selber eine Aufgabe eingeben möchtest.',
-        //'Falls du Hilfe brauchst, kannst du jeder Zeit oben rechts klicken!',
-        'Viel Spaß beim Rechnen!',
-      ],
+      intro: welcomeTexts.welcome[0],
     };
   }
 
@@ -43,7 +34,7 @@ class Welcome extends React.Component {
   }
 
   endWelcome() {
-    this.props.history.push('/substractionpanel');
+    this.props.history.push('/rechnen');
   }
 
   render() {
@@ -52,7 +43,8 @@ class Welcome extends React.Component {
         <SpeechbubbleControlls
           text={this.text.intro[this.state.introTextIndex]}
           nextText={
-            this.state.introTextIndex === this.text.intro.length - 1
+            this.state.introTextIndex ===
+            Object.keys(this.text.intro).length - 1
               ? () => this.endWelcome()
               : () => this.nextText()
           }
@@ -61,8 +53,7 @@ class Welcome extends React.Component {
           end={false}
           analogy={false}
         />
-
-        <Subkraki size="big" />
+        <Subkraki />
       </div>
     );
   }

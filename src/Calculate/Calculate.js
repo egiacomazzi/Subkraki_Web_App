@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
 import Subkraki from '../shared/Subkraki';
 import OwnExercise from '../OwnExercise/OwnExercise.js';
+import analogyTexts from '../data/analogyTexts.json';
 
 class Calculate extends React.Component {
   constructor(props) {
@@ -36,63 +37,14 @@ class Calculate extends React.Component {
     this.refresh = false;
 
     this.text = {
-      correct: ['Super! Du hast die Aufgabe richtig gelöst!'],
-      noCorrection1digit: ['Wir rechnen ', ' und das ergibt '],
-      noCorrectionMoredigits: [
-        'Wir fangen bei den ',
-        'an und rechnen ',
-        'Jetzt rechnen wir die ',
-        'stelle mit ',
-      ],
-      withCorrectionEinerstelleFalse: [
-        'Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ',
-        ' rechnen, da ',
-        ' kleiner als ',
-        ' ist.',
-        'Wir müssen uns 10 von der ',
-        'spalte leihen. Wir ziehen 1 von den ',
-        ' ab, also ',
-        '-1 = ',
-        ', und erhalten dafür 10 ',
-        ', also ',
-        '+10 = ',
-      ],
-      withCorrectionAbZehnerFalse: [
-        'Wir fangen bei den ',
-        ' an und rechnen ',
-        'Weiter geht es in der ',
-        'zeile. Wir können nicht einfach ',
-        ' rechnen, da ',
-        ' kleiner als ',
-        ' ist.',
-        'Wir müssen uns 10 von der ',
-        'spalte leihen. Wir ziehen 1 von den ',
-        ' ab, also ',
-        '-1 = ',
-        ', und erhalten dafür 10',
-        ' also ',
-        '+10 = ',
-      ],
-      analogy: [
-        'Oh nein, es sieht so aus als sei dir ein Fehler passiert. Wenn du ihn selbst gefunden hast, korrigiere deine Eingabe.',
-        'Ich zeige dir, wie ich eine ähnliche Aufgabe löse.',
-        'Eine vergleichbare Aufgabe ist das hier:',
-        'Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ',
-        'rechnen, da ',
-        'kleiner als ',
-        'ist.',
-        'Wir müssen uns 10 von der Zehnerspalte leihen. Wir ziehen 1 von den Zehnern ab, also',
-        '-1 = ',
-        ', und erhalten dafür 10 Einer, also ',
-        '+10 = ',
-        'Nun können wir in der Einerspalte',
-        'rechnen und das ergibt',
-        'In der Zehnerspalte können wir nun einfach',
-        'rechnen. Das ergibt',
-        'In der Hunderterspalte können wir einfach',
-        'rechnen.',
-        'Tadaaa! Wir haben unser Ergebnis. Probiere es gleich nochmal mit deiner Aufgabe.',
-      ],
+      correct: analogyTexts.correct,
+      noCorrection1digit: analogyTexts.noCorrection1digit,
+      noCorrectionMoredigits: analogyTexts.noCorrectionMoredigits,
+      withCorrectionEinerstelleFalse:
+        analogyTexts.withCorrectionEinerstelleFalse,
+      withCorrectionAbZehnerFalse:
+        analogyTexts.withCorrectionAbZehnerFalse,
+      analogy: analogyTexts.analogy,
     };
     this.analogy = {
       min: [],
@@ -118,6 +70,8 @@ class Calculate extends React.Component {
 
     this.styling = [0, 0, 0];
     this.tempCorrectionStep = null;
+    this.digit = analogyTexts.digits;
+    this.digit_with_n = analogyTexts.digits_with_n;
   }
 
   lastText() {
@@ -142,19 +96,19 @@ class Calculate extends React.Component {
   }
 
   endWelcome() {
-    this.props.history.push('/substractionpanel');
+    this.props.history.push('/rechnen');
   }
 
   //" Wir fangen bei den Einern an und rechnen Minuend[einerIndex] - Subtrahend[einerIndex] = Ergebnis[einerIndex]."
   returnStringStartEinerstelleWithoutCorrection() {
     return (
       this.text.withCorrectionAbZehnerFalse[0] +
-      'Einern ' +
+      this.digit_with_n[0] +
       this.text.withCorrectionAbZehnerFalse[1] +
       this.analogy.min[this.einerIndex] +
-      '-' +
+      ' - ' +
       this.analogy.sub[this.einerIndex] +
-      '=' +
+      ' = ' +
       this.analogy.res[this.einerIndex] +
       '.'
     );
@@ -168,9 +122,9 @@ class Calculate extends React.Component {
       stelle +
       this.text.noCorrectionMoredigits[3] +
       min +
-      '-' +
+      ' - ' +
       sub +
-      '=' +
+      ' = ' +
       res +
       '.';
     return string;
@@ -182,7 +136,7 @@ class Calculate extends React.Component {
     var string1WithCorrection2Digits =
       this.text.withCorrectionEinerstelleFalse[0] +
       this.analogy.min[this.einerIndex] +
-      '-' +
+      ' - ' +
       this.analogy.sub[this.einerIndex] +
       this.text.withCorrectionEinerstelleFalse[1] +
       this.analogy.min[this.einerIndex] +
@@ -197,10 +151,10 @@ class Calculate extends React.Component {
   returnStringZehnerstelle(min) {
     var string =
       this.text.withCorrectionAbZehnerFalse[2] +
-      'Zehner' +
+      this.digit[1] +
       this.text.withCorrectionAbZehnerFalse[3] +
       min +
-      '-' +
+      ' - ' +
       this.analogy.sub[this.zehnerIndex] +
       this.text.withCorrectionAbZehnerFalse[4] +
       min +
@@ -326,7 +280,7 @@ class Calculate extends React.Component {
               var stringNoCorr1Digit =
                 this.text.noCorrection1digit[0] +
                 this.analogy.min[0] +
-                '-' +
+                ' - ' +
                 this.analogy.sub[0] +
                 this.text.noCorrection1digit[1] +
                 this.analogy.res[0] +
@@ -380,7 +334,7 @@ class Calculate extends React.Component {
               return string2multipleDigits;
             case 3:
               var string3multipleDigits = this.returnStringNoCorrection(
-                'Zehner',
+                this.digit[1],
                 this.analogy.min[this.zehnerIndex],
                 this.analogy.sub[this.zehnerIndex],
                 this.analogy.res[this.zehnerIndex],
@@ -412,7 +366,7 @@ class Calculate extends React.Component {
               }
 
               var string4multipleDigits = this.returnStringNoCorrection(
-                'Hunderter',
+                this.digit[2],
                 this.analogy.min[this.hunderterIndex],
                 this.analogy.sub[this.hunderterIndex],
                 this.analogy.res[this.hunderterIndex],
@@ -465,8 +419,8 @@ class Calculate extends React.Component {
               return string1WithCorrection2Digits;
             case 3:
               var string2WithCorrection2Digits = this.returnStringCorrectionStep(
-                'Einer',
-                'Zehner',
+                this.digit[0],
+                this.digit[1],
                 this.einerIndex,
                 this.zehnerIndex,
                 this.analogy.min,
@@ -493,7 +447,7 @@ class Calculate extends React.Component {
               return string2WithCorrection2Digits;
             case 4:
               var string4withCorrection = this.returnStringNoCorrection(
-                'Einer',
+                this.digit[0],
                 this.analogy.cor[this.einerIndex],
                 this.analogy.sub[this.einerIndex],
                 this.analogy.res[this.einerIndex],
@@ -518,7 +472,7 @@ class Calculate extends React.Component {
               return string4withCorrection;
             case 5:
               var string5withCorrection = this.returnStringNoCorrection(
-                'Zehner',
+                this.digit[1],
                 this.analogy.cor[this.zehnerIndex],
                 this.analogy.sub[this.zehnerIndex],
                 this.analogy.res[this.zehnerIndex],
@@ -594,8 +548,8 @@ class Calculate extends React.Component {
                 return string3withCorrectioninBack;
               case 4:
                 var string4withCorrectioninBack = this.returnStringCorrectionStep(
-                  'Zehner',
-                  'Hunderter',
+                  this.digit[1],
+                  this.digit[2],
                   this.zehnerIndex,
                   this.hunderterIndex,
                   this.analogy.min,
@@ -621,7 +575,7 @@ class Calculate extends React.Component {
                 return string4withCorrectioninBack;
               case 5:
                 var string5withCorrectioninBack = this.returnStringNoCorrection(
-                  'Zehner',
+                  this.digit[1],
                   this.analogy.cor[this.zehnerIndex],
                   this.analogy.sub[this.zehnerIndex],
                   this.analogy.res[this.zehnerIndex],
@@ -646,7 +600,7 @@ class Calculate extends React.Component {
                 return string5withCorrectioninBack;
               case 6:
                 var string6withCorrectioninBack = this.returnStringNoCorrection(
-                  'Hunderter',
+                  this.digit[2],
                   this.analogy.cor[this.hunderterIndex],
                   this.analogy.sub[this.hunderterIndex],
                   this.analogy.res[this.hunderterIndex],
@@ -700,8 +654,8 @@ class Calculate extends React.Component {
                 return string2withCorrectioninFront;
               case 3:
                 var string3withCorrectioninFront = this.returnStringCorrectionStep(
-                  'Einer',
-                  'Zehner',
+                  this.digit[0],
+                  this.digit[1],
                   this.einerIndex,
                   this.zehnerIndex,
                   this.analogy.min,
@@ -728,7 +682,7 @@ class Calculate extends React.Component {
                 return string3withCorrectioninFront;
               case 4:
                 var string4withCorrectioninFront = this.returnStringNoCorrection(
-                  'Einer',
+                  this.digit[0],
                   this.analogy.cor[this.einerIndex],
                   this.analogy.sub[this.einerIndex],
                   this.analogy.res[this.einerIndex],
@@ -753,7 +707,7 @@ class Calculate extends React.Component {
                 return string4withCorrectioninFront;
               case 5:
                 var string5withCorrectioninFront = this.returnStringNoCorrection(
-                  'Zehner',
+                  this.digit[1],
                   this.analogy.cor[this.zehnerIndex],
                   this.analogy.sub[this.zehnerIndex],
                   this.analogy.res[this.zehnerIndex],
@@ -778,7 +732,7 @@ class Calculate extends React.Component {
                 return string5withCorrectioninFront;
               case 6:
                 var string6withCorrectioninFront = this.returnStringNoCorrection(
-                  'Hunderter',
+                  this.digit[2],
                   this.analogy.cor[this.hunderterIndex],
                   this.analogy.sub[this.hunderterIndex],
                   this.analogy.res[this.hunderterIndex],
@@ -832,7 +786,7 @@ class Calculate extends React.Component {
                   return string2withCorrectionAllZero;
                 case 3:
                   var string3withCorrectionAllZero =
-                    'Wir müssen uns 10 Einer von den Zehnern leihen. Huch, bei den Zehnern steht eine 0! Wir können uns noch nichts leihen.';
+                    analogyTexts.special_case_3;
                   // update analogy
                   this.updateCorrectionsAndResult(
                     false,
@@ -852,11 +806,11 @@ class Calculate extends React.Component {
 
                 case 4:
                   var string4withCorrectionAllZero =
-                    'Also müssen wir uns erst noch 10 Zehner von den Hundertern leihen. Dafür rechnen wir ' +
+                    analogyTexts.special_case_4[0] +
                     this.analogy.min[this.hunderterIndex] +
-                    '-1=' +
+                    analogyTexts.special_case_4[1] +
                     this.analogy.cor[this.hunderterIndex] +
-                    '. Jetzt haben wir 10 Zehner und können aus der 0 bei den Zehnern eine 10 machen.';
+                    analogyTexts.special_case_4[2];
 
                   // update analogy
                   this.updateCorrectionsAndResult(
@@ -876,15 +830,13 @@ class Calculate extends React.Component {
                   return string4withCorrectionAllZero;
                 case 5:
                   var string5withCorrectionAllZero =
-                    'Zurück bei den Einern: Jetzt können wir uns einen Zehner leihen. Wir rechnen ' +
-                    '10' +
-                    '-1=' +
+                    analogyTexts.special_case_5[0] +
                     this.analogy.cor[this.zehnerIndex] +
-                    '. Also haben wir 10 Einer bekommen und rechnen ' +
+                    analogyTexts.special_case_5[1] +
                     this.analogy.min[this.einerIndex] +
-                    '+10=' +
+                    analogyTexts.special_case_5[2] +
                     this.analogy.cor[this.einerIndex] +
-                    '.';
+                    analogyTexts.special_case_5[3];
 
                   // update analogy
                   this.updateCorrectionsAndResult(
@@ -906,7 +858,7 @@ class Calculate extends React.Component {
 
                 case 6:
                   var string6withCorrectionAllZero = this.returnStringNoCorrection(
-                    'Einer',
+                    this.digit[0],
                     this.analogy.cor[this.einerIndex],
                     this.analogy.sub[this.einerIndex],
                     this.analogy.res[this.einerIndex],
@@ -931,7 +883,7 @@ class Calculate extends React.Component {
                   return string6withCorrectionAllZero;
                 case 7:
                   var string7withCorrectionAllZero = this.returnStringNoCorrection(
-                    'Zehner',
+                    this.digit[1],
                     this.analogy.cor[this.zehnerIndex],
                     this.analogy.sub[this.zehnerIndex],
                     this.analogy.res[this.zehnerIndex],
@@ -956,7 +908,7 @@ class Calculate extends React.Component {
                   return string7withCorrectionAllZero;
                 case 8:
                   var string8withCorrectionAllZero = this.returnStringNoCorrection(
-                    'Hunderter',
+                    this.digit[2],
                     this.analogy.cor[this.hunderterIndex],
                     this.analogy.sub[this.hunderterIndex],
                     this.analogy.res[this.hunderterIndex],
@@ -1007,8 +959,8 @@ class Calculate extends React.Component {
                   return string2withCorrectionAll;
                 case 3:
                   var string3withCorrectionAll = this.returnStringCorrectionStep(
-                    'Einer',
-                    'Zehner',
+                    this.digit[0],
+                    this.digit[1],
                     this.einerIndex,
                     this.zehnerIndex,
                     this.analogy.min,
@@ -1040,7 +992,7 @@ class Calculate extends React.Component {
                   return string3withCorrectionAll;
                 case 4:
                   var string4withCorrectionAll = this.returnStringNoCorrection(
-                    'Einer',
+                    this.digit[0],
                     this.analogy.cor[this.einerIndex],
                     this.analogy.sub[this.einerIndex],
                     this.analogy.res[this.einerIndex],
@@ -1084,8 +1036,8 @@ class Calculate extends React.Component {
                   return string5withCorrectionAll;
                 case 6:
                   var string6withCorrectionAll = this.returnStringCorrectionStep(
-                    'Zehner',
-                    'Hunderter',
+                    this.digit[1],
+                    this.digit[2],
                     this.zehnerIndex,
                     this.hunderterIndex,
                     this.analogy.min,
@@ -1114,7 +1066,7 @@ class Calculate extends React.Component {
                   return string6withCorrectionAll;
                 case 7:
                   var string7withCorrectionAll = this.returnStringNoCorrection(
-                    'Zehner',
+                    this.digit[1],
                     this.analogy.cor[this.zehnerIndex],
                     this.analogy.sub[this.zehnerIndex],
                     this.analogy.res[this.zehnerIndex],
@@ -1139,7 +1091,7 @@ class Calculate extends React.Component {
                   return string7withCorrectionAll;
                 case 8:
                   var string8withCorrectionAll = this.returnStringNoCorrection(
-                    'Hunderter',
+                    this.digit[2],
                     this.analogy.cor[this.hunderterIndex],
                     this.analogy.sub[this.hunderterIndex],
                     this.analogy.res[this.hunderterIndex],

@@ -6,9 +6,9 @@ import { withRouter } from 'react-router-dom';
 class CloseSpeechbubble extends React.Component {
   close() {
     if (this.props.location.pathname == '/') {
-      this.props.history.push('/substractionpanel');
+      this.props.history.push('/rechnen');
     } else {
-      //if (this.props.location.pathname == '/substractionpanel') {
+      //if (this.props.location.pathname == '/rechnen') {
       this.props.close_func();
     }
   }
