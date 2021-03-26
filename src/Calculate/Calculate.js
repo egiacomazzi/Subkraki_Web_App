@@ -160,8 +160,8 @@ class Calculate extends React.Component {
     );
   }
 
-  // Function to return the String of "Jetzt rechnen wir..." with inputs at which column (stelle) the calculation of min-sub=res happens
-  // "Jetzt rechnen wir die stellestelle mit min-sub=res.""
+  // Function to return the String of "Jetzt rechnen wir die stellestelle mit min-sub=res."
+  // with inputs at which column (stelle) the calculation of the corresponding min-sub=res happens
   returnStringNoCorrection(stelle, min, sub, res) {
     var string =
       this.text.noCorrectionMoredigits[2] +
@@ -192,8 +192,8 @@ class Calculate extends React.Component {
     return string1WithCorrection2Digits;
   }
   // Produces following text
-  // "Weiter geht es in der Zehnerzeile. Wir können nicht einfach min[zehnerIndex]-sub[zehnerIndex] rechnen,
-  // da min[zehnerIndex] kleiner als sub[zehnerIndex] ist."
+  // "Weiter geht es in der Zehnerzeile. Wir können nicht einfach min-sub[zehnerIndex] rechnen,
+  // da min kleiner als sub[zehnerIndex] ist."
   returnStringZehnerstelle(min) {
     var string =
       this.text.withCorrectionAbZehnerFalse[2] +
@@ -218,7 +218,6 @@ class Calculate extends React.Component {
     index1,
     index2,
     min,
-    sub,
     cor,
     special = false,
     specialHunderter = false,
