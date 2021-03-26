@@ -62,6 +62,7 @@
 }
 .obereZahlInput {
   grid-area: obereInput;
+  text-align: right;
 }
 .untereZahlText {
   grid-area: untereZahl;
@@ -70,6 +71,7 @@
 }
 .untereZahlInput {
   grid-area: untereInput;
+  text-align: right;
 }
 
 .errorText {
