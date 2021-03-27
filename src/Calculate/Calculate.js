@@ -6,8 +6,7 @@ import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
 import Subkraki from '../shared/Subkraki';
 import OwnExercise from '../OwnExercise/OwnExercise.js';
-
-import { getText } from './TextGeneration.js';
+import { getText } from './AnalogyExplanation.js';
 
 class Calculate extends React.Component {
   constructor(props) {
