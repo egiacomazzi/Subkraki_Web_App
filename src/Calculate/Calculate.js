@@ -96,18 +96,19 @@ class Calculate extends React.Component {
       this.endAnalogy,
       this.analogySubPanelVisibility,
     );
+    // set variables which were changed in getText to new value
     this.analogy = jsonObj.analogy;
     this.endAnalogy = jsonObj.endAnalogy;
     this.beginningAnalogy = jsonObj.beginningAnalogy;
     this.analogySubPanelVisibility =
       jsonObj.analogySubPanelVisibility;
     this.styling = jsonObj.styling;
-    console.log(this.styling);
 
     this.einerIndex = jsonObj.einerIndex;
     this.zehnerIndex = jsonObj.zehnerIndex;
     this.hunderterIndex = jsonObj.hunderterIndex;
 
+    // updates analogypanel numbers and crosses
     this.curAnalogyMinuendCor[this.hunderterIndex] =
       jsonObj.updateCorrectionsAndResultObj.crossHunderter;
     this.curAnalogyMinuendCor[this.zehnerIndex] =
@@ -127,8 +128,6 @@ class Calculate extends React.Component {
       jsonObj.updateCorrectionsAndResultObj.corEiner == null
         ? NaN
         : jsonObj.updateCorrectionsAndResultObj.corEiner;
-
-    console.log(this.curAnalogyCorrection);
 
     this.curAnalogyResult[this.hunderterIndex] =
       jsonObj.updateCorrectionsAndResultObj.resHunderter;
