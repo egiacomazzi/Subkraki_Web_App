@@ -9,32 +9,27 @@ import PropTypes from 'prop-types';
 import { getAnalogy, getDiagnosis } from '../PrologConnector.js';
 
 class SubtractionPanel extends React.Component {
+
   constructor(props) {
     super(props);
-    /* Stupidest ever way to initialise empyt array, but somehow new Array(digits)
-            always gives an array of length 1.*/
-    let emptyArray = [];
-    for (let i = 0; i < this.props.minuend.length; i++) {
-      emptyArray.push(null);
-    }
+
+    // init states
     this.state = {
-      corrections_crossedOut: emptyArray.slice().fill(false),
-      corrections_row: emptyArray.slice().fill(null),
-      result_row: emptyArray.slice().fill(null),
+      corrections_crossedOut: new Array(this.props.minuend.length).fill(false),
+      corrections_row: new Array(this.props.minuend.length).fill(null),
+      result_row: new Array(this.props.minuend.length).fill(null),
       error_message: null,
-      corrections_row_error: emptyArray.slice().fill(false),
-      result_row_error: emptyArray.slice().fill(false),
+      corrections_row_error: new Array(this.props.minuend.length).fill(false),
+      result_row_error: new Array(this.props.minuend.length).fill(false),
     };
 
     this.resultOnChange = this.resultOnChange.bind(this);
     this.correctionsOnChange = this.correctionsOnChange.bind(this);
-
-
   }
 
   /**
    * Correct the submitted calculation and returns the analogy + diagnosis
-   * @return   {diagnosis, analogy}
+   * @return {diagnosis, analogy}: diagnosis and analogy as arrays
    */
   async getAnalogyAndDiagnosis() {
     const result = this.getResult();
@@ -83,6 +78,10 @@ class SubtractionPanel extends React.Component {
     return { diagnosis: diagnosis, analogy: analogy };
   }
 
+  /**
+   * Checks the result row for input errors and returns it
+   * @returns {result, error_message} the result row as string array and a error_message
+   */
   getResult() {
     let result = [];
     let error_message = null;
@@ -104,6 +103,10 @@ class SubtractionPanel extends React.Component {
     return { result: result, error_message: error_message };
   }
 
+  /**
+   * Returns the subtrahend
+   * @returns the subtrahend row as string array and a error_message
+   */
   getSubtrahend() {
     let subtrahend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
@@ -120,6 +123,10 @@ class SubtractionPanel extends React.Component {
     return subtrahend;
   }
 
+  /**
+   * Checks the minuend row for input errors and returns it
+   * @returns the minuend row as string array and a error_message
+   */
   getMinuend() {
     let minuend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
@@ -135,6 +142,10 @@ class SubtractionPanel extends React.Component {
     return minuend;
   }
 
+  /**
+   * Checks the corrections row for input errors and returns it
+   * @returns {corrections, error_message} the correction row as string array and a error_message
+   */
   getCorrections() {
     let corrections = [];
     let error_message = null;
@@ -163,14 +174,22 @@ class SubtractionPanel extends React.Component {
     return { corrections: corrections, error_message: error_message };
   }
 
+  /**
+   * Sets a error on a column i in the result row
+   * @param {*} i: index of the column
+   */
   setValidationErrorInResultRow(i) {
-    let new_row = this.state.result_row_error.slice();
+    let new_row = this.state.result_row_error;
     new_row[i] = true;
     this.setState({
       result_row_error: new_row,
     });
   }
 
+  /**
+   * Sets a error on a column i in the corrections row
+   * @param {*} i: index of the column
+   */
   setValidationErrorInCorrectionsRow(i) {
     let new_row = this.state.corrections_row_error.slice();
     new_row[i] = true;
@@ -179,6 +198,11 @@ class SubtractionPanel extends React.Component {
     });
   }
 
+
+  /**
+  * Changes a value and updates variables with a correction input
+  * @param {SyntheticEvent} event: event triggered by a input
+  */
   correctionsOnChange(event) {
     let value = event.target.value;
     let j = parseInt(event.target.classList[1].slice(-1));
@@ -188,9 +212,10 @@ class SubtractionPanel extends React.Component {
   }
 
 
-
-
-
+  /**
+     * Updates variables when minuend column gets crossed out
+     * @param {SyntheticEvent} event: event triggered by a click on minuend col
+     */
   minuend_onClick(event, i) {
     event.preventDefault();
     let new_corrections_crossedOut = this.state.corrections_crossedOut.slice();
@@ -205,8 +230,10 @@ class SubtractionPanel extends React.Component {
     });
   }
 
-
-
+  /**
+   * Changes a value and updates variables with a new result input
+   * @param {SyntheticEvent} event: event triggered by a input
+   */
   resultOnChange(event) {
     let value = event.target.value;
     let j = parseInt(event.target.classList[1].slice(-1));
@@ -216,11 +243,9 @@ class SubtractionPanel extends React.Component {
   }
 
 
-
-
   /**
    * Resets the inputs in the Subtractionpanel
-   * @param {*} event   Event triggered by the refresh-Button
+   * @param {*} event: Event triggered by the refresh-button click
    */
   reset(event) {
     if (event != null)
@@ -233,7 +258,7 @@ class SubtractionPanel extends React.Component {
     });
   }
 
-  // Render functions \\  
+  //************** Render functions **************\\  
 
   /**
    * Configures and renders the correction row as InputNumber 
