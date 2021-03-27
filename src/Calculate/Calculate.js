@@ -37,16 +37,6 @@ class Calculate extends React.Component {
 
     this.refresh = false;
 
-    // this.text = {
-    //   correct: analogyTexts.correct,
-    //   noCorrection1digit: analogyTexts.noCorrection1digit,
-    //   noCorrectionMoredigits: analogyTexts.noCorrectionMoredigits,
-    //   withCorrectionEinerstelleFalse:
-    //     analogyTexts.withCorrectionEinerstelleFalse,
-    //   withCorrectionAbZehnerFalse:
-    //     analogyTexts.withCorrectionAbZehnerFalse,
-    //   analogy: analogyTexts.analogy,
-    // };
     this.analogy = {
       min: [],
       sub: [],
@@ -70,9 +60,6 @@ class Calculate extends React.Component {
     this.hunderterIndex = null;
 
     this.styling = [0, 0, 0];
-    //this.tempCorrectionStep = null;
-    // this.digit = analogyTexts.digits;
-    // this.digit_with_n = analogyTexts.digits_with_n;
   }
 
   lastText() {
@@ -105,6 +92,9 @@ class Calculate extends React.Component {
       this.analogy,
       this.state.analogyTextIndex,
       this.state.correct,
+      this.beginningAnalogy,
+      this.endAnalogy,
+      this.analogySubPanelVisibility,
     );
     this.analogy = jsonObj.analogy;
     this.endAnalogy = jsonObj.endAnalogy;
@@ -158,9 +148,6 @@ class Calculate extends React.Component {
       this.analogy.res = analogy.result.map(String);
       this.analogy.cor = analogy.correction.map(String);
       this.diagnosis.correct = diagnosis.correct;
-      // this.einerIndex = this.analogy.min.length - 1;
-      // this.zehnerIndex = this.analogy.min.length - 2;
-      // this.hunderterIndex = this.analogy.min.length - 3;
 
       // Init analogy arrays
       this.curAnalogyResult = new Array(analogy.minuend.length);

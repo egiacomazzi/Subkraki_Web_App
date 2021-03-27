@@ -6,17 +6,17 @@ export function getText(
   correct,
   beginningBoolean,
   endBoolean,
+  analogySubPanelVisibilityParam,
 ) {
-  console.log(analogy.res);
-  // let minuend = '';
-  // let subtrahend = '';
+  let beginningAnalogy = beginningBoolean;
+  let endAnalogy = endBoolean;
+  let analogySubPanelVisibility = analogySubPanelVisibilityParam;
+  let styling = [0, 0, 0];
+
   let tempCorrectionStep = null;
   let einerIndex = analogy.min.length - 1;
   let zehnerIndex = analogy.min.length - 2;
   let hunderterIndex = analogy.min.length - 3;
-
-  let beginningAnalogy = beginningBoolean;
-  let endAnalogy = endBoolean;
 
   let digit = analogyTexts.digits;
   let digit_with_n = analogyTexts.digits_with_n;
@@ -31,13 +31,12 @@ export function getText(
       analogyTexts.withCorrectionAbZehnerFalse,
     analogy: analogyTexts.analogy,
   };
-  var updateCorrectionsAndResultObj;
-  var analogySubPanelVisibility = 'hidden';
-  var styling = [0, 0, 0];
-  var returntext = returnText(correct, analogyTextIndex);
+  let updateCorrectionsAndResultObj;
+
+  let returntext = returnText(correct, analogyTextIndex);
   console.log(updateCorrectionsAndResultObj);
 
-  var returnObject = {
+  let returnObject = {
     updateCorrectionsAndResultObj: updateCorrectionsAndResultObj,
     correct: correct,
     text: returntext,
@@ -371,6 +370,18 @@ export function getText(
             case 4:
               if (hunderterIndex < 0) {
                 finalString = returnStringFinalResult();
+                // update analogy
+                updateCorrectionsAndResult(
+                  false,
+                  false,
+                  false,
+                  NaN,
+                  NaN,
+                  NaN,
+                  NaN,
+                  analogy.res[zehnerIndex],
+                  analogy.res[einerIndex],
+                );
                 //update arrows
                 beginningAnalogy = false;
                 endAnalogy = true;
@@ -1167,6 +1178,10 @@ export function getText(
                   );
 
                   // update analogy
+                  tempCorrectionStep =
+                    Number(analogy.cor[zehnerIndex]) > 9
+                      ? analogy.cor[zehnerIndex] - 10
+                      : analogy.cor[zehnerIndex];
                   updateCorrectionsAndResult(
                     false,
                     true,
@@ -1191,6 +1206,10 @@ export function getText(
                     analogy.cor[zehnerIndex] - 10,
                   );
                   // update analogy
+                  tempCorrectionStep =
+                    Number(analogy.cor[zehnerIndex]) > 9
+                      ? analogy.cor[zehnerIndex] - 10
+                      : analogy.cor[zehnerIndex];
                   updateCorrectionsAndResult(
                     false,
                     true,
