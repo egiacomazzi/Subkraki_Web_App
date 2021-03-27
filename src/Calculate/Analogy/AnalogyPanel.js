@@ -1,6 +1,6 @@
 import React from 'react';
-import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
-import '../CSS/AnalogyPanel.css';
+import SpeechbubbleControlls from '../../shared/Speechbubble/SpeechbubbleControls.js';
+import '../../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
@@ -10,6 +10,9 @@ class AnalogyPanel extends React.Component {
     this.props = props;
   }
 
+  /**
+   * @returns the rendered Analogypanel
+   */
   render() {
     return (
       <div className="analogy">
@@ -33,7 +36,6 @@ class AnalogyPanel extends React.Component {
     );
   }
 }
-// }
 
 export default withRouter(AnalogyPanel);
 AnalogyPanel.propTypes = {

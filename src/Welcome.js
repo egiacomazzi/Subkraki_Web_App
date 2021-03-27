@@ -1,7 +1,7 @@
 import React from 'react';
 import './CSS/Welcome.css';
 import Subkraki from './shared/Subkraki.js';
-import SpeechbubbleControlls from './shared/SpeechbubbleControlls.js';
+import SpeechbubbleControlls from './shared/Speechbubble/SpeechbubbleControls.js';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import welcomeTexts from './resources/welcomeTexts.json';
@@ -17,6 +17,10 @@ class Welcome extends React.Component {
     };
   }
 
+  /**
+   * Gets triggered by clicking the left arrow the Speechbubble,
+   * and updates the texts for the Speechbubble
+   */
   lastText() {
     if (this.state.introTextIndex == 0) {
       return;
@@ -26,17 +30,26 @@ class Welcome extends React.Component {
     });
   }
 
+  /**
+   * Gets triggered by clicking the right arrow the Speechbubble,
+   * * and updates the texts for the Speechbubble
+   */
   nextText() {
     this.setState({
       introTextIndex: this.state.introTextIndex + 1,
     });
-    console.log(this.state.introTextIndex);
   }
 
+  /**
+   * Ends the welcome page for the calculation page
+   */
   endWelcome() {
     this.props.history.push('/rechnen');
   }
 
+  /**
+   * @returns The rendered Welcome component
+   */
   render() {
     return (
       <div className="welcome">
@@ -52,6 +65,7 @@ class Welcome extends React.Component {
           beginning={this.state.introTextIndex === 0 ? true : false}
           end={false}
           analogy={false}
+          subpanel_visibility={false}
         />
         <Subkraki />
       </div>

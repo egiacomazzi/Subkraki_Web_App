@@ -345,7 +345,7 @@ class SubtractionPanel extends React.Component {
 
   /**
    * Configures and renders the subtrahend row as Number 
-   * @returns   The Number's to represent the subtrahend row
+   * @returns the Number's to represent the subtrahend row
    */
   renderSubtrahend() {
     const subtrahend_display = [];
@@ -428,56 +428,68 @@ class SubtractionPanel extends React.Component {
     }
   }
 
+  /**
+   * Renders the CorrectButton, if not in AnalogyPanel
+   * @returns the CorrectButton or nothing
+   */
+  renderCorrectButton() {
+    if (this.props.analogy) {
+      return [];
+    } else {
+      return (<CorrectButton
+        className="check panelControls"
+        onClick={() => this.props.submit()}
+      />);
+    }
+  }
+
+  /**
+   * Renders the RefreshButton, if not in AnalogyPanel
+   * @returns the RefreshButton or nothing
+   */
+  renderRefreshButton() {
+    if (this.props.analogy) {
+      return [];
+    } else {
+      return (<RefreshButton
+        className="refresh panelControls"
+        onClick={(event) => this.reset(event)}
+      />);
+    }
+  }
+
+
+  /**
+  * @returns the rendered SubtractionPanel, depending if it represents a analogy
+  */
   render() {
     const corrections_display = this.renderCorrections();
     const minuend_display = this.renderMinuend();
     const subtrahend_display = this.renderSubtrahend();
     const result_display = this.renderResult();
     const error_message = this.renderErrorMessage();
+    const correct_button = this.renderCorrectButton();
+    const refresh_button = this.renderRefreshButton();
 
-    let style = { visibility: this.props.subpanel_visibility };
+    let style = [];
+    if (this.props.analogy)
+      style = { visibility: this.props.subpanel_visibility };
 
-    if (!this.props.analogy) {
-      return (
-        <div className="panel">
-          <div className="grid-container">
-            {corrections_display}
-            {minuend_display}
+    return (
+      <div className="panel" style={style}>
+        <div className="grid-container">
+          {corrections_display}
+          {minuend_display}
+          <div className="minus"> - </div>
+          {subtrahend_display}
+          <div className="line"></div>
+          {result_display}
 
-            <div className="minus"> - </div>
-            {subtrahend_display}
-
-            <div className="line"></div>
-
-            {result_display}
-            <CorrectButton
-              className="check panelControls"
-              onClick={() => this.props.submit()}
-            />
-            <RefreshButton
-              className="refresh panelControls"
-              onClick={(event) => this.reset(event)}
-            />
-            {error_message}
-          </div>
+          {correct_button}
+          {refresh_button}
+          {error_message}
         </div>
-      );
-    } else {
-      return (
-        <div className="panel" style={style}>
-          <div className="grid-container">
-            {corrections_display}
-            {subtrahend_display}
-
-            <div className="minus"> - </div>
-            {minuend_display}
-            <div className="line"></div>
-
-            {result_display}
-          </div>
-        </div>
-      );
-    }
+      </div>);
   }
 }
 

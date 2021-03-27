@@ -1,8 +1,12 @@
 import React from 'react';
-import '../CSS/Arrow.css';
+import '../../CSS/Arrow.css';
 import PropTypes from 'prop-types';
 
 class Arrow extends React.Component {
+
+  /**
+   * @returns a rendered Arrow
+   */
   render() {
     const arrowDirection =
       this.props.class === 'left' ? { transform: 'scaleX(-1)' } : {};

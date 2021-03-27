@@ -1,14 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js';
-import AnalogyPanel from './AnalogyPanel.js';
+import AnalogyPanel from './Analogy/AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
 import Subkraki from '../shared/Subkraki';
 import OwnExercise from './OwnExercise/OwnExercise.js';
-import { getText } from './AnalogyExplanation.js';
+import { getText } from './Analogy/AnalogyExplanation.js';
 
 class Calculate extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +22,6 @@ class Calculate extends React.Component {
     };
     this.openOwnExercise = this.openOwnExercise.bind(this);
     this.createRandomExercise = this.createRandomExercise.bind(this);
-    this.getRandomExample = this.getRandomExample.bind(this);
     this.hideAnalogyPanel = this.hideAnalogyPanel.bind(this);
 
     this.subtractionRef = React.createRef();
@@ -61,6 +61,10 @@ class Calculate extends React.Component {
     this.styling = [0, 0, 0];
   }
 
+  /**
+   * Changes the variables for the AnalogyPanel
+   * if the left arrow was clicked in SpeechbubbleControls
+   */
   lastText() {
     if (this.state.analogyTextIndex == 0) {
       return;
@@ -73,6 +77,10 @@ class Calculate extends React.Component {
     });
   }
 
+  /**
+   * Changes the variables for the AnalogyPanel
+   * if the right arrow was clicked in SpeechbubbleControls
+   */
   nextText() {
     if (this.endAnalogy) {
       return;
@@ -82,10 +90,10 @@ class Calculate extends React.Component {
     });
   }
 
-  endWelcome() {
-    this.props.history.push('/rechnen');
-  }
-
+  /**
+   * Sets necessary variables and returns the text for the AnalogyPanel
+   * @returns the text for the AnalogyPanel 
+   */
   returnText() {
     var jsonObj = getText(
       this.analogy,
@@ -138,6 +146,11 @@ class Calculate extends React.Component {
     return jsonObj.text;
   }
 
+  /**
+   * Called when the submit button is clicked,
+   * gets the analogy and diagnosis for the submitted solution and
+   * sets the variables for the AnalogyPanel accordingly
+   */
   async submit() {
     let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
     if (typeof r === 'undefined') return;
@@ -181,17 +194,14 @@ class Calculate extends React.Component {
     });
   }
 
-  getRandomExample(min, max) {
-    let minuend = Math.floor(min + Math.random() * (max - min));
-    let subtrahend = Math.floor(1 + Math.random() * (minuend + 1));
-    return { minuend: minuend, subtrahend: subtrahend };
-  }
-
+  /**
+   * Creates a random exercise from 100 to 999
+   */
   createRandomExercise() {
-    let ex = this.getRandomExample(100, 999);
-    this.minuend = ex.minuend.toString();
-    this.subtrahend = ex.subtrahend.toString();
-
+    this.minuend = Math.floor(100 + Math.random() * (999 - 100)).toString();
+    this.subtrahend = Math.floor(1 + Math.random() * (this.minuend - 1)).toString();
+    console.log(this.minuend);
+    console.log(this.subtrahend);
     if (this.subtractionRef.current != null)
       this.subtractionRef.current.reset(null);
 
@@ -200,17 +210,11 @@ class Calculate extends React.Component {
     });
   }
 
-  openOwnExercise() {
-    this.setState({
-      ownExerciseDisplay: true,
-    });
-  }
-  closeOwnExercise() {
-    this.setState({
-      ownExerciseDisplay: false,
-    });
-  }
-
+  /**
+   * Sets the variables for the user's exercise
+   * @param {string} min: Minuend 
+   * @param {string} sub: Subtrahend 
+   */
   getOwnExercise(min, sub) {
     this.minuend = min;
     this.subtrahend = sub;
@@ -223,14 +227,31 @@ class Calculate extends React.Component {
     });
   }
 
+  /******** Control Components  *********/
+
   hideAnalogyPanel() {
     this.setState({ display: false });
   }
+  openOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: true,
+    });
+  }
+  closeOwnExercise() {
+    this.setState({
+      ownExerciseDisplay: false,
+    });
+  }
 
+
+  /**
+   * @returns the rendered Calculate component
+   */
   render() {
-    if (this.minuend == '') {
+
+    // create a random exercise if there's no exercise
+    if (this.minuend == '')
       this.createRandomExercise();
-    }
 
     if (this.state.display) {
       return (
@@ -298,6 +319,7 @@ class Calculate extends React.Component {
     }
   }
 }
+
 export default withRouter(Calculate);
 Calculate.propTypes = {
   error: PropTypes.string,

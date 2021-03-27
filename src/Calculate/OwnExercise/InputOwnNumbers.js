@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import '../../CSS/InputOwnNumbers.css';
 import { withRouter } from 'react-router-dom';
-import CloseSpeechbubble from '../../shared/CloseSpeechbubble.js';
+import CloseSpeechbubble from '../../shared/Speechbubble/CloseSpeechbubble.js';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -57,75 +57,45 @@ class InputOwnNumbers extends React.Component {
 
 
   render() {
-    if (!this.state.showError) {
+    let errortext = [];
+    if (this.state.showError)
+      errortext = <p className="errorText">{this.errorText}</p>;
 
-      return (
-        <div className="inputOwnEx">
-          <div className="inputOwnExBubble">
-            <div className="ownExText">{this.text}</div>
-            <div className="obereZahlText">Obere Zahl:</div>
+    return (
+      <div className="inputOwnEx">
+        <div className="inputOwnExBubble">
+          <div className="ownExText">{this.text}</div>
+          <div className="obereZahlText">Obere Zahl:</div>
 
-            <input
-              maxLength="3"
-              max="999"
-              className="obereZahlInput"
-              id="obereZahl"
-            ></input>
+          <input
+            maxLength="3"
+            max="999"
+            className="obereZahlInput"
+            id="obereZahl"
+          ></input>
 
-            <div className="untereZahlText">Untere Zahl:</div>
+          <div className="untereZahlText">Untere Zahl:</div>
 
-            <input
-              maxLength="3"
-              max="999"
-              className="untereZahlInput"
-              id="untereZahl"></input>
+          <input
+            maxLength="3"
+            max="999"
+            className="untereZahlInput"
+            id="untereZahl"
+          ></input>
 
-            <button
-              className="eigeneAufgabeSubmit"
-              onClick={this.returnSubMintoSub}
-            >Los</button>
+          {errortext}
 
-          </div>
-          <CloseSpeechbubble close_func={this.props.close_func} />
-        </div>
-      );
-    } else {
-      return (
-        <div className="inputOwnEx">
-          <div className="inputOwnExBubble">
-            <div className="ownExText">{this.text}</div>
-            <div className="obereZahlText">Obere Zahl:</div>
-
-            <input
-              maxLength="3"
-              max="999"
-              className="obereZahlInput"
-              id="obereZahl"
-            ></input>
-
-            <div className="untereZahlText">Untere Zahl:</div>
-
-            <input
-              maxLength="3"
-              max="999"
-              className="untereZahlInput"
-              id="untereZahl"
-            ></input>
-
-            <p className="errorText">{this.errorText}</p>
-
-            <button
-              className="eigeneAufgabeSubmit"
-              onClick={this.returnSubMintoSub}
-            >
-              Los
+          <button
+            className="eigeneAufgabeSubmit"
+            onClick={this.returnSubMintoSub}
+          >
+            Los
             </button>
 
-          </div>
-          <CloseSpeechbubble close_func={this.props.close_func} />
         </div>
-      );
-    }
+        <CloseSpeechbubble close_func={this.props.close_func} />
+      </div>
+    );
   }
 }
 
