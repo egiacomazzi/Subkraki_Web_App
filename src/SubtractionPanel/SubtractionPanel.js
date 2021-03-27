@@ -187,85 +187,9 @@ class SubtractionPanel extends React.Component {
     this.setState({ corrections_row: new_row });
   }
 
-  renderCorrections() {
-    const corrections_display = [];
-    for (let j = 0; j < this.props.minuend.length; j++) {
-      var corr_className = 'correction' + j;
-      let highlighted = false;
-      if (this.props.highlighting[j] == 1) {
-        highlighted = true;
-      }
 
-      let display = 'hidden';
-      if (
-        this.state.corrections_crossedOut[j] ||
-        (this.props.analogy &&
-          isNaN(this.props.correction[j]) == false)
-      ) {
-        display = 'visible';
-      }
-      if (!this.props.analogy)
-        corrections_display.push(
-          <InputNumber
-            key={corr_className}
-            className={corr_className}
-            visibility={display}
-            error={this.state.corrections_row_error[j]}
-            enabled={true}
-            number={parseInt(this.state.corrections_row[j])}
-            onChangeFunc={this.correctionsOnChange}
-          />,
-        );
-      else
-        corrections_display.push(
-          <InputNumber
-            key={corr_className}
-            className={corr_className}
-            visibility={display}
-            number={parseInt(this.props.correction[j])}
-            enabled={false}
-            highlighted={highlighted}
-          />,
-        );
-    }
-    return corrections_display;
-  }
 
-  renderMinuend() {
-    var minuend_digits = [];
-    const minuend_display = [];
-    for (let i = 0; i < this.props.minuend.length; i++) {
-      let min_className = 'minuend' + i;
-      let highlighted = false;
-      if (this.props.highlighting[i] == 1) {
-        highlighted = true;
-      }
-      minuend_digits.push(this.props.minuend.slice(i, i + 1));
 
-      if (!this.props.analogy)
-        minuend_display.push(
-          <ClickableNumber
-            key={min_className}
-            className={min_className}
-            number={minuend_digits[i]}
-            crossedOut={this.state.corrections_crossedOut[i]}
-            onClickHandler={(event) => this.minuend_onClick(event, i)}
-            highlighted={false}
-          />,
-        );
-      else
-        minuend_display.push(
-          <ClickableNumber
-            key={min_className}
-            className={min_className}
-            number={minuend_digits[i]}
-            crossedOut={this.props.minuend_correction[i]}
-            highlighted={highlighted}
-          />,
-        );
-    }
-    return minuend_display;
-  }
 
   minuend_onClick(event, i) {
     event.preventDefault();
@@ -281,40 +205,7 @@ class SubtractionPanel extends React.Component {
     });
   }
 
-  renderSubtrahend() {
-    var subtrahend_digits = [];
-    const subtrahend_display = [];
-    for (var i = 0; i < this.props.minuend.length; i++) {
-      const sub_className = 'subtrahend' + i;
-      let highlighted = false;
-      if (this.props.highlighting[i] == 1) {
-        highlighted = true;
-      }
 
-      if (
-        this.props.minuend.length - i <=
-        this.props.subtrahend.length
-      )
-        subtrahend_digits.push(
-          this.props.subtrahend.charAt(
-            this.props.subtrahend.length -
-            this.props.minuend.length +
-            i,
-          ),
-        );
-      else subtrahend_digits.push('0'); //TODO: hier noch die 0 abändern
-
-      subtrahend_display.push(
-        <Number
-          key={sub_className}
-          className={sub_className}
-          number={subtrahend_digits[i]}
-          highlighted={highlighted}
-        />,
-      );
-    }
-    return subtrahend_display;
-  }
 
   resultOnChange(event) {
     let value = event.target.value;
@@ -324,62 +215,184 @@ class SubtractionPanel extends React.Component {
     this.setState({ result_row: new_row });
   }
 
-  renderResult() {
-    const result_display = [];
-    for (var j = 0; j < this.props.minuend.length; j++) {
-      const res_className = 'result' + j;
-      let highlighted = false;
-      if (this.props.highlighting[j] == 1) {
-        highlighted = true;
-      }
 
-      if (!this.props.analogy)
-        result_display.push(
-          <InputNumber
-            key={res_className}
-            className={res_className}
-            number={parseInt(this.state.result_row[j])}
-            error={this.state.result_row_error[j]}
-            enabled={true}
-            highlighted={false}
-            onChangeFunc={this.resultOnChange}
-          />,
-        );
-      else
-        result_display.push(
-          <InputNumber
-            key={res_className}
-            className={res_className}
-            number={parseInt(this.props.result[j])}
-            error={this.state.result_row_error[j]}
-            enabled={false}
-            highlighted={highlighted}
-          />,
-        );
-    }
-    return result_display;
-  }
 
 
   /**
-   * Refreshes the inputs in the SubtractionPanel
-   * @param {*} event 
+   * Resets the inputs in the Subtractionpanel
+   * @param {*} event   Event triggered by the refresh-Button
    */
-  refresh(event) {
+  reset(event) {
     if (event != null)
       event.preventDefault();
 
-    let emptyArray = [];
-    for (let i = 0; i < this.props.minuend.length; i++) {
-      emptyArray.push(null);
-    }
     this.setState({
-      corrections_crossedOut: emptyArray.slice().fill(false),
-      corrections_row: emptyArray.slice().fill(NaN),
-      result_row: emptyArray.slice().fill(NaN),
+      corrections_crossedOut: new Array(this.props.minuend.length).slice().fill(false),
+      corrections_row: new Array(this.props.minuend.length).slice().fill(NaN),
+      result_row: new Array(this.props.minuend.length).slice().fill(NaN),
     });
   }
 
+  // Render functions \\  
+
+  /**
+   * Configures and renders the correction row as InputNumber 
+   * @returns   The InputNumber's to represent the correction row
+   */
+  renderCorrections() {
+    const corrections_display = [];
+
+    for (let j = 0; j < this.props.minuend.length; j++) {
+
+      let highlighted = false;
+      if (this.props.highlighting[j] == 1)
+        highlighted = true;
+
+      let number;
+      let func = null;
+      let enabled = false;
+      let display = 'hidden';
+
+      if (!this.props.analogy) {
+        number = parseInt(this.state.corrections_row[j]);
+        func = this.correctionsOnChange;
+        enabled = true;
+        if (this.state.corrections_crossedOut[j])
+          display = 'visible';
+      } else {
+        number = parseInt(this.props.correction[j]);
+        if (isNaN(this.props.correction[j]) == false)
+          display = 'visible'
+      }
+
+      corrections_display.push(
+        <InputNumber
+          key={'correction' + j}
+          className={'correction' + j}
+          visibility={display}
+          error={this.state.corrections_row_error[j]}
+          enabled={enabled}
+          number={number}
+          onChangeFunc={func}
+          highlighted={highlighted}
+        />
+      );
+    }
+    return corrections_display;
+  }
+
+  /**
+   * Configures and renders the minuend row as ClickableNumber 
+   * @returns   The ClickableNumber's to represent the minuend row
+   */
+  renderMinuend() {
+    const minuend_display = [];
+
+    for (let i = 0; i < this.props.minuend.length; i++) {
+
+      let highlighted = false;
+      if (this.props.highlighting[i] == 1)
+        highlighted = true;
+
+      let number = this.props.minuend.slice(i, i + 1);
+      let crossedOut, func;
+      if (!this.props.analogy) {
+        crossedOut = this.state.corrections_crossedOut[i];
+        func = (event) => this.minuend_onClick(event, i);
+      } else {
+        crossedOut = this.props.minuend_correction[i];
+        func = null;
+      }
+
+      minuend_display.push(
+        <ClickableNumber
+          key={'minuend' + i}
+          className={'minuend' + i}
+          number={number}
+          crossedOut={crossedOut}
+          onClickHandler={func}
+          highlighted={highlighted}
+        />,
+      );
+    }
+    return minuend_display;
+  }
+
+  /**
+   * Configures and renders the subtrahend row as Number 
+   * @returns   The Number's to represent the subtrahend row
+   */
+  renderSubtrahend() {
+    const subtrahend_display = [];
+
+    for (var i = 0; i < this.props.minuend.length; i++) {
+
+      let highlighted = false;
+      if (this.props.highlighting[i] == 1)
+        highlighted = true;
+
+      let number = '0';
+      if (this.props.minuend.length - i <= this.props.subtrahend.length)
+        number =
+          this.props.subtrahend.charAt(
+            this.props.subtrahend.length - this.props.minuend.length + i,
+          );
+      else
+        number = '0';
+
+      subtrahend_display.push(
+        <Number
+          key={'subtrahend' + i}
+          className={'subtrahend' + i}
+          number={number}
+          highlighted={highlighted}
+        />,
+      );
+    }
+    return subtrahend_display;
+  }
+
+  /**
+   * Configures and renders the result row as InputNumber 
+   * @returns   The InputNumber's to represent the result row
+   */
+  renderResult() {
+    const result_display = [];
+
+    for (var j = 0; j < this.props.minuend.length; j++) {
+      let highlighted = false;
+      if (this.props.highlighting[j] == 1)
+        highlighted = true;
+
+      let number = NaN;
+      let func;
+      if (!this.props.analogy) {
+        number = parseInt(this.state.result_row[j]);
+        func = this.resultOnChange;
+      } else {
+        number = parseInt(this.props.result[j]);
+        func = null;
+      }
+
+      result_display.push(
+        <InputNumber
+          key={'result' + j}
+          className={'result' + j}
+          number={parseInt(number)}
+          error={this.state.result_row_error[j]}
+          enabled={true}
+          highlighted={highlighted}
+          onChangeFunc={func}
+        />);
+    }
+
+    return result_display;
+  }
+
+  /**
+   * Renders a error message, if an error occurrs
+   * @returns a div element with the error message, or nothing if no error occurred.
+   */
   renderErrorMessage() {
     if (this.state.error_message == null) {
       return [];
@@ -418,7 +431,7 @@ class SubtractionPanel extends React.Component {
             />
             <RefreshButton
               className="refresh panelControls"
-              onClick={(event) => this.refresh(event)}
+              onClick={(event) => this.reset(event)}
             />
             {error_message}
           </div>

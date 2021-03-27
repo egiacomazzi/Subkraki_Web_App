@@ -193,7 +193,7 @@ class Calculate extends React.Component {
     this.subtrahend = ex.subtrahend.toString();
 
     if (this.subtractionRef.current != null)
-      this.subtractionRef.current.refresh(null);
+      this.subtractionRef.current.reset(null);
 
     this.setState({
       rend: this.state.rend + 1,

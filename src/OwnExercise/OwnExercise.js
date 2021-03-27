@@ -8,6 +8,13 @@ import '../CSS/OwnExercise.css';
 import PropTypes from 'prop-types';
 
 class OwnExercise extends React.Component {
+
+  /**
+   * Gets minuend and subtrahend from InputOwnNumbers.js and
+   * submits it to Calculate.js
+   * @param {int} minuend   Minuend of the own exercise
+   * @param {int} subtrahend    Subtrahend of the own exercise
+   */
   returnExercise(minuend, subtrahend) {
     this.props.returnEx(minuend, subtrahend);
   }

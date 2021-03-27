@@ -13,7 +13,11 @@ class InputNumber extends React.Component {
     className = this.props.highlighted
       ? className + ' highlighted'
       : className;
+
+    if (isNaN(this.props.enabled)) this.props.enabled = true;
+
     let number = this.props.number;
+
     if (isNaN(number)) {
       number = "";
     }
@@ -22,13 +26,11 @@ class InputNumber extends React.Component {
       border: 'transparent 0.1vw solid',
       visibility: this.props.visibility,
     };
-    if (this.props.error) {
-      style = {
-        border: 'rgb(255, 0, 111) 0.1vw solid',
-        visibility: this.props.visibility,
-      };
-    }
-    if (isNaN(this.props.enabled)) this.props.enabled = true;
+
+    // change border on error
+    if (this.props.error)
+      style = { border: 'rgb(255, 0, 111) 0.1vw solid' };
+
 
     return (
       <input
@@ -43,6 +45,7 @@ class InputNumber extends React.Component {
     );
   }
 }
+
 InputNumber.propTypes = {
   number: PropTypes.number,
   className: PropTypes.string,

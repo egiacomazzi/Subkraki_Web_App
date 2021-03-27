@@ -4,7 +4,7 @@
  * @param    {List} subtrahend    Subtrahend of the problem
  * @param    {List} corrections    submitted corrections of the problem
  * @param    {List} result    Result of the problem
- * @return   {Minuend, Subtrahend, Correction, Result}   Information about a analogy, if the result/correction was wrong
+ * @return   {minuend, subtrahend, correction, result}   Information about a analogy, if the result/correction was wrong
  */
 export async function getAnalogy(
   minuend,
@@ -47,14 +47,13 @@ export async function getAnalogy(
   };
 }
 
-/**
+/** 
  * Request a diagnosis from the Subtraction API
- * @param    {boolean} correct    if the problem was solved correct
- * @param    {String} spec_error Name of the specific error: "missing", "incorrect", "superfluous"
- * @param    {String} error    Name of the error: "take_difference", "add_ten_to_minuend", "add_ten_to_minuend"
+ * @param    {List} minuend    Minuend of the problem
+ * @param    {List} subtrahend    Subtrahend of the problem
  * @param    {List} corrections    submitted corrections of the problem
  * @param    {List} result    Result of the problem
- * @return   {Minuend, Subtrahend, Correction, Result}   Information about a analogy, if the result/correction was wrong
+ * @return   {correct, spec_error, error, column, correct_val}  Diagnosis of the given problem
  */
 export async function getDiagnosis(
   minuend,
