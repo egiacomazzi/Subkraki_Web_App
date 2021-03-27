@@ -13,11 +13,14 @@ export function getText(
   let analogySubPanelVisibility = analogySubPanelVisibilityParam;
   let styling = [0, 0, 0];
 
+  let updateCorrectionsAndResultObj;
+
+  // helper Variables
   let tempCorrectionStep = null;
   let einerIndex = analogy.min.length - 1;
   let zehnerIndex = analogy.min.length - 2;
   let hunderterIndex = analogy.min.length - 3;
-
+  // variables to create correct texts
   let digit = analogyTexts.digits;
   let digit_with_n = analogyTexts.digits_with_n;
 
@@ -31,11 +34,9 @@ export function getText(
       analogyTexts.withCorrectionAbZehnerFalse,
     analogy: analogyTexts.analogy,
   };
-  let updateCorrectionsAndResultObj;
-
+  // returns text to display while changing the helper variables to the correct state
   let returntext = returnText(correct, analogyTextIndex);
-  console.log(updateCorrectionsAndResultObj);
-
+  // object to return to the main class to adjust variables accordingly
   let returnObject = {
     updateCorrectionsAndResultObj: updateCorrectionsAndResultObj,
     correct: correct,
@@ -52,7 +53,7 @@ export function getText(
 
   console.log(returnObject);
   return returnObject;
-
+  // produces following text
   //" Wir fangen bei den Einern an und rechnen Minuend[einerIndex] - Subtrahend[einerIndex] = Ergebnis[einerIndex]."
   function returnStringStartEinerstelleWithoutCorrection() {
     return (
@@ -72,9 +73,9 @@ export function getText(
   // with inputs at which column (stelle) the calculation of the corresponding min-sub=res happens
   function returnStringNoCorrection(stelle, min, sub, res) {
     var string =
-      text.noCorrectionMoredigits[2] +
+      text.noCorrectionMoredigits[0] +
       stelle +
-      text.noCorrectionMoredigits[3] +
+      text.noCorrectionMoredigits[1] +
       min +
       ' - ' +
       sub +
@@ -83,7 +84,7 @@ export function getText(
       '.';
     return string;
   }
-  // Produces followin Text
+  // Produces followin text
   // "Wir fangen bei der Einerspalte ganz rechts an.
   // Wir könne nicht einfach min[einerIndex]-sub[einerIndex] rechnen, da min[einerIndex] kleiner als sub[einerIndex] ist."
   function returnStringStartEinerstelle() {
@@ -176,17 +177,7 @@ export function getText(
     resZehner,
     resEiner,
   ) {
-    // crossHunderter = crossHunderter;
-    // crossZehner = crossZehner;
-    // curAnalogyMinuendCor[einerIndex] = crossEiner;
-
-    // curAnalogyCorrection[hunderterIndex] = corHunderter;
-    // curAnalogyCorrection[zehnerIndex] = corZehner;
-    // curAnalogyCorrection[einerIndex] = corEiner;
-
-    // curAnalogyResult[hunderterIndex] = resHunderter;
-    // curAnalogyResult[zehnerIndex] = resZehner;
-    // curAnalogyResult[einerIndex] = resEiner;
+    // create update object to return to main class
     updateCorrectionsAndResultObj = {
       crossHunderter: crossHunderter,
       crossZehner: crossZehner,
@@ -201,12 +192,10 @@ export function getText(
     updateCorrectionsAndResultObj = JSON.parse(
       JSON.stringify(updateCorrectionsAndResultObj),
     );
-    console.log(resEiner);
     return;
   }
 
   function returnText(correct, analogyTextIndex) {
-    console.log(analogyTextIndex);
     // var updateCorrectionsAndResultObj;
     if (correct) {
       endAnalogy = true;

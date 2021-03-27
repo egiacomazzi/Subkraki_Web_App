@@ -1,12 +1,7 @@
 {
   "correct": ["Super! Du hast die Aufgabe richtig gelöst!"],
   "noCorrection1digit": ["Wir rechnen ", " und das ergibt "],
-  "noCorrectionMoredigits": [
-    "Wir fangen bei den ",
-    "an und rechnen ",
-    "Jetzt rechnen wir die ",
-    "stelle mit "
-  ],
+  "noCorrectionMoredigits": ["Jetzt rechnen wir die ", "stelle mit "],
   "withCorrectionEinerstelleFalse": [
     "Wir fangen bei der Einerspalte ganz rechts an. Wir können nicht einfach ",
     " rechnen, da ",

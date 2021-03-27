@@ -116,11 +116,19 @@ class Calculate extends React.Component {
       jsonObj.updateCorrectionsAndResultObj.crossEiner;
 
     this.curAnalogyCorrection[this.hunderterIndex] =
-      jsonObj.updateCorrectionsAndResultObj.corHunderter;
+      jsonObj.updateCorrectionsAndResultObj.corHunderter == null
+        ? NaN
+        : jsonObj.updateCorrectionsAndResultObj.corHunderter;
     this.curAnalogyCorrection[this.zehnerIndex] =
-      jsonObj.updateCorrectionsAndResultObj.corZehner;
+      jsonObj.updateCorrectionsAndResultObj.corZehner == null
+        ? NaN
+        : jsonObj.updateCorrectionsAndResultObj.corZehner;
     this.curAnalogyCorrection[this.einerIndex] =
-      jsonObj.updateCorrectionsAndResultObj.corEiner;
+      jsonObj.updateCorrectionsAndResultObj.corEiner == null
+        ? NaN
+        : jsonObj.updateCorrectionsAndResultObj.corEiner;
+
+    console.log(this.curAnalogyCorrection);
 
     this.curAnalogyResult[this.hunderterIndex] =
       jsonObj.updateCorrectionsAndResultObj.resHunderter;
