@@ -1,4 +1,4 @@
-import analogyTexts from '../data/analogyTexts.json';
+import analogyTexts from '../resources/analogyTexts.json';
 
 export function getText(
   analogy,

@@ -11,8 +11,7 @@ class CorrectButton extends React.Component {
         <svg
           viewBox="0 0 71 71"
           fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
+          xmlns="http://www.w3.org/2000/svg">
           <line
             x1="12.6673"
             y1="35.9767"

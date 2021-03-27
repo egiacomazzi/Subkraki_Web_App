@@ -9,7 +9,7 @@
 }
 
 html {
-  background: url('../data/underwater.gif') no-repeat center center
+  background: url('../resources/underwater.gif') no-repeat center center
     fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../CSS/InputOwnNumbers.css';
+import '../../CSS/InputOwnNumbers.css';
 import { withRouter } from 'react-router-dom';
-import CloseSpeechbubble from '../shared/CloseSpeechbubble.js';
+import CloseSpeechbubble from '../../shared/CloseSpeechbubble.js';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {

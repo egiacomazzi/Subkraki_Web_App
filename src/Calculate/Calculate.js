@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SubtractionPanel from '../SubtractionPanel/SubtractionPanel.js';
+import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js';
 import AnalogyPanel from './AnalogyPanel.js';
 import { withRouter } from 'react-router-dom';
 import '../CSS/Calculate.css';
 import Subkraki from '../shared/Subkraki';
-import OwnExercise from '../OwnExercise/OwnExercise.js';
+import OwnExercise from './OwnExercise/OwnExercise.js';
 import { getText } from './AnalogyExplanation.js';
 
 class Calculate extends React.Component {

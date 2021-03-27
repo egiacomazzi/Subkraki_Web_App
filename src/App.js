@@ -1,6 +1,6 @@
 import React from 'react';
 import './CSS/App.css';
-import Welcome from './Welcome/Welcome.js';
+import Welcome from './Welcome.js';
 import Calculate from './Calculate/Calculate.js';
 
 import {

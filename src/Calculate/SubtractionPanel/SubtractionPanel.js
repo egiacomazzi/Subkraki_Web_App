@@ -1,12 +1,12 @@
 import React from 'react';
-import '../CSS/SubtractionPanel.css';
+import '../../CSS/SubtractionPanel.css';
 import ClickableNumber from './ClickableNumber.js';
 import Number from './Number';
 import InputNumber from './InputNumber';
 import CorrectButton from './CorrectButton.js';
 import RefreshButton from './RefreshButton.js';
 import PropTypes from 'prop-types';
-import { getAnalogy, getDiagnosis } from '../PrologConnector.js';
+import { getAnalogy, getDiagnosis } from '../../shared/PrologConnector.js';
 
 class SubtractionPanel extends React.Component {
 

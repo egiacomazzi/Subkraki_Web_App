@@ -1,9 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-//import Speechbubble from '../shared/Speechbubble';
 import InputOwnNumbers from './InputOwnNumbers.js';
-import Subkraki from '../shared/Subkraki.js';
-import '../CSS/OwnExercise.css';
+import Subkraki from '../../shared/Subkraki.js';
+import '../../CSS/OwnExercise.css';
 
 import PropTypes from 'prop-types';
 

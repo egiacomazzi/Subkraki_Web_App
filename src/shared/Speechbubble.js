@@ -2,15 +2,14 @@ import React from 'react';
 import '../CSS/Speechbubble.css';
 import PropTypes from 'prop-types';
 import CloseSpeechbubble from './CloseSpeechbubble';
-import SubtractionPanel from '../SubtractionPanel/SubtractionPanel';
+import SubtractionPanel from '../Calculate/SubtractionPanel/SubtractionPanel';
 
 class Speechbubble extends React.Component {
+
   constructor(props) {
     super(props);
     this.props = props;
-
   }
-
 
   render() {
     if (!this.props.analogy) {

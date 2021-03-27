@@ -1,5 +1,5 @@
 import React from 'react';
-import '../CSS/Numbers.css';
+import '../../CSS/Numbers.css';
 import PropTypes from 'prop-types';
 
 class InputNumber extends React.Component {

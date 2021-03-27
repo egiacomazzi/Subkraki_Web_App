@@ -1,7 +1,7 @@
 import React from 'react';
-import '../CSS/Numbers.css';
-import '../CSS/ClickableNumber.css';
-import '../CSS/ColorScheme.css';
+import '../../CSS/Numbers.css';
+import '../../CSS/ClickableNumber.css';
+import '../../CSS/ColorScheme.css';
 import PropTypes from 'prop-types';
 
 class ClickableNumber extends React.Component {

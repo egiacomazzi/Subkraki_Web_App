@@ -1,10 +1,10 @@
 import React from 'react';
-import '../CSS/Welcome.css';
-import Subkraki from '../shared/Subkraki.js';
-import SpeechbubbleControlls from '../shared/SpeechbubbleControlls.js';
+import './CSS/Welcome.css';
+import Subkraki from './shared/Subkraki.js';
+import SpeechbubbleControlls from './shared/SpeechbubbleControlls.js';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import welcomeTexts from '../data/welcomeTexts.json';
+import welcomeTexts from './resources/welcomeTexts.json';
 
 class Welcome extends React.Component {
   constructor(props) {
@@ -44,7 +44,7 @@ class Welcome extends React.Component {
           text={this.text.intro[this.state.introTextIndex]}
           nextText={
             this.state.introTextIndex ===
-            Object.keys(this.text.intro).length - 1
+              Object.keys(this.text.intro).length - 1
               ? () => this.endWelcome()
               : () => this.nextText()
           }
