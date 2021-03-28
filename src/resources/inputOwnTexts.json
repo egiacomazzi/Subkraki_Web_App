@@ -1,0 +1,7 @@
+{
+  "instructions": "Gib hier die Zahlen für deine eigene Aufgabe ein. Achte darauf, dass die obere Zahl größer ist als die untere.",
+  "enterNumbers": "Bitte gibt eine obere Zahl und eine untere Zahl an.",
+  "enterOnlyNumbers": "Bitte gib nur Zahlen ein.",
+  "subtrahendBiggerThanMinuend": "Die obere Zahl muss größer sein als die untere. Probiere es nochmal.",
+  "numbersTooLong": "Bitte gib nur Zahlen bis 999 ein."
+}

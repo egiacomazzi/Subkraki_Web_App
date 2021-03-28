@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../../CSS/InputOwnNumbers.css';
 import { withRouter } from 'react-router-dom';
 import CloseSpeechbubble from '../../shared/Speechbubble/CloseSpeechbubble.js';
+import inputOwnTexts from '../../resources/inputOwnTexts.json';
 
 class InputOwnNumbers extends React.Component {
   constructor(props) {
@@ -14,8 +15,7 @@ class InputOwnNumbers extends React.Component {
 
     this.errorText = null;
     this.returnSubMintoSub = this.returnSubMintoSub.bind(this);
-    this.text =
-      'Gib hier die Zahlen für deine eigene Aufgabe ein. Achte darauf, dass die obere Zahl größer ist als die untere.';
+    this.text = inputOwnTexts.instructions;
   }
 
   /**
@@ -29,24 +29,31 @@ class InputOwnNumbers extends React.Component {
     // Regex to check if input consists only of numbers
     let numregex = /^\d+$/;
 
-    if (minuend == '' || minuend == null || subtrahend == '' || subtrahend == null) {
-      this.errorText = 'Bitte gebe eine Obere Zahl und eine Untere Zahl an.';
+    if (
+      minuend == '' ||
+      minuend == null ||
+      subtrahend == '' ||
+      subtrahend == null
+    ) {
+      this.errorText = inputOwnTexts.enterNumbers;
       this.setState({
         showError: true,
       });
-
-    } else if (!numregex.test(minuend) || !numregex.test(subtrahend)) {
-      this.errorText = 'Bitte gib nur Zahlen ein.';
+    } else if (
+      !numregex.test(minuend) ||
+      !numregex.test(subtrahend)
+    ) {
+      this.errorText = inputOwnTexts.enterOnlyNumbers;
       this.setState({
         showError: true,
       });
     } else if (Number(minuend) < Number(subtrahend)) {
-      this.errorText = 'Die obere Zahl muss größer sein als die untere. Probiere es nochmal.';
+      this.errorText = inputOwnTexts.subtrahendBiggerThanMinuend;
       this.setState({
         showError: true,
       });
     } else if (Number(minuend) > 999 || Number(subtrahend) > 999) {
-      this.errorText = 'Bitte gib nur Zahlen bis 999 ein.';
+      this.errorText = inputOwnTexts.numbersTooLong;
       this.setState({
         showError: true,
       });
@@ -54,7 +61,6 @@ class InputOwnNumbers extends React.Component {
       this.props.submit(minuend, subtrahend);
     }
   }
-
 
   render() {
     let errortext = [];
@@ -90,8 +96,7 @@ class InputOwnNumbers extends React.Component {
             onClick={this.returnSubMintoSub}
           >
             Los
-            </button>
-
+          </button>
         </div>
         <CloseSpeechbubble close_func={this.props.close_func} />
       </div>
