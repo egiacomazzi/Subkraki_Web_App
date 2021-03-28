@@ -1,30 +1,3 @@
-.calculate .bubble {
-  position: relative;
-  padding: 3.5vw 3vw 1vw 3vw;
-  width: 32vw;
-  border-radius: 12px;
-  border: 0.5vw solid #eee;
-  background-color: white;
-  font-size: 2vw;
-  font-family: var(--font-family);
-  text-align: justify;
-  margin-top: 2vw;
-}
-
-.analogy .bubble:before,
-.analogy .bubble:after {
-  right: 18vw;
-  top: -1vw;
-  border: solid 2vw transparent;
-  border-top: 0;
-  border-bottom-color: #fff;
-  z-index: 0;
-}
-
-.analogy .bubble::before {
-  right: 18vw;
-  top: -3.8vw;
-  border: solid 2vw transparent;
-  border-bottom-color: #eee;
-  z-index: -1;
+.analogy .panel {
+  padding: 0.5vw 0 0 0;
 }

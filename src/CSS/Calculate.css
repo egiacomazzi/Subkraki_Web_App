@@ -13,8 +13,7 @@
   display: grid;
   grid-template-areas: 'buttons subkraki_small' 'panel analogy';
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 10vw auto;
-  align-items: center;
+  grid-template-rows: 8vw auto;
 }
 
 .calculate .Speech {
@@ -27,11 +26,18 @@
 }
 
 .calculate .SpeechbubbleControls {
-  grid-template-rows: 38vw 10vw;
+  grid-template-rows: 35vw 8vw;
+}
+
+.calculate .left,
+.calculate .right {
+  align-self: end;
 }
 
 .calculate .CloseSpeech {
-  margin-top: 2vw;
+  width: 4vw;
+  height: 4vw;
+  left: -4vw;
 }
 
 .calculate > .Subkraki {
@@ -49,13 +55,13 @@
 }
 
 .Subkraki_small > img {
-  height: 8vw;
+  height: 5vw;
   margin-top: 1vw;
 }
 
 .buttonContainer {
   width: auto;
-  height: 12vw;
+  height: 8vw;
   grid-area: buttons;
   display: grid;
   grid-template-areas: 'ownButton randomButton ';
@@ -82,6 +88,36 @@
   height: 5vw;
   font-weight: bold;
   border-radius: 10px;
+}
+
+.calculate .bubble {
+  position: relative;
+  padding: 2vw 3vw 1vw 3vw;
+  width: 32vw;
+  border-radius: 12px;
+  border: 0.5vw solid #eee;
+  background-color: white;
+  font-size: 2vw;
+  font-family: var(--font-family);
+  text-align: justify;
+}
+
+.analogy .bubble:before,
+.analogy .bubble:after {
+  right: 17vw;
+  top: -1vw;
+  border: solid 2vw transparent;
+  border-top: 0;
+  border-bottom-color: #fff;
+  z-index: 0;
+}
+
+.analogy .bubble::before {
+  right: 17vw;
+  top: -3.8vw;
+  border: solid 2vw transparent;
+  border-bottom-color: #eee;
+  z-index: -1;
 }
 
 @media only screen and (max-width: 600px) {

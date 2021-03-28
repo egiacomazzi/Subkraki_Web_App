@@ -4,17 +4,13 @@
     'bubble subkraki'
     'bubble subkraki';
   grid-template-columns: 2fr 1fr;
-  margin-top: 4vw;
+  padding-top: 4vw;
 }
-.ownEx > .CloseSpeech {
-  z-index: 2;
-  width: 5vw;
-  height: 5vw;
-  position: relative;
-  left: 0vw;
-  top: 0.5vw;
-  grid-area: close;
+
+.ownEx .CloseSpeech {
+  left: -5.1vw;
 }
+
 .ownEx > .Subkraki {
   grid-area: subkraki;
   margin: auto;

@@ -11,7 +11,7 @@
   font-family: var(--font-family);
   position: relative;
   grid-area: inputExercise;
-  padding: 3vw;
+  padding: 2vw 3vw 0 3vw;
   width: 45vw;
   height: 42vw;
   border-radius: 12px;
@@ -25,7 +25,7 @@
     'untereZahl untereInput'
     'errorText errorText'
     'losButton losButton';
-  grid-template-rows: 15vw 7vw 7vw 8vw 7vw;
+  grid-template-rows: 12vw 7vw 7vw 7vw 7vw;
 }
 
 .inputOwnExBubble:before,
@@ -52,13 +52,13 @@
 
 .ownExText {
   grid-area: textOwnEx;
-  text-align: center;
-  font-size: 3vw;
+  text-align: justify;
+  font-size: 2.5vw;
 }
 .obereZahlText {
   grid-area: obereZahl;
   text-align: right;
-  font-size: 3vw;
+  font-size: 2.5vw;
 }
 .obereZahlInput {
   grid-area: obereInput;
@@ -67,7 +67,7 @@
 .untereZahlText {
   grid-area: untereZahl;
   text-align: right;
-  font-size: 3vw;
+  font-size: 2.5vw;
 }
 .untereZahlInput {
   grid-area: untereInput;
@@ -77,7 +77,7 @@
 .errorText {
   grid-area: errorText;
   text-align: center;
-  font-size: 2.5vw;
+  font-size: 2vw;
   color: var(--error-pink);
 }
 
@@ -85,6 +85,7 @@
   position: relative;
   z-index: 2;
 }
+
 .inputOwnExBubble p:last-child {
   margin-bottom: 0;
 }
@@ -105,7 +106,7 @@
     )
     0 100%/ 4ch 2px no-repeat;
 
-  font: 3.5vw droid sans mono, consolas, monospace;
+  font: 3vw droid sans mono, consolas, monospace;
   letter-spacing: 0.5ch;
 }
 .obereZahlInput:focus,
@@ -120,12 +121,11 @@
   border: none;
   text-decoration: none;
   border-radius: 4%/12%;
-  font-size: 5vw;
-  width: 20vw;
+  font-size: 4vw;
+  width: 15vw;
   grid-area: losButton;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 1vw;
   text-align: center;
 }
 

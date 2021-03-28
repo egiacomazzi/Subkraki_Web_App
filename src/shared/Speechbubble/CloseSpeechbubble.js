@@ -4,17 +4,15 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
 class CloseSpeechbubble extends React.Component {
-
   /**
    * Closes the Speechbubble and navigates to...
    * '/rechnen/' if we were on the welcome-page or...
-   * just closes Speechbubble 
+   * just closes Speechbubble
    **/
   close() {
     if (this.props.location.pathname == '/')
       this.props.history.push('/rechnen');
-    else
-      this.props.close_func();
+    else this.props.close_func();
   }
 
   render() {
@@ -24,37 +22,28 @@ class CloseSpeechbubble extends React.Component {
         <button className="buttonClose" onClick={() => this.close()}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 40 40"
-            enableBackground="new 0 0 40 40"
-            color="black">
+            viewBox="-1 -1 42 42"
+          >
             <line
-              x1="15"
-              y1="15"
-              x2="25"
-              y2="25"
+              x1="12.5"
+              y1="12.5"
+              x2="27.5"
+              y2="27.5"
               stroke={colour}
-              strokeWidth="2.5"
+              strokeWidth="3"
               strokeLinecap="round"
-              strokeMiterlimit="10"></line>
+              strokeMiterlimit="10"
+            ></line>
             <line
-              x1="25"
-              y1="15"
-              x2="15"
-              y2="25"
+              x1="27.5"
+              y1="12.5"
+              x2="12.5"
+              y2="27.5"
               stroke={colour}
-              strokeWidth="2.5"
+              strokeWidth="3"
               strokeLinecap="round"
-              strokeMiterlimit="10"></line>
-            <circle
-              className="circle"
-              cx="20"
-              cy="20"
-              r="19"
-              opacity="0"
-              stroke={colour}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeMiterlimit="10"></circle>
+              strokeMiterlimit="10"
+            ></line>
             <path
               d="M20 1c10.45 0 19 8.55 19 19s-8.55 19-19 19-19-8.55-19-19 8.55-19 19-19z"
               className="progress"
@@ -62,7 +51,8 @@ class CloseSpeechbubble extends React.Component {
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeMiterlimit="10"
-              fill="none"></path>
+              fill="none"
+            ></path>
           </svg>
         </button>
       </div>
