@@ -1,75 +1,23 @@
-# Getting Started with Create React App
+# Subtrahieren mit Subkraki :octopus:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![alt text](src/resources/Subkraki.png 'Subkraki')
 
-## Available Scripts
+Anleitung, um die Web-App zu starten:
 
-In the project directory, you can run:
+1. Installiere [node](https://nodejs.org/en/download/) und [npm](https://www.npmjs.com/get-npm)
+   - Für MacOS mit [Homebrew](https://brew.sh/) `brew install node`
+   - Siehe [hier](https://nodejs.org/en/download/package-manager/) für andere Betriebssysteme
+2. Um alle Dependencies/Packages installiert zu haben, kann folgendes Package zur Hilfe genommen werden: [npm-install-all](https://www.npmjs.com/package/npm-install-all). Es kann mit `npm install npm-install-all -g` installiert werden.
+3. Dann sollte im Projekt Ordner folgender Befehl ausgeführt werden: `npm-install-all`. Dieser sollte alle nötigen Packages installiert haben.
+4. `npm start` aus dem Projekt Orner startes die Web-App. Um alle Funktionen des ITS zur Verfügung zu haben, muss noch die Anleitung in [Subtraktion-API]() befolgt werden.
 
-### `npm start`
+# Aufbau der Web-App
 
-**if** you installed the npm package create-react-app
-To start the app first install `node`and `npm` then install the above mentioned package by
+Die Web-App besteht aus verschiedenen Components, die
+![alt text](src/resources/ReadMe/ComponentDiagram.png 'Component Diagramm')
 
-### `npm i create-react-app'
+# Referenzen
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Die App wurde mit Hilfe von [Create React App](https://github.com/facebook/create-react-app) erstellt
+- [Subkraki Bildquelle](https://www.freepik.com/premium-vector/cute-octopus-cartoon_6520544.htm)
+- [Hintergrund Bildquelle](https://www.animierte-gifs.net/img-animiertes-see-ozean-bild-0008-161513.htm)
