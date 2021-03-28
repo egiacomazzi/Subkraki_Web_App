@@ -10,10 +10,10 @@
     "Wir müssen uns 10 von der ",
     "spalte leihen. Wir ziehen 1 von den ",
     " ab, also ",
-    " - 1 = ",
+    "\u00a0-\u00a01\u00a0=\u00a0",
     ", und erhalten dafür 10 ",
     ", also ",
-    " + 10 = "
+    "\u00a0+\u00a010\u00a0=\u00a0"
   ],
   "withCorrectionAbZehnerFalse": [
     "Wir fangen bei den ",
@@ -36,13 +36,13 @@
   ],
   "special_case_4": [
     "Also müssen wir uns erst noch 10 Zehner von den Hundertern leihen. Dafür rechnen wir ",
-    " - 1 = ",
+    "\u00a0-\u00a01\u00a0=\u00a0",
     ". Jetzt haben wir 10 Zehner und können aus der 0 bei den Zehnern eine 10 machen."
   ],
   "special_case_5": [
-    "Zurück bei den Einern: Jetzt können wir uns einen Zehner leihen. Wir rechnen 10 - 1 = ",
+    "Zurück bei den Einern: Jetzt können wir uns einen Zehner leihen. Wir rechnen 10\u00a0-\u00a01\u00a0=\u00a0",
     ". Also haben wir 10 Einer bekommen und rechnen ",
-    " + 10 = ",
+    "\u00a0+\u00a010\u00a0=\u00a0",
     "."
   ]
 }
