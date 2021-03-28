@@ -61,9 +61,9 @@ export function getText(
       digit_with_n[0] +
       text.withCorrectionAbZehnerFalse[1] +
       analogy.min[einerIndex] +
-      ' - ' +
+      '\u00a0-\u00a0' +
       analogy.sub[einerIndex] +
-      ' = ' +
+      '\u00a0=\u00a0' +
       analogy.res[einerIndex] +
       '.'
     );
@@ -77,9 +77,9 @@ export function getText(
       stelle +
       text.noCorrectionMoredigits[1] +
       min +
-      ' - ' +
+      '\u00a0-\u00a0' +
       sub +
-      ' = ' +
+      '\u00a0=\u00a0' +
       res +
       '.';
     return string;
@@ -91,7 +91,7 @@ export function getText(
     var string1WithCorrection2Digits =
       text.withCorrectionEinerstelleFalse[0] +
       analogy.min[einerIndex] +
-      ' - ' +
+      '\u00a0-\u00a0' +
       analogy.sub[einerIndex] +
       text.withCorrectionEinerstelleFalse[1] +
       analogy.min[einerIndex] +
@@ -109,7 +109,7 @@ export function getText(
       digit[1] +
       text.withCorrectionAbZehnerFalse[3] +
       min +
-      ' - ' +
+      '\u00a0-\u00a0' +
       analogy.sub[zehnerIndex] +
       text.withCorrectionAbZehnerFalse[4] +
       min +
