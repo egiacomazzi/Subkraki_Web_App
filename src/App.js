@@ -9,6 +9,10 @@ import {
   Route,
 } from 'react-router-dom';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 export default function App() {
   return (
     <Router>

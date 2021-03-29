@@ -2,6 +2,10 @@ import React from 'react';
 import subkraki from '../resources/Subkraki.png';
 import PropTypes from 'prop-types';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Subkraki extends React.Component {
 
   /**

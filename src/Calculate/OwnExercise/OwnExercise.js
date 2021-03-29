@@ -3,9 +3,12 @@ import { withRouter } from 'react-router-dom';
 import InputOwnNumbers from './InputOwnNumbers.js';
 import Subkraki from '../../shared/Subkraki.js';
 import '../../CSS/OwnExercise.css';
-
 import PropTypes from 'prop-types';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class OwnExercise extends React.Component {
 
   /**

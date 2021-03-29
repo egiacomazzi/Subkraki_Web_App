@@ -1,5 +1,9 @@
 import analogyTexts from '../../resources/analogyTexts.json';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 export function getText(
   analogy,
   analogyTextIndex,

@@ -1,7 +1,10 @@
 import React from 'react';
-import '../../CSS/Arrow.css';
 import PropTypes from 'prop-types';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Arrow extends React.Component {
 
   /**

@@ -8,6 +8,10 @@ import Subkraki from '../shared/Subkraki';
 import OwnExercise from './OwnExercise/OwnExercise.js';
 import { getText } from './Analogy/AnalogyExplanation.js';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Calculate extends React.Component {
 
   constructor(props) {

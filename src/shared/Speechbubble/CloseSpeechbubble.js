@@ -3,6 +3,10 @@ import '../../CSS/CloseSpeechbubble.css';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class CloseSpeechbubble extends React.Component {
   /**
    * Closes the Speechbubble and navigates to...

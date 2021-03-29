@@ -5,7 +5,11 @@
  * @param    {List} corrections    submitted corrections of the problem
  * @param    {List} result    Result of the problem
  * @return   {minuend, subtrahend, correction, result}   Information about a analogy, if the result/correction was wrong
- */
+ *
+ *
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */ 
 export async function getAnalogy(
   minuend,
   subtrahend,

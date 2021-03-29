@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import CloseSpeechbubble from './CloseSpeechbubble.js';
 import SubtractionPanel from '../../Calculate/SubtractionPanel/SubtractionPanel.js';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Speechbubble extends React.Component {
 
   constructor(props) {

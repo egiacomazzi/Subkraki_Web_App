@@ -5,6 +5,10 @@ import { withRouter } from 'react-router-dom';
 import CloseSpeechbubble from '../../shared/Speechbubble/CloseSpeechbubble.js';
 import inputOwnTexts from '../../resources/inputOwnTexts.json';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class InputOwnNumbers extends React.Component {
   constructor(props) {
     super(props);
