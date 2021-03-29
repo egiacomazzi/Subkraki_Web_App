@@ -73,12 +73,6 @@
     padding-right: 1vw;
   }
 
-  .welcome .CloseSpeech {
-    width: 8vw;
-    height: 8vw;
-    left: -8vw;
-  }
-
   .welcome .bubble:before,
   .welcome .bubble:after {
     left: 36.5vw;

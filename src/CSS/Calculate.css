@@ -34,12 +34,6 @@
   align-self: end;
 }
 
-.calculate .CloseSpeech {
-  width: 4vw;
-  height: 4vw;
-  left: -4vw;
-}
-
 .calculate > .Subkraki {
   grid-area: analogy;
   margin: auto;
@@ -123,11 +117,5 @@
 @media only screen and (max-width: 600px) {
   .calculate .bubble {
     padding-top: 4vw;
-  }
-
-  .calculate .CloseSpeech {
-    width: 7vw;
-    height: 7vw;
-    left: -7vw;
   }
 }

@@ -7,10 +7,6 @@
   padding-top: 4vw;
 }
 
-.ownEx .CloseSpeech {
-  left: -5.1vw;
-}
-
 .ownEx > .Subkraki {
   grid-area: subkraki;
   margin: auto;

@@ -128,11 +128,3 @@
   margin-right: auto;
   text-align: center;
 }
-
-@media only screen and (max-width: 600px) {
-  .inputOwnEx > .CloseSpeech {
-    width: 8vw;
-    height: 8vw;
-    left: -8vw;
-  }
-}
