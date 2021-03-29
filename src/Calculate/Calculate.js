@@ -200,8 +200,7 @@ class Calculate extends React.Component {
   createRandomExercise() {
     this.minuend = Math.floor(100 + Math.random() * (999 - 100)).toString();
     this.subtrahend = Math.floor(1 + Math.random() * (this.minuend - 1)).toString();
-    console.log(this.minuend);
-    console.log(this.subtrahend);
+
     if (this.subtractionRef.current != null)
       this.subtractionRef.current.reset(null);
 

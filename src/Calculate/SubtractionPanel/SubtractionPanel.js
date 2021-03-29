@@ -134,6 +134,9 @@ class SubtractionPanel extends React.Component {
         .textContent;
       if (value === '') {
         minuend.push(parseInt(0));
+      } else if (value.length > 1) {
+        let num = parseInt(value[0]);
+        minuend.push(num);
       } else {
         const num = parseInt(value);
         minuend.push(num);
