@@ -1,6 +1,5 @@
 import React from 'react';
 import SpeechbubbleControlls from '../../shared/Speechbubble/SpeechbubbleControls.js';
-import '../../CSS/AnalogyPanel.css';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 
