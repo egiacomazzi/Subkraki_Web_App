@@ -7,9 +7,8 @@ import PropTypes from 'prop-types';
  * @date: 2021-03-30
  */
 class Subkraki extends React.Component {
-
   /**
-   * @returns a extremly cute octopus with the name Subkraki
+   * @returns a extremly cute octopus called Subkraki
    * a brave and helpful companion, with the ultimative goal to educate kids
    * If you poke him on the head, he will slap you 16 times, 2 times for each arm.
    *
