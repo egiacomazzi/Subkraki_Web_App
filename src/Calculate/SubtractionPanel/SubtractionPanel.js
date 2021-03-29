@@ -8,6 +8,10 @@ import RefreshButton from './RefreshButton.js';
 import PropTypes from 'prop-types';
 import { getAnalogy, getDiagnosis } from '../../shared/PrologConnector.js';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class SubtractionPanel extends React.Component {
 
   constructor(props) {

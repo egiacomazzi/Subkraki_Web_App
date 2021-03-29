@@ -4,6 +4,10 @@ import '../../CSS/ClickableNumber.css';
 import '../../CSS/ColorScheme.css';
 import PropTypes from 'prop-types';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class ClickableNumber extends React.Component {
   render() {
     const number = parseInt(this.props.number, 10);

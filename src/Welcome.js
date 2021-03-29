@@ -6,6 +6,10 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import welcomeTexts from './resources/welcomeTexts.json';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Welcome extends React.Component {
   constructor(props) {
     super(props);

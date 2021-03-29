@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import Speechbubble from './Speechbubble.js';
 import Arrow from './Arrow.js';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class SpeechbubbleControlls extends React.Component {
 
   constructor(props) {

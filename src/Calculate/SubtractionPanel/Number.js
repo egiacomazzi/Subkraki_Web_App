@@ -2,6 +2,10 @@ import React from 'react';
 import '../../CSS/Numbers.css';
 import PropTypes from 'prop-types';
 
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
 class Number extends React.Component {
   ignore(event) {
     event.preventDefault();
