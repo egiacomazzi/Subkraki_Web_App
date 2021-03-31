@@ -1,0 +1,13 @@
+/**
+ * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
+ * @date: 2021-03-30
+ */
+.impressum {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  padding: 1vw;
+  color: var(--primary-lila);
+  font-size: 1.2vw;
+  font-family: var(--font-family);
+}

@@ -1,13 +1,9 @@
-import React from 'react';
-import './CSS/App.css';
-import Welcome from './Welcome.js';
-import Calculate from './Calculate/Calculate.js';
-
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from 'react-router-dom';
+import React from "react";
+import "./CSS/App.css";
+import Welcome from "./Welcome.js";
+import Calculate from "./Calculate/Calculate.js";
+import Impressum from "./shared/Impressum.js";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -22,9 +18,13 @@ export default function App() {
         <Switch>
           <Route path="/rechnen">
             <Calculate />
+            <Impressum />
           </Route>
           {/* Has to be the last route entered because the url matches from the strat and all of them match with "/" */}
-          <Route path="/" component={Welcome}></Route>
+          <Route path="/">
+            <Welcome />
+            <Impressum />
+          </Route>
         </Switch>
       </div>
     </Router>
