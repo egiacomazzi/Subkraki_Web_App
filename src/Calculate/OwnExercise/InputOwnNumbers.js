@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import '../../CSS/InputOwnNumbers.css';
-import { withRouter } from 'react-router-dom';
-import CloseSpeechbubble from '../../shared/Speechbubble/CloseSpeechbubble.js';
-import inputOwnTexts from '../../resources/inputOwnTexts.json';
+import React from "react";
+import PropTypes from "prop-types";
+import "../../CSS/InputOwnNumbers.css";
+import { withRouter } from "react-router-dom";
+import CloseSpeechbubble from "../../shared/Speechbubble/CloseSpeechbubble.js";
+import inputOwnTexts from "../../resources/inputOwnTexts.json";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -27,26 +27,23 @@ class InputOwnNumbers extends React.Component {
    * and submits the minuend and subtrahend to OwnExercise.js
    */
   returnSubMintoSub() {
-    var minuend = document.getElementById('obereZahl').value;
-    var subtrahend = document.getElementById('untereZahl').value;
+    var minuend = document.getElementById("obereZahl").value;
+    var subtrahend = document.getElementById("untereZahl").value;
 
     // Regex to check if input consists only of numbers
     let numregex = /^\d+$/;
 
     if (
-      minuend == '' ||
+      minuend === "" ||
       minuend == null ||
-      subtrahend == '' ||
+      subtrahend === "" ||
       subtrahend == null
     ) {
       this.errorText = inputOwnTexts.enterNumbers;
       this.setState({
         showError: true,
       });
-    } else if (
-      !numregex.test(minuend) ||
-      !numregex.test(subtrahend)
-    ) {
+    } else if (!numregex.test(minuend) || !numregex.test(subtrahend)) {
       this.errorText = inputOwnTexts.enterOnlyNumbers;
       this.setState({
         showError: true,

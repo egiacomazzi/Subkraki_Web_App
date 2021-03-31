@@ -1,10 +1,10 @@
-import React from 'react';
-import './CSS/Welcome.css';
-import Subkraki from './shared/Subkraki.js';
-import SpeechbubbleControlls from './shared/Speechbubble/SpeechbubbleControls.js';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import welcomeTexts from './resources/welcomeTexts.json';
+import React from "react";
+import "./CSS/Welcome.css";
+import Subkraki from "./shared/Subkraki.js";
+import SpeechbubbleControlls from "./shared/Speechbubble/SpeechbubbleControls.js";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
+import welcomeTexts from "./resources/welcomeTexts.json";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -26,7 +26,7 @@ class Welcome extends React.Component {
    * and updates the texts for the Speechbubble
    */
   lastText() {
-    if (this.state.introTextIndex == 0) {
+    if (this.state.introTextIndex === 0) {
       return;
     }
     this.setState({
@@ -48,7 +48,7 @@ class Welcome extends React.Component {
    * Ends the welcome page for the calculation page
    */
   endWelcome() {
-    this.props.history.push('/rechnen');
+    this.props.history.push("/rechnen");
   }
 
   /**
@@ -61,7 +61,7 @@ class Welcome extends React.Component {
           text={this.text.intro[this.state.introTextIndex]}
           nextText={
             this.state.introTextIndex ===
-              Object.keys(this.text.intro).length - 1
+            Object.keys(this.text.intro).length - 1
               ? () => this.endWelcome()
               : () => this.nextText()
           }

@@ -1,6 +1,6 @@
-import React from 'react';
-import subkraki from '../resources/Subkraki.png';
-import PropTypes from 'prop-types';
+import React from "react";
+import subkraki from "../resources/Subkraki.png";
+import PropTypes from "prop-types";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -43,13 +43,13 @@ class Subkraki extends React.Component {
           ```o--'''                       
    */
   render() {
-    let className = 'Subkraki';
-    if (this.props.size == 'small') {
-      className = className + '_small';
+    let className = "Subkraki";
+    if (this.props.size === "small") {
+      className = className + "_small";
     }
     return (
       <div className={className}>
-        <img src={subkraki} />
+        <img src={subkraki} alt="Subkraki" />
       </div>
     );
   }

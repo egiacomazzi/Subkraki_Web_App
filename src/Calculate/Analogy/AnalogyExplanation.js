@@ -1,4 +1,4 @@
-import analogyTexts from '../../resources/analogyTexts.json';
+import analogyTexts from "../../resources/analogyTexts.json";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -10,7 +10,7 @@ export function getText(
   correct,
   beginningBoolean,
   endBoolean,
-  analogySubPanelVisibilityParam,
+  analogySubPanelVisibilityParam
 ) {
   let beginningAnalogy = beginningBoolean;
   let endAnalogy = endBoolean;
@@ -32,10 +32,8 @@ export function getText(
     correct: analogyTexts.correct,
     noCorrection1digit: analogyTexts.noCorrection1digit,
     noCorrectionMoredigits: analogyTexts.noCorrectionMoredigits,
-    withCorrectionEinerstelleFalse:
-      analogyTexts.withCorrectionEinerstelleFalse,
-    withCorrectionAbZehnerFalse:
-      analogyTexts.withCorrectionAbZehnerFalse,
+    withCorrectionEinerstelleFalse: analogyTexts.withCorrectionEinerstelleFalse,
+    withCorrectionAbZehnerFalse: analogyTexts.withCorrectionAbZehnerFalse,
     analogy: analogyTexts.analogy,
   };
   // returns text to display while changing the helper variables to the correct state
@@ -65,11 +63,11 @@ export function getText(
       digit_with_n[0] +
       text.withCorrectionAbZehnerFalse[1] +
       analogy.min[einerIndex] +
-      '\u00a0-\u00a0' +
+      "\u00a0-\u00a0" +
       analogy.sub[einerIndex] +
-      '\u00a0=\u00a0' +
+      "\u00a0=\u00a0" +
       analogy.res[einerIndex] +
-      '.'
+      "."
     );
   }
 
@@ -81,11 +79,11 @@ export function getText(
       stelle +
       text.noCorrectionMoredigits[1] +
       min +
-      '\u00a0-\u00a0' +
+      "\u00a0-\u00a0" +
       sub +
-      '\u00a0=\u00a0' +
+      "\u00a0=\u00a0" +
       res +
-      '.';
+      ".";
     return string;
   }
   // Produces followin text
@@ -95,7 +93,7 @@ export function getText(
     var string1WithCorrection2Digits =
       text.withCorrectionEinerstelleFalse[0] +
       analogy.min[einerIndex] +
-      '\u00a0-\u00a0' +
+      "\u00a0-\u00a0" +
       analogy.sub[einerIndex] +
       text.withCorrectionEinerstelleFalse[1] +
       analogy.min[einerIndex] +
@@ -113,7 +111,7 @@ export function getText(
       digit[1] +
       text.withCorrectionAbZehnerFalse[3] +
       min +
-      '\u00a0-\u00a0' +
+      "\u00a0-\u00a0" +
       analogy.sub[zehnerIndex] +
       text.withCorrectionAbZehnerFalse[4] +
       min +
@@ -133,7 +131,7 @@ export function getText(
     min,
     cor,
     special = false,
-    specialHunderter = false,
+    specialHunderter = false
   ) {
     if (special) {
       var corIndex2 = cor[index2] - 10;
@@ -150,7 +148,7 @@ export function getText(
       stelle2 +
       text.withCorrectionEinerstelleFalse[5] +
       stelle2 +
-      'n ' +
+      "n " +
       text.withCorrectionEinerstelleFalse[6] +
       min[index2] +
       text.withCorrectionEinerstelleFalse[7] +
@@ -161,7 +159,7 @@ export function getText(
       minIndex1 +
       text.withCorrectionEinerstelleFalse[10] +
       cor[index1] +
-      '.';
+      ".";
     return string2WithCorrection2Digits;
   }
   // Produces the following lines of text:
@@ -179,7 +177,7 @@ export function getText(
     corEiner,
     resHunderter,
     resZehner,
-    resEiner,
+    resEiner
   ) {
     // create update object to return to main class
     updateCorrectionsAndResultObj = {
@@ -194,7 +192,7 @@ export function getText(
       resEiner: resEiner,
     };
     updateCorrectionsAndResultObj = JSON.parse(
-      JSON.stringify(updateCorrectionsAndResultObj),
+      JSON.stringify(updateCorrectionsAndResultObj)
     );
     return;
   }
@@ -205,7 +203,7 @@ export function getText(
       endAnalogy = true;
       beginningAnalogy = true;
       // important if one first gets the exercise wrong and then correct
-      analogySubPanelVisibility = 'hidden';
+      analogySubPanelVisibility = "hidden";
       // update analogy
       updateCorrectionsAndResult(
         false,
@@ -216,7 +214,7 @@ export function getText(
         NaN,
         NaN,
         NaN,
-        NaN,
+        NaN
       );
       return text.correct[0];
     } else {
@@ -232,42 +230,40 @@ export function getText(
         NaN,
         NaN,
         NaN,
-        NaN,
+        NaN
       );
       // first two texts needed for all analogies
       switch (analogyTextIndex) {
         case 0:
           beginningAnalogy = true;
           endAnalogy = false;
-          analogySubPanelVisibility = 'hidden';
+          analogySubPanelVisibility = "hidden";
           return text.analogy[0];
         case 1:
           beginningAnalogy = false;
           endAnalogy = false;
-          analogySubPanelVisibility = 'hidden';
+          analogySubPanelVisibility = "hidden";
           styling = [0, 0, 0];
           return text.analogy[1];
       }
-
-      analogySubPanelVisibility = 'visible';
+      analogySubPanelVisibility = "visible";
 
       // Analogies with no corrections
-      const equals = (a, b) =>
-        JSON.stringify(a) === JSON.stringify(b);
+      const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
 
       if (equals(analogy.min, analogy.cor)) {
         // no correction + 1 digit long
-        if (analogy.min.length == 1) {
+        if (analogy.min.length === 1) {
           switch (analogyTextIndex) {
             case 2:
               var stringNoCorr1Digit =
                 text.noCorrection1digit[0] +
                 analogy.min[0] +
-                ' - ' +
+                " - " +
                 analogy.sub[0] +
                 text.noCorrection1digit[1] +
                 analogy.res[0] +
-                '.';
+                ".";
               // update analogy
               updateCorrectionsAndResult(
                 false,
@@ -278,7 +274,7 @@ export function getText(
                 NaN,
                 NaN,
                 NaN,
-                analogy.res[0],
+                analogy.res[0]
               );
 
               //update styling
@@ -301,7 +297,7 @@ export function getText(
                 NaN,
                 NaN,
                 NaN,
-                analogy.res[0],
+                analogy.res[0]
               );
               styling = [0, 0, 0];
               return finalString;
@@ -322,11 +318,11 @@ export function getText(
                 NaN,
                 NaN,
                 NaN,
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               //update styling
-              styling = einerIndex == 2 ? [0, 0, 1] : [0, 1, 0];
+              styling = einerIndex === 2 ? [0, 0, 1] : [0, 1, 0];
               //update arrows
               beginningAnalogy = false;
               endAnalogy = false;
@@ -337,7 +333,7 @@ export function getText(
                 digit[1],
                 analogy.min[zehnerIndex],
                 analogy.sub[zehnerIndex],
-                analogy.res[zehnerIndex],
+                analogy.res[zehnerIndex]
               );
               // update analogy
               updateCorrectionsAndResult(
@@ -349,11 +345,11 @@ export function getText(
                 NaN,
                 NaN,
                 analogy.res[zehnerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               //update styling
-              styling = einerIndex == 2 ? [0, 1, 0] : [1, 0, 0];
+              styling = einerIndex === 2 ? [0, 1, 0] : [1, 0, 0];
 
               //update arrows
               beginningAnalogy = false;
@@ -373,7 +369,7 @@ export function getText(
                   NaN,
                   NaN,
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 //update arrows
                 beginningAnalogy = false;
@@ -386,7 +382,7 @@ export function getText(
                 digit[2],
                 analogy.min[hunderterIndex],
                 analogy.sub[hunderterIndex],
-                analogy.res[hunderterIndex],
+                analogy.res[hunderterIndex]
               );
               // update analogy
               updateCorrectionsAndResult(
@@ -398,7 +394,7 @@ export function getText(
                 NaN,
                 analogy.res[hunderterIndex],
                 analogy.res[zehnerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               //update styling
@@ -424,7 +420,7 @@ export function getText(
                 NaN,
                 analogy.res[hunderterIndex],
                 analogy.res[zehnerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
               styling = [0, 0, 0];
               return finalString;
@@ -447,7 +443,7 @@ export function getText(
                 NaN,
                 NaN,
                 NaN,
-                NaN,
+                NaN
               );
               //update styling
               styling = [0, 1, 0];
@@ -462,7 +458,7 @@ export function getText(
                 einerIndex,
                 zehnerIndex,
                 analogy.min,
-                analogy.cor,
+                analogy.cor
               );
 
               // update analogy
@@ -475,7 +471,7 @@ export function getText(
                 analogy.cor[einerIndex],
                 NaN,
                 NaN,
-                NaN,
+                NaN
               );
 
               //update styling
@@ -491,7 +487,7 @@ export function getText(
                 digit[0],
                 analogy.cor[einerIndex],
                 analogy.sub[einerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               // update analogy
@@ -504,7 +500,7 @@ export function getText(
                 analogy.cor[einerIndex],
                 NaN,
                 NaN,
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               //update styling
@@ -520,7 +516,7 @@ export function getText(
                 digit[1],
                 analogy.cor[zehnerIndex],
                 analogy.sub[zehnerIndex],
-                analogy.res[zehnerIndex],
+                analogy.res[zehnerIndex]
               );
 
               // update analogy
@@ -533,7 +529,7 @@ export function getText(
                 analogy.cor[einerIndex],
                 NaN,
                 analogy.res[zehnerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
 
               //update styling
@@ -559,7 +555,7 @@ export function getText(
                 analogy.cor[einerIndex],
                 NaN,
                 analogy.res[zehnerIndex],
-                analogy.res[einerIndex],
+                analogy.res[einerIndex]
               );
               styling = [0, 0, 0];
               return finalString;
@@ -581,7 +577,7 @@ export function getText(
                   NaN,
                   NaN,
                   NaN,
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 //update styling
                 styling = [0, 0, 1];
@@ -592,7 +588,7 @@ export function getText(
                 return string2withCorrectioninBack;
               case 3:
                 var string3withCorrectioninBack = returnStringZehnerstelle(
-                  analogy.min[zehnerIndex],
+                  analogy.min[zehnerIndex]
                 );
                 // update analogy
                 updateCorrectionsAndResult(
@@ -604,7 +600,7 @@ export function getText(
                   NaN,
                   NaN,
                   NaN,
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 //update styling
                 styling = [0, 1, 0];
@@ -620,7 +616,7 @@ export function getText(
                   zehnerIndex,
                   hunderterIndex,
                   analogy.min,
-                  analogy.cor,
+                  analogy.cor
                 );
 
                 // update analogy
@@ -633,7 +629,7 @@ export function getText(
                   NaN,
                   NaN,
                   NaN,
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 //update styling
                 styling = [0, 1, 0];
@@ -648,7 +644,7 @@ export function getText(
                   digit[1],
                   analogy.cor[zehnerIndex],
                   analogy.sub[zehnerIndex],
-                  analogy.res[zehnerIndex],
+                  analogy.res[zehnerIndex]
                 );
 
                 // update analogy
@@ -661,7 +657,7 @@ export function getText(
                   NaN,
                   NaN,
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 //update styling
@@ -677,7 +673,7 @@ export function getText(
                   digit[2],
                   analogy.cor[hunderterIndex],
                   analogy.sub[hunderterIndex],
-                  analogy.res[hunderterIndex],
+                  analogy.res[hunderterIndex]
                 );
 
                 // update analogy
@@ -690,7 +686,7 @@ export function getText(
                   NaN,
                   analogy.res[hunderterIndex],
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 //update styling
@@ -716,14 +712,12 @@ export function getText(
                   NaN,
                   analogy.res[hunderterIndex],
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 styling = [0, 0, 0];
                 return finalString;
             }
-          } else if (
-            analogy.min[zehnerIndex] === analogy.cor[zehnerIndex]
-          ) {
+          } else if (analogy.min[zehnerIndex] === analogy.cor[zehnerIndex]) {
             //correction at Einer and Zehnerstelle only
             switch (analogyTextIndex) {
               case 2:
@@ -738,7 +732,7 @@ export function getText(
                   NaN,
                   NaN,
                   NaN,
-                  NaN,
+                  NaN
                 );
                 //update styling
                 styling = [0, 0, 1];
@@ -754,7 +748,7 @@ export function getText(
                   einerIndex,
                   zehnerIndex,
                   analogy.min,
-                  analogy.cor,
+                  analogy.cor
                 );
 
                 // update analogy
@@ -767,7 +761,7 @@ export function getText(
                   analogy.cor[einerIndex],
                   NaN,
                   NaN,
-                  NaN,
+                  NaN
                 );
 
                 //update styling
@@ -783,7 +777,7 @@ export function getText(
                   digit[0],
                   analogy.cor[einerIndex],
                   analogy.sub[einerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 // update analogy
@@ -796,7 +790,7 @@ export function getText(
                   analogy.cor[einerIndex],
                   NaN,
                   NaN,
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 //update styling
@@ -812,7 +806,7 @@ export function getText(
                   digit[1],
                   analogy.cor[zehnerIndex],
                   analogy.sub[zehnerIndex],
-                  analogy.res[zehnerIndex],
+                  analogy.res[zehnerIndex]
                 );
 
                 // update analogy
@@ -825,7 +819,7 @@ export function getText(
                   analogy.cor[einerIndex],
                   NaN,
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 //update styling
@@ -841,7 +835,7 @@ export function getText(
                   digit[2],
                   analogy.cor[hunderterIndex],
                   analogy.sub[hunderterIndex],
-                  analogy.res[hunderterIndex],
+                  analogy.res[hunderterIndex]
                 );
 
                 // update analogy
@@ -854,7 +848,7 @@ export function getText(
                   analogy.cor[einerIndex],
                   analogy.res[hunderterIndex],
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
 
                 //update styling
@@ -880,7 +874,7 @@ export function getText(
                   analogy.cor[einerIndex],
                   analogy.res[hunderterIndex],
                   analogy.res[zehnerIndex],
-                  analogy.res[einerIndex],
+                  analogy.res[einerIndex]
                 );
                 styling = [0, 0, 0];
                 return finalString;
@@ -903,7 +897,7 @@ export function getText(
                     NaN,
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
                   //update styling
                   styling = [0, 0, 1];
@@ -925,7 +919,7 @@ export function getText(
                     NaN,
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
 
                   //update styling
@@ -949,11 +943,11 @@ export function getText(
                     true,
                     false,
                     analogy.cor[hunderterIndex],
-                    '10',
+                    "10",
                     NaN,
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
 
                   //update styling
@@ -983,7 +977,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
 
                   //update styling
@@ -1000,7 +994,7 @@ export function getText(
                     digit[0],
                     analogy.cor[einerIndex],
                     analogy.sub[einerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   // update analogy
@@ -1013,7 +1007,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1029,7 +1023,7 @@ export function getText(
                     digit[1],
                     analogy.cor[zehnerIndex],
                     analogy.sub[zehnerIndex],
-                    analogy.res[zehnerIndex],
+                    analogy.res[zehnerIndex]
                   );
 
                   // update analogy
@@ -1042,7 +1036,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1058,7 +1052,7 @@ export function getText(
                     digit[2],
                     analogy.cor[hunderterIndex],
                     analogy.sub[hunderterIndex],
-                    analogy.res[hunderterIndex],
+                    analogy.res[hunderterIndex]
                   );
 
                   // update analogy
@@ -1071,7 +1065,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     analogy.res[hunderterIndex],
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1097,7 +1091,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     analogy.res[hunderterIndex],
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
                   styling = [0, 0, 0];
                   return finalString;
@@ -1117,7 +1111,7 @@ export function getText(
                     NaN,
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
                   //update styling
                   styling = [0, 0, 1];
@@ -1134,7 +1128,7 @@ export function getText(
                     zehnerIndex,
                     analogy.min,
                     analogy.cor,
-                    true,
+                    true
                   );
 
                   // update analogy
@@ -1152,7 +1146,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    NaN,
+                    NaN
                   );
 
                   //update styling
@@ -1167,7 +1161,7 @@ export function getText(
                     digit[0],
                     analogy.cor[einerIndex],
                     analogy.sub[einerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   // update analogy
@@ -1184,7 +1178,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1196,7 +1190,7 @@ export function getText(
                   return string4withCorrectionAll;
                 case 5:
                   var string5withCorrectionAll = returnStringZehnerstelle(
-                    analogy.cor[zehnerIndex] - 10,
+                    analogy.cor[zehnerIndex] - 10
                   );
                   // update analogy
                   tempCorrectionStep =
@@ -1212,7 +1206,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
                   //update styling
                   styling = [0, 0, 1];
@@ -1230,7 +1224,7 @@ export function getText(
                     analogy.min,
                     analogy.cor,
                     false,
-                    true,
+                    true
                   );
 
                   // update analogy
@@ -1243,7 +1237,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     NaN,
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1259,7 +1253,7 @@ export function getText(
                     digit[1],
                     analogy.cor[zehnerIndex],
                     analogy.sub[zehnerIndex],
-                    analogy.res[zehnerIndex],
+                    analogy.res[zehnerIndex]
                   );
 
                   // update analogy
@@ -1272,7 +1266,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     NaN,
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1288,7 +1282,7 @@ export function getText(
                     digit[2],
                     analogy.cor[hunderterIndex],
                     analogy.sub[hunderterIndex],
-                    analogy.res[hunderterIndex],
+                    analogy.res[hunderterIndex]
                   );
 
                   // update analogy
@@ -1301,7 +1295,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     analogy.res[hunderterIndex],
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
 
                   //update styling
@@ -1327,7 +1321,7 @@ export function getText(
                     analogy.cor[einerIndex],
                     analogy.res[hunderterIndex],
                     analogy.res[zehnerIndex],
-                    analogy.res[einerIndex],
+                    analogy.res[einerIndex]
                   );
                   styling = [0, 0, 0];
                   return finalString;

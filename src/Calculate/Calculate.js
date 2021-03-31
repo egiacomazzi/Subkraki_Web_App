@@ -1,23 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import SubtractionPanel from './SubtractionPanel/SubtractionPanel.js';
-import AnalogyPanel from './Analogy/AnalogyPanel.js';
-import { withRouter } from 'react-router-dom';
-import '../CSS/Calculate.css';
-import Subkraki from '../shared/Subkraki';
-import OwnExercise from './OwnExercise/OwnExercise.js';
-import { getText } from './Analogy/AnalogyExplanation.js';
+import React from "react";
+import PropTypes from "prop-types";
+import SubtractionPanel from "./SubtractionPanel/SubtractionPanel.js";
+import AnalogyPanel from "./Analogy/AnalogyPanel.js";
+import { withRouter } from "react-router-dom";
+import "../CSS/Calculate.css";
+import Subkraki from "../shared/Subkraki";
+import OwnExercise from "./OwnExercise/OwnExercise.js";
+import { getText } from "./Analogy/AnalogyExplanation.js";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
  * @date: 2021-03-30
  */
 class Calculate extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      error: 'error1',
+      error: "error1",
       analogyTextIndex: 0,
       display: false,
       correct: null,
@@ -36,7 +35,7 @@ class Calculate extends React.Component {
     this.curAnalogyCorrection = []; // String array | NaN = leeres Feld
     this.curAnalogyMinuendCor = []; // Bool array | false = nicht durchgestrichen
 
-    this.analogySubPanelVisibility = 'hidden';
+    this.analogySubPanelVisibility = "hidden";
 
     this.refresh = false;
 
@@ -54,8 +53,8 @@ class Calculate extends React.Component {
       spec_error: [],
     };
 
-    this.minuend = '';
-    this.subtrahend = '';
+    this.minuend = "";
+    this.subtrahend = "";
     this.beginningAnalogy = true;
     this.endAnalogy = false;
     this.einerIndex = null;
@@ -70,7 +69,7 @@ class Calculate extends React.Component {
    * if the left arrow was clicked in SpeechbubbleControls
    */
   lastText() {
-    if (this.state.analogyTextIndex == 0) {
+    if (this.state.analogyTextIndex === 0) {
       return;
     }
     if (this.endAnalogy) {
@@ -96,7 +95,7 @@ class Calculate extends React.Component {
 
   /**
    * Sets necessary variables and returns the text for the AnalogyPanel
-   * @returns the text for the AnalogyPanel 
+   * @returns the text for the AnalogyPanel
    */
   returnText() {
     var jsonObj = getText(
@@ -105,14 +104,13 @@ class Calculate extends React.Component {
       this.state.correct,
       this.beginningAnalogy,
       this.endAnalogy,
-      this.analogySubPanelVisibility,
+      this.analogySubPanelVisibility
     );
     // set variables which were changed in getText to new value
     this.analogy = jsonObj.analogy;
     this.endAnalogy = jsonObj.endAnalogy;
     this.beginningAnalogy = jsonObj.beginningAnalogy;
-    this.analogySubPanelVisibility =
-      jsonObj.analogySubPanelVisibility;
+    this.analogySubPanelVisibility = jsonObj.analogySubPanelVisibility;
     this.styling = jsonObj.styling;
 
     this.einerIndex = jsonObj.einerIndex;
@@ -157,7 +155,7 @@ class Calculate extends React.Component {
    */
   async submit() {
     let r = await this.subtractionRef.current.getAnalogyAndDiagnosis();
-    if (typeof r === 'undefined') return;
+    if (typeof r === "undefined") return;
 
     let analogy = r.analogy;
     let diagnosis = r.diagnosis;
@@ -177,15 +175,11 @@ class Calculate extends React.Component {
       for (let i = 0; i < this.curAnalogyResult.length; i++)
         this.curAnalogyResult[i] = NaN;
 
-      this.curAnalogyCorrection = new Array(
-        analogy.correction.length,
-      );
+      this.curAnalogyCorrection = new Array(analogy.correction.length);
       for (let i = 0; i < this.curAnalogyCorrection.length; i++)
         this.curAnalogyCorrection[i] = NaN;
 
-      this.curAnalogyMinuendCor = new Array(
-        analogy.subtrahend.length,
-      );
+      this.curAnalogyMinuendCor = new Array(analogy.subtrahend.length);
       for (let i = 0; i < this.curAnalogyMinuendCor.length; i++)
         this.curAnalogyMinuendCor[i] = false;
       this.setState({
@@ -203,7 +197,9 @@ class Calculate extends React.Component {
    */
   createRandomExercise() {
     this.minuend = Math.floor(100 + Math.random() * (999 - 100)).toString();
-    this.subtrahend = Math.floor(1 + Math.random() * (this.minuend - 1)).toString();
+    this.subtrahend = Math.floor(
+      1 + Math.random() * (this.minuend - 1)
+    ).toString();
 
     if (this.subtractionRef.current != null)
       this.subtractionRef.current.reset(null);
@@ -215,8 +211,8 @@ class Calculate extends React.Component {
 
   /**
    * Sets the variables for the user's exercise
-   * @param {string} min: Minuend 
-   * @param {string} sub: Subtrahend 
+   * @param {string} min: Minuend
+   * @param {string} sub: Subtrahend
    */
   getOwnExercise(min, sub) {
     this.minuend = min;
@@ -246,15 +242,12 @@ class Calculate extends React.Component {
     });
   }
 
-
   /**
    * @returns the rendered Calculate component
    */
   render() {
-
     // create a random exercise if there's no exercise
-    if (this.minuend == '')
-      this.createRandomExercise();
+    if (this.minuend === "") this.createRandomExercise();
 
     if (this.state.display) {
       return (
@@ -273,8 +266,8 @@ class Calculate extends React.Component {
             lastText={() => this.lastText()}
             beginning={this.beginningAnalogy ? true : false}
             end={this.endAnalogy ? true : false}
-            sub={String(this.analogy.sub).replace(/,/g, '')}
-            min={String(this.analogy.min).replace(/,/g, '')}
+            sub={String(this.analogy.sub).replace(/,/g, "")}
+            min={String(this.analogy.min).replace(/,/g, "")}
             res={this.curAnalogyResult}
             cor={this.curAnalogyCorrection}
             min_cor={this.curAnalogyMinuendCor}

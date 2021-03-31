@@ -1,7 +1,7 @@
-import React from 'react';
-import '../../CSS/CloseSpeechbubble.css';
-import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import "../../CSS/CloseSpeechbubble.css";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router-dom";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
@@ -14,20 +14,17 @@ class CloseSpeechbubble extends React.Component {
    * just closes Speechbubble
    **/
   close() {
-    if (this.props.location.pathname == '/')
-      this.props.history.push('/rechnen');
+    if (this.props.location.pathname === "/")
+      this.props.history.push("/rechnen");
     else this.props.close_func();
   }
 
   render() {
-    const colour = 'var(--primary-lila)';
+    const colour = "var(--primary-lila)";
     return (
       <div className="CloseSpeech">
         <button className="buttonClose" onClick={() => this.close()}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="-1 -1 42 42"
-          >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="-1 -1 42 42">
             <line
               x1="12.5"
               y1="12.5"

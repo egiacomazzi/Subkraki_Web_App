@@ -1,19 +1,18 @@
-import React from 'react';
-import '../../CSS/SubtractionPanel.css';
-import ClickableNumber from './ClickableNumber.js';
-import Number from './Number';
-import InputNumber from './InputNumber';
-import CorrectButton from './CorrectButton.js';
-import RefreshButton from './RefreshButton.js';
-import PropTypes from 'prop-types';
-import { getAnalogy, getDiagnosis } from '../../shared/PrologConnector.js';
+import React from "react";
+import "../../CSS/SubtractionPanel.css";
+import ClickableNumber from "./ClickableNumber.js";
+import Number from "./Number";
+import InputNumber from "./InputNumber";
+import CorrectButton from "./CorrectButton.js";
+import RefreshButton from "./RefreshButton.js";
+import PropTypes from "prop-types";
+import { getAnalogy, getDiagnosis } from "../../shared/PrologConnector.js";
 
 /**
  * @author: Elena Giacomazzi, Leon Fruth, Franziska Mäckel
  * @date: 2021-03-30
  */
 class SubtractionPanel extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -55,9 +54,7 @@ class SubtractionPanel extends React.Component {
       return;
     }
     this.setState({
-      corrections_row_error: Array(this.props.minuend.length).fill(
-        false,
-      ),
+      corrections_row_error: Array(this.props.minuend.length).fill(false),
       error_message: null,
     });
     const minuend = this.getMinuend();
@@ -67,7 +64,7 @@ class SubtractionPanel extends React.Component {
       minuend,
       subtrahend,
       corrections.corrections,
-      result.result,
+      result.result
     );
     let analogy = {};
     if (!diagnosis.correct) {
@@ -75,7 +72,7 @@ class SubtractionPanel extends React.Component {
         minuend,
         subtrahend,
         corrections.corrections,
-        result.result,
+        result.result
       );
     }
 
@@ -90,14 +87,13 @@ class SubtractionPanel extends React.Component {
     let result = [];
     let error_message = null;
     for (let i = 0; i < this.props.minuend.length; i++) {
-      const value = document.getElementsByClassName('result' + i)[0]
-        .value;
-      if (value === '') {
+      const value = document.getElementsByClassName("result" + i)[0].value;
+      if (value === "") {
         result.push(parseInt(0));
       } else {
         const num = parseInt(value);
         if (isNaN(num)) {
-          error_message = 'Achtung: Gib nur Zahlen ein.';
+          error_message = "Achtung: Gib nur Zahlen ein.";
           this.setValidationErrorInResultRow(i);
           break;
         }
@@ -114,10 +110,9 @@ class SubtractionPanel extends React.Component {
   getSubtrahend() {
     let subtrahend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
-      const value = document.getElementsByClassName(
-        'subtrahend' + i,
-      )[0].textContent;
-      if (value === '') {
+      const value = document.getElementsByClassName("subtrahend" + i)[0]
+        .textContent;
+      if (value === "") {
         subtrahend.push(parseInt(0));
       } else {
         const num = parseInt(value);
@@ -134,9 +129,9 @@ class SubtractionPanel extends React.Component {
   getMinuend() {
     let minuend = [];
     for (let i = 0; i < this.props.minuend.length; i++) {
-      const value = document.getElementsByClassName('minuend' + i)[0]
+      const value = document.getElementsByClassName("minuend" + i)[0]
         .textContent;
-      if (value === '') {
+      if (value === "") {
         minuend.push(parseInt(0));
       } else if (value.length > 1) {
         let num = parseInt(value[0]);
@@ -158,18 +153,17 @@ class SubtractionPanel extends React.Component {
     let error_message = null;
     for (let i = 0; i < this.props.minuend.length; i++) {
       if (this.state.corrections_crossedOut[i]) {
-        const value = document.getElementsByClassName(
-          'correction' + i,
-        )[0].value;
-        if (value === '') {
+        const value = document.getElementsByClassName("correction" + i)[0]
+          .value;
+        if (value === "") {
           error_message =
-            'Achtung: Wenn du eine Zahl oben durchstreichst, musst du auch darüber eine andere Zahl eintragen.';
+            "Achtung: Wenn du eine Zahl oben durchstreichst, musst du auch darüber eine andere Zahl eintragen.";
           this.setValidationErrorInCorrectionsRow(i);
           break;
         }
         const num = parseInt(value);
         if (isNaN(num)) {
-          error_message = 'Achtung: Gib nur Zahlen ein.';
+          error_message = "Achtung: Gib nur Zahlen ein.";
           this.setValidationErrorInCorrectionsRow(i);
           break;
         }
@@ -205,11 +199,10 @@ class SubtractionPanel extends React.Component {
     });
   }
 
-
   /**
-  * Changes a value and updates variables with a correction input
-  * @param {SyntheticEvent} event: event triggered by a input
-  */
+   * Changes a value and updates variables with a correction input
+   * @param {SyntheticEvent} event: event triggered by a input
+   */
   correctionsOnChange(event) {
     let value = event.target.value;
     let j = parseInt(event.target.classList[1].slice(-1));
@@ -218,11 +211,10 @@ class SubtractionPanel extends React.Component {
     this.setState({ corrections_row: new_row });
   }
 
-
   /**
-     * Updates variables when minuend column gets crossed out
-     * @param {SyntheticEvent} event: event triggered by a click on minuend col
-     */
+   * Updates variables when minuend column gets crossed out
+   * @param {SyntheticEvent} event: event triggered by a click on minuend col
+   */
   minuend_onClick(event, i) {
     event.preventDefault();
     let new_corrections_crossedOut = this.state.corrections_crossedOut.slice();
@@ -249,58 +241,54 @@ class SubtractionPanel extends React.Component {
     this.setState({ result_row: new_row });
   }
 
-
   /**
    * Resets the inputs in the Subtractionpanel
    * @param {*} event: Event triggered by the refresh-button click
    */
   reset(event) {
-    if (event != null)
-      event.preventDefault();
+    if (event != null) event.preventDefault();
 
     this.setState({
-      corrections_crossedOut: new Array(this.props.minuend.length).slice().fill(false),
+      corrections_crossedOut: new Array(this.props.minuend.length)
+        .slice()
+        .fill(false),
       corrections_row: new Array(this.props.minuend.length).slice().fill(NaN),
       result_row: new Array(this.props.minuend.length).slice().fill(NaN),
     });
   }
 
-  //************** Render functions **************\\  
+  //************** Render functions **************\\
 
   /**
-   * Configures and renders the correction row as InputNumber 
+   * Configures and renders the correction row as InputNumber
    * @returns   The InputNumber's to represent the correction row
    */
   renderCorrections() {
     const corrections_display = [];
 
     for (let j = 0; j < this.props.minuend.length; j++) {
-
       let highlighted = false;
-      if (this.props.highlighting[j] == 1)
-        highlighted = true;
+      if (this.props.highlighting[j] === 1) highlighted = true;
 
       let number;
       let func = null;
       let enabled = false;
-      let display = 'hidden';
+      let display = "hidden";
 
       if (!this.props.analogy) {
         number = parseInt(this.state.corrections_row[j]);
         func = this.correctionsOnChange;
         enabled = true;
-        if (this.state.corrections_crossedOut[j])
-          display = 'visible';
+        if (this.state.corrections_crossedOut[j]) display = "visible";
       } else {
         number = parseInt(this.props.correction[j]);
-        if (isNaN(this.props.correction[j]) == false)
-          display = 'visible'
+        if (isNaN(this.props.correction[j]) === false) display = "visible";
       }
 
       corrections_display.push(
         <InputNumber
-          key={'correction' + j}
-          className={'correction' + j}
+          key={"correction" + j}
+          className={"correction" + j}
           visibility={display}
           error={this.state.corrections_row_error[j]}
           enabled={enabled}
@@ -314,17 +302,15 @@ class SubtractionPanel extends React.Component {
   }
 
   /**
-   * Configures and renders the minuend row as ClickableNumber 
+   * Configures and renders the minuend row as ClickableNumber
    * @returns   The ClickableNumber's to represent the minuend row
    */
   renderMinuend() {
     const minuend_display = [];
 
     for (let i = 0; i < this.props.minuend.length; i++) {
-
       let highlighted = false;
-      if (this.props.highlighting[i] == 1)
-        highlighted = true;
+      if (this.props.highlighting[i] === 1) highlighted = true;
 
       let number = this.props.minuend.slice(i, i + 1);
       let crossedOut, func;
@@ -338,54 +324,50 @@ class SubtractionPanel extends React.Component {
 
       minuend_display.push(
         <ClickableNumber
-          key={'minuend' + i}
-          className={'minuend' + i}
+          key={"minuend" + i}
+          className={"minuend" + i}
           number={number}
           crossedOut={crossedOut}
           onClickHandler={func}
           highlighted={highlighted}
-        />,
+        />
       );
     }
     return minuend_display;
   }
 
   /**
-   * Configures and renders the subtrahend row as Number 
+   * Configures and renders the subtrahend row as Number
    * @returns the Number's to represent the subtrahend row
    */
   renderSubtrahend() {
     const subtrahend_display = [];
 
     for (var i = 0; i < this.props.minuend.length; i++) {
-
       let highlighted = false;
-      if (this.props.highlighting[i] == 1)
-        highlighted = true;
+      if (this.props.highlighting[i] === 1) highlighted = true;
 
-      let number = '0';
+      let number = "0";
       if (this.props.minuend.length - i <= this.props.subtrahend.length)
-        number =
-          this.props.subtrahend.charAt(
-            this.props.subtrahend.length - this.props.minuend.length + i,
-          );
-      else
-        number = '0';
+        number = this.props.subtrahend.charAt(
+          this.props.subtrahend.length - this.props.minuend.length + i
+        );
+      else number = "0";
 
       subtrahend_display.push(
         <Number
-          key={'subtrahend' + i}
-          className={'subtrahend' + i}
+          key={"subtrahend" + i}
+          className={"subtrahend" + i}
           number={number}
           highlighted={highlighted}
-        />,
+        />
       );
     }
     return subtrahend_display;
   }
 
   /**
-   * Configures and renders the result row as InputNumber 
+   * Configures and renders the result row as InputNumber
    * @returns   The InputNumber's to represent the result row
    */
   renderResult() {
@@ -393,8 +375,7 @@ class SubtractionPanel extends React.Component {
 
     for (var j = 0; j < this.props.minuend.length; j++) {
       let highlighted = false;
-      if (this.props.highlighting[j] == 1)
-        highlighted = true;
+      if (this.props.highlighting[j] === 1) highlighted = true;
 
       let number = NaN;
       let func;
@@ -408,14 +389,15 @@ class SubtractionPanel extends React.Component {
 
       result_display.push(
         <InputNumber
-          key={'result' + j}
-          className={'result' + j}
+          key={"result" + j}
+          className={"result" + j}
           number={parseInt(number)}
           error={this.state.result_row_error[j]}
           enabled={true}
           highlighted={highlighted}
           onChangeFunc={func}
-        />);
+        />
+      );
     }
 
     return result_display;
@@ -429,9 +411,7 @@ class SubtractionPanel extends React.Component {
     if (this.state.error_message == null) {
       return [];
     } else {
-      return (
-        <div className="errorMessage">{this.state.error_message}</div>
-      );
+      return <div className="errorMessage">{this.state.error_message}</div>;
     }
   }
 
@@ -443,10 +423,12 @@ class SubtractionPanel extends React.Component {
     if (this.props.analogy) {
       return [];
     } else {
-      return (<CorrectButton
-        className="check panelControls"
-        onClick={() => this.props.submit()}
-      />);
+      return (
+        <CorrectButton
+          className="check panelControls"
+          onClick={() => this.props.submit()}
+        />
+      );
     }
   }
 
@@ -458,17 +440,18 @@ class SubtractionPanel extends React.Component {
     if (this.props.analogy) {
       return [];
     } else {
-      return (<RefreshButton
-        className="refresh panelControls"
-        onClick={(event) => this.reset(event)}
-      />);
+      return (
+        <RefreshButton
+          className="refresh panelControls"
+          onClick={(event) => this.reset(event)}
+        />
+      );
     }
   }
 
-
   /**
-  * @returns the rendered SubtractionPanel, depending if it represents a analogy
-  */
+   * @returns the rendered SubtractionPanel, depending if it represents a analogy
+   */
   render() {
     const corrections_display = this.renderCorrections();
     const minuend_display = this.renderMinuend();
@@ -496,7 +479,8 @@ class SubtractionPanel extends React.Component {
           {refresh_button}
           {error_message}
         </div>
-      </div>);
+      </div>
+    );
   }
 }
 
