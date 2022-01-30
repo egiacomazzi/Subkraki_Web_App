@@ -1,3 +1,10 @@
+# Learn written subtraction with Subkraki :octopus:
+The following repository was developed for a university project as a group of three students. It contains the frontend only because the backend is protected via a license. The resulting website can be found [here](https://cogsys.uni-bamberg.de/ITS/). 
+
+The web-app is meant to deal as a support system for teachers who teach students written subtraction according to the rules that currently apply to the Bavarian school system. Students should work with the web-app and improve by learning from analogies which are presented to them. The analogy fits the mistake the student made. Subkraki, works as an avatar, who presents the analogies step-by-step which intends to let the students understand their miscalculation and improve over time. Substraction tasks with up to three digits and results only in the positive range can be calculated. Own exercises can be entered by pressing the _Eigene Aufgabe_ button in the upper left. The _Neue Aufgabe_ button works as a random exercise generator. 
+
+The following ReadMe was part of a university assignment and thus intended for the professor, who should use it to start the web-app locally and understand the structure of the page. Therefore, the text is written in German and it is assumed that you have access to the API although we are not allowed to publish it.
+
 # Subtrahieren mit Subkraki :octopus:
 
 ## Anleitung, um die Web-App zu starten:
